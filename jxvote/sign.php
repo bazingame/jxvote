@@ -34,6 +34,7 @@ $user->timePlus();
         <meta charset="utf-8"></head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width,init-scale=1.0,max-scale=1.0,userscalable=no"/>
+        <link rel="stylesheet" href="./css/index.css">
         <link href="./style.css" type="text/css" rel="stylesheet">
         <link href="./css/mui.min.css" rel="stylesheet" type="text/css" />
         <link rel="stylesheet" href="./Font-Awesome-4.4.0/css/font-awesome.min.css">
@@ -57,8 +58,7 @@ $user->timePlus();
     <div id="container" class="mui-panel mui--z3">
         <div id="inner1">
         <ul class="mui-tabs__bar mui-tabs__bar--justified">
-          <li class="mui--is-active"><a data-mui-toggle="tab" data-mui-controls="pane-default-1">个人</a></li>
-          <li><a data-mui-toggle="tab" data-mui-controls="pane-default-2">团队</a></li>
+          <li class="mui--is-active"><a data-mui-toggle="tab" data-mui-controls="pane-default-1">填写报名信息</a></li>
         </ul>
         <div class="mui-tabs__pane mui--is-active" id="pane-default-1">
             <form action="<?php echo $action; ?>" method="POST">
@@ -67,97 +67,51 @@ $user->timePlus();
                 <label>姓名</label>
               </div>
               <div class="mui-textfield mui-textfield--float-label">
+                <input type="text" name="xuehao"  required>
+                <label>学号</label>
+              </div>
+              <div class="mui-textfield mui-textfield--float-label">
+                <input type="text" name="yuanxi"  required>
+                <label>院系</label>
+              </div>
+              <div class="mui-textfield mui-textfield--float-label">
                 <input type="text" name="QQ"  required>
                 <label>QQ</label>
               </div>
               <div class="mui-textfield mui-textfield--float-label">
                 <input type="text" name="tel"  required>
-                <label>联系方式</label>
+                <label>电话</label>
               </div>
               <div class="mui-textfield mui-textfield--float-label">
                 <textarea name="introduce"  required></textarea>
-                <label>参赛宣言</label>
-              </div>
-              <div class="mui-textfield mui-textfield--float-label">
-                <input type="text" name="code" value="">
-                <label>邀请码（没有可不填）</label>
+                <label>相册主题</label>
               </div>
               <input name="type" type="hidden" value="A">
               <input id="ttt" name="serverId" type="hidden" value="" required>
-              <p style="font-size: 15px;color: rgba(0,0,0,.26);">第一张照片会作为封面哦~</p>
-              <div id="add-photo"><i id="text-photo" class="fa fa-plus"></i></div>
               <br />
-              <button id="confirm" class="mui-btn mui-btn--raised mui-btn--primary" type="submit" onclick="check(this.form)">确认报名</button>
+              <button id="confirm" class="mui-btn mui-btn--raised mui-btn--primary" type="submit" onclick="check(this.form)" style="background-color:rgb(102,153,102);">确认报名</button>
             </form>
         </div>
-        <div class="mui-tabs__pane" id="pane-default-2">
-            <form action="<?php echo $action; ?>" method="POST">
-              <div class="mui-textfield mui-textfield--float-label">
-                <input type="text" name="team"  required>
-                <label>团队名称</label>
-              </div>
-              <div class="mui-textfield mui-textfield--float-label">
-                <input type="text" name="name"  required>
-                <label>姓名</label>
-              </div>
-              <div class="mui-textfield mui-textfield--float-label">
-                <input type="text" name="QQ"  required>
-                <label>QQ</label>
-              </div>
-              <div class="mui-textfield mui-textfield--float-label">
-                <input type="text" name="tel"  required>
-                <label>联系方式</label>
-              </div>
-              <div class="mui-textfield mui-textfield--float-label">
-                <textarea name="introduce"  required></textarea>
-                <label>参赛宣言</label>
-              </div>
-              <div class="mui-textfield mui-textfield--float-label">
-                <input type="text" name="code" value="">
-                <label>邀请码（没有可不填）</label>
-              </div>
-              <input name="type" type="hidden" value="B">
-              <input id="ggg" name="serverId" type="hidden" value="" required>
-              <p style="font-size: 15px;color: rgba(0,0,0,.26);">第一张照片会作为封面哦~</p>
-              <div id="add-photo2"><i id="text-photo2" class="fa fa-plus"></i></div>
-              <br />
-              <button id="confirm2" class="mui-btn mui-btn--raised mui-btn--primary" type="submit" onclick="check(this.form)">确认报名</button>
-            </form>
-        </div>
+       
         <br />
         <div class="mui-divider"></div>
         <br />
         <p style="font-size:18px;margin-top:0%;"><b>奖项设置</b></p></br>
-        <p>票数No.1：<span class="red">1000</span>元奖金+校级荣誉证书+由康力健身提供价值498元的学期卡一张</p>
-        <p>票数No.2：<span class="red">500</span>元奖金+校级荣誉证书+由康力健身提供的价值248元的月卡一张</p>
-        <p>票数No.3：<span class="red">100</span>元奖金+校级荣誉证书+由康力健身提供的价值128元的15天体验卡一张</p>
-        <p>综合评选：“最佳创意搞怪奖”“最佳视觉享受奖”“最佳红色文化奖”赠送三翼精美明信片一套以及校级荣誉证书</p>
-        </br>
-        <p>*最佳创意搞怪奖将拥有卫星马场永久免费名额</p>
-        <p>*最佳视觉享受奖将拥有万事屋提供的龙猫玩具</p>
-        <p>*最佳红色文化奖将拥有万事屋提供的汽车模型</p>
-        </br>
-        <p>*凡报名者均可享康力健身<span class="red">6.8</span>折优惠</p></br>
-        <p onclick="hide()">独家赞助：必胜客</p>
-        <div id="zzpic"></div>
-        <p style="font-size:13px; margin-top:5%;">*点餐前出示本人有效学生证，或在支付宝上“校园生活”中认证即可享必胜客欢乐餐厅堂食8折美食优惠（部分特别说明产品除外）</p></br></br>
-        <p style="font-size:13px; margin-bottom:10%;">*本活动最终解释权归三翼工作室所有</p>
+        <div id="zxszContain"></div>
         </div>
     </div>
     <nav class="bottom-nav"> 
         <div class="btn-d">
-            <button class="mui-btn" style="margin:0px;width: 100%;height: 100%;" onclick="location.href = './index.php'"><i class="fa fa-home"> 首页</i></button>
+            <div class=" bottomNavBtn2" style="width:60%;height:60%;" onclick="location.href = './index.php'"> <span>首页</span></div>
         </div>
-        <div class="btn-d mui--divider-left">
-             <button class="mui-btn" style="margin:0px;width: 100%;height: 100%;" onclick="location.href = './heart.php'"><i class="fa fa-heartbeat"> 心跳</i></button>
+        <div class="btn-d ">
+             <img src="./images/cross.png">
+             <div class="bottomSign" style="margin:0px;width: 100%;height: 100%;" onclick="location.href = './sign.php'"> 签到</div>
         </div>
-        <div class="btn-d mui--divider-left">
-             <button class="mui-btn" style="margin:0px;width: 100%;height: 100%;" onclick="location.href = './sign.php'"><i class="fa fa-pencil-square-o"> 报名</i></button>
+        <div class="btn-d ">
+             <div class=" bottomNavBtn2" style="width:60%;height:60%;color:black;" onclick="location.href = './my.php'"> <span>个人</span></div>
         </div>
-        <div class="btn-d mui--divider-left">
-             <button class="mui-btn" style="margin:0px;width: 100%;height: 100%;" onclick="location.href = './my.php'"><i class="fa fa fa-user"> 个人</i></button>
-        </div>
-    </nav>
+    </nav> 
 </body>
 
 <script type="text/javascript" src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
