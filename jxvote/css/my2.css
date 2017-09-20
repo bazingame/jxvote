@@ -1,0 +1,36 @@
+body{
+    background-image: url(../images/myBg2.jpg);
+    background-size: 100% 100%;
+   overflow: hidden;
+}
+#myWordImg2{
+    display:block;
+    width: 60%;
+    margin-top: 10%;
+}
+#myWord2{
+    margin-top:5%;
+    text-align: center;
+    color: rgb(119,157,138);
+    line-height: 24px;
+    font-size: 0.9em;
+}
+.awardBox{
+    width: 85%;
+    background-color: #fff;
+    height: 47%;
+    margin-top:10%;
+}
+.wordAward{
+    color: red;
+    border-bottom: 1px red solid;
+    font-size: 0.8em;
+    width: 45%;
+    display: inline-block;
+    margin-left: 5%;
+    padding-bottom: 5px;
+}
+.awardText{
+    margin-top:10px;
+    margin-left: 5%;
+}

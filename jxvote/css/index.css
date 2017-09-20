@@ -1,0 +1,418 @@
+* {
+    margin: 0 auto;
+    padding: 0;
+    list-style: none;
+    text-decoration: none;
+    font-family: "Microsoft Yahei";
+}
+html, body {
+    width: 100%;
+    height: 100%;
+    background-color:#ededed;
+}
+input {
+    -webkit-appearance: none;
+    border: 0;
+}
+input:focus {
+    outline: none;
+}
+
+.clearFix {
+    *zoom: 1;
+}
+.clearFix:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.background {
+    background: url(../images/mainBg.jpg) repeat-y center top;
+    background-size: 100% auto;
+    background-color: #eee;
+    height: 100%;
+    width: 100%;
+    position: fixed;
+}
+.container {
+    width: 90%;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 22%;
+    border-radius: 5px;
+    border-top:100px solid #fff;
+    border-left:10px solid #fff; 
+    border-right:10px solid #fff;  
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    margin-bottom: 20px;
+    z-index: 2;
+}
+
+/*#container
+{
+    padding-top: 0px;
+    width:86%;
+    position:absolute;
+    top:24.1%;
+    left:7%;
+    min-height:64%;
+    margin-bottom: 16%;
+}*/
+
+/* 欢迎语 */
+.container .welcome {
+    font-size: 12px;
+    line-height: 200%;
+}
+.container .welcome span:nth-child(1) {
+    color: #157745;
+}
+.container .welcome span:nth-child(2) {
+    color: #806719;
+}
+
+/* 数据信息 */
+.container .info{
+    position: absolute;
+    top:-94px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    border-top: 1px solid rgb(210,208,205);
+    color: rgb(183,187,188);
+}
+#infoTable{
+    width: 100%;
+    margin: 0;
+}
+.container .info tr {
+    width: 100%;
+}
+.container .info td {
+    width: 27%;
+    font-size: 12px;
+    text-align: center;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+}
+.container .info .vote-tip {
+    font-size: 12px;
+    margin: 5px auto;
+}
+
+/* 搜索栏 */
+.search {
+    margin-top: 15px;
+}
+.search input[type="text"] {
+    width: 65%;
+    float: left;
+    height: 30px;
+    border-bottom: 2px solid #ECF0F1;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+}
+.search .submit {
+    width: 30%;
+    height: 30px;
+    background-color: #39a1f4;
+    float: right;
+    line-height: 30px;
+    font-size: 14px;
+    text-align: center;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    border-radius: 4px;
+    color: #fff;
+}
+.search .submit:before {
+    content: "";
+    display: inline-block;
+    position: relative;
+    top: 5px;
+    height: 20px;
+    width: 16px;
+    background: url(../images/index_search_icon.png) no-repeat center center;
+    background-size: 100% 100%;
+}
+
+#btc{
+    width: 100%;
+    max-width: 640px;
+    height: 50px;
+}
+
+.bc{
+    width: 25%;
+}
+
+/* 我要报名一栏 */
+.register {
+    height: 30px;
+    width:100%;
+    font-size: 0;
+    position: relative;
+    top: -16px;
+    left: -13px;
+}
+.register .logo {
+    width: 10%;
+    height: 100%;
+    float: left;
+/*    background: url(../images/index_logo.png) no-repeat center center;*/
+    background-size: 100% auto;
+}
+.register .new, .register .rank, .register .attention {
+    width: 27%;
+    height: 100%;
+    margin-left: 5%;
+    float: right;
+    border-radius: 4px;
+    font-size: 14px;
+    color: #fff;
+    text-align: center;
+    line-height: 30px;
+}
+
+/* 投票用户 */
+.user {
+    width: 100%;
+    font-size: 0;
+    margin-top: 15px;
+}
+.user .list-one {
+    width: 50%;
+    float: left;
+}
+.user .list-two {
+    width: 50%;
+    float: right;
+}
+
+.user .people {
+    width: 95%;
+    margin-bottom: 15px;
+    position: relative;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+    border-radius: 5px;
+    overflow: hidden;
+}
+.user .people .userNum {
+    font-size: 12px;
+    position: absolute;
+    background-color: #69d3b6;
+    padding: 2px 5px 0;
+    right: 6px;
+    width: 50px;
+    height: 15px;
+    line-height: 15px;
+    text-align: center;
+}
+.user .people .userNum:after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 17px;
+    margin: 0 auto;
+    width: 0;
+    border-width: 10px 30px 0px 30px;
+    border-style: solid;
+    border-color: #69d3b6 transparent transparent transparent;
+}
+.user .people img{
+    width: 100%;
+}
+.user-bottom {
+    height: 40px;
+    width: 100%;
+    font-size: 12px;
+    border-bottom: 1px solid rgb(210,208,205);
+}
+.user-bottom .information {
+    width: 100%;
+    padding-left: 5px;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    float: left;
+}
+.user-bottom .information .name, .user-bottom .information .vote-count {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    width: 100%;
+    word-break: break-all;
+    height: 20px;
+    line-height: 20px;
+}
+.user-bottom .operation {
+    width: 100%;
+    height: 40px;
+    float: right;
+    font-size: 0;
+    padding-top:1px;
+}
+.user-bottom .operation .op-attention {
+    color: white;
+    display: inline-block;
+    width: 35%;
+    height:20px;
+    font-size: 12px;
+    text-align: center;
+    line-height: 20px;
+    margin: 0;
+    background-color: rgb(119,118,116);
+    margin-left: 15%;
+    margin-top:10px;
+    box-sizing: border-box;
+    border-right: 1px solid #fff;
+}
+.user-bottom .operation .op-vote {
+    color: white;
+    display: inline-block;
+    width: 35%;
+    height:20px;
+    font-size: 12px;
+    text-align: center;
+    line-height: 20px;
+    margin: 0;
+    background-color: rgb(119,118,116);
+     margin-top:10px;
+}
+.footer {
+    font-size: 13px;
+    text-align: center;
+    color: #BDC3C7;
+}
+
+.bottom-nav{
+    width: 100%;
+    max-width: 640px;
+    height: 50px;
+    background-image: -webkit-linear-gradient(top,#fff 0,#fff 100%);
+    background-image: linear-gradient(to bottom,#fff 0,#fff 100%);
+    position: fixed;
+    bottom: 0px;
+    z-index: 9999;
+    background-color: white;
+    border-top: solid #D8D8D8 1px;
+}
+
+.filter{
+    width: 100%;
+}
+
+.btt1{
+    width: 28%;
+    float: right;
+}
+.btn-d{
+    float: left;
+    width: 33%;
+    max-width: 640px;
+    height: 50px;
+    margin:0px;
+    padding-top:1px;
+}
+
+.form{
+    width: 67%;
+    float: left;
+}
+
+.butt{
+    width: 27%;
+    float: right;
+}
+.bannerTop{
+    position: absolute;
+    top:3%;
+    width: 100%;
+    margin-top:3.6%;
+}
+.bannerTop>img{
+    width: 100%;
+}
+.phoneAfrica{
+    position: absolute;
+    top:1%;
+    left: 73.2%;
+    width: 26.25%;
+    z-index: 3;
+}
+.phoneAfrica>img{
+    width: 100%;
+}
+.mui-form--inline{
+    position: absolute;
+    top:-55px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 98%;
+}
+.opacityPage{
+    position: absolute;
+    top:0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 96%;
+    height: 100%;
+    background-color:  rgba(255,255,255,0.7);
+    z-index: -1;
+}
+#Rank{
+    background-image: url(../images/paiHang.jpg);
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+#Attention{
+    background-image: url(../images/guanZhu.jpg);
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+#New{
+    background-image: url(../images/qianDao.jpg);
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+.bottomNavBtn{
+     margin-top:7%;
+     color: #fff;
+     background-color: rgb(66,229,193);
+     border-radius: 10%;
+     text-align: center;
+}
+.bottomNavBtn2{
+     margin-top:7%;
+     color: black;
+     background-color: transparent;
+     border-radius: 10%;
+     text-align: center;
+}
+.bottomNavBtn>span{
+    position: absolute;
+    top:50%;
+    transform:translateX(-50%) translateY(-50%); 
+}
+.bottomNavBtn2>span{
+    position: absolute;
+    top:50%;
+    transform:translateX(-50%) translateY(-50%); 
+}
+.bottomSign{
+    color: rgb(66,229,193);
+    text-align: center;
+    transform: translateY(-2px);
+}
+.btn-d>img{
+    margin-left: 40%;
+    width: 20%;
+}

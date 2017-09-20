@@ -1,0 +1,432 @@
+*
+{
+    margin:0px;
+    padding:0px;
+    font-family: 'Microsoft Yahei';
+}
+a{
+    text-decoration: none;
+    color:black;
+}
+#container
+{
+    position:absolute;
+    min-height:100%;
+    width:100%;
+   background: url(../images/mainBg.jpg) repeat-y center top;
+    background-size: 100% auto;
+    padding-top:1px;
+}
+#top_c
+{
+    position:absolute;
+    top:0px;
+    left:0px;
+    width:100%;
+    height:17.6%;
+    background-color:white;
+}
+#center_c1
+{
+    position:absolute;
+    top:20%;
+    left:0px;
+    width:100%;
+    height:15%;
+    background-color:white;
+}
+#center_c2
+{
+    position:absolute;
+    top:39.6%;
+    left:0px;
+    width:100%;
+    height:15%;
+    background-color:white;
+}
+#head
+{
+    width:18%;
+    padding-bottom:18%;
+    background-image:url(./images/head.png);
+    background-size:100% 100%;
+    margin-top:4.8%;
+    margin-left:5.5%;
+}
+#title_name
+{
+    font-size:25px;
+    font-weight: 500;
+    position:absolute;
+    left:28%;
+    top:20%;
+}
+#wechat_name
+{
+    font-size:15px;
+    position:absolute;
+    left:28%;
+    top:50%;
+}
+#center_c1 ul
+{
+    list-style: none;
+    width:100%;
+    height:100%;
+}
+#center_c2 ul
+{
+    list-style: none;
+    width:100%;
+    height:100%;
+}
+#center_c1 ul li
+{
+    height:50%;
+    width:90%;
+    margin-left:5%;
+    position:relative;
+}
+#center_c2 ul li
+{
+    height:50%;
+    width:90%;
+    margin-left:5%;
+    position:relative;
+}
+.li_img
+{
+    height:30px;
+    width:30px;
+    background-size:100% 100%;
+    position:absolute;
+    top:50%;
+    margin-top:-15px;
+}
+#center_c1 ul li p
+{
+    line-height:280%;
+    margin-left:12%;
+}
+#center_c2 ul li p
+{
+    line-height:280%;
+    margin-left:12%;
+}
+#award{
+    width:100%;
+    height:0;
+    -webkit-transition: height 0.5s ease-in-out;
+    -moz-transition: height 0.5s ease-in-out;
+    transition: height 0.5s ease-in-out;
+    background-color:white;
+    position:absolute;
+    top:48.1%;
+    overflow: hidden;
+}
+#award0{
+    width:100%;
+    height:0;
+    -webkit-transition: height 0.5s ease-in-out;
+    -moz-transition: height 0.5s ease-in-out;
+    transition: height 0.5s ease-in-out;
+    background-color:white;
+    position:absolute;
+    top:54.1%;
+    overflow: hidden;
+}
+#down
+{
+    -webkit-transition: transform 0.5s ease-in-out;
+    -moz-transition: transform 0.5s ease-in-out;
+    transition: transform 0.5s ease-in-out;
+}
+#down0
+{
+    -webkit-transition: transform 0.5s ease-in-out;
+    -moz-transition: transform 0.5s ease-in-out;
+    transition: transform 0.5s ease-in-out;
+}
+.aaward
+{
+    width:100%;
+    height:40px;
+    position:relative;
+}
+.aaward p{
+    margin-left:5%;
+    line-height:40px;
+}
+.aaward div{
+    background-color:rgb(196,38,50);
+    border-radius:4px;
+    color:white;
+    position:absolute;
+    right:2%;
+    width:16%;
+    height:26px;
+    top:50%;
+    margin-top: -13px;
+    line-height: 20px;
+    font-size: 15px;
+    text-align: center;
+}
+#layer2
+{
+    background-color:#000000;
+    width:100%;
+    height:100%;
+    z-index:100;
+    position: absolute;
+    -webkit-transition: opacity 0.3s ease-in-out;
+    -moz-transition: opacity 0.3s ease-in-out;
+    transition: opacity 0.3s ease-in-out;
+    opacity:0;
+    display:none;
+}
+#window
+{
+    width:70%;
+    height:0;
+    position:absolute;
+    left:15%;
+    top:20%;
+    background-color:white;
+    -webkit-transition: height 0.3s ease-in-out;
+    -moz-transition: height 0.3s ease-in-out;
+    transition: height 0.3s ease-in-out;
+    z-index:101;
+    display:none;
+    overflow: hidden;
+}
+#window p{
+    margin-left:5%;
+    margin-top:5%;
+    font-size:15px;
+}
+#password
+{
+    width:90%;
+    border-style: none;
+    border-bottom: 1.5px solid rgb(239,239,239);
+    margin-left:5%;
+    min-height:20px;
+    margin-top:6%;
+    color:rgb(200,200,200);
+}
+#submit{
+    background-color:rgb(0,160,233);
+    color:white;
+    width:20%;
+    margin-left:5%;
+    -webkit-appearance: none;
+    border-style: none;
+    margin-top:5%;
+    height:20px;
+}
+#Rank{
+    background-image: url(../images/paiHang.jpg);
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+#Attention{
+    background-image: url(../images/guanZhu.jpg);
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+#New{
+    background-image: url(../images/qianDao.jpg);
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+.bottomNavBtn{
+     margin-top:7%;
+     color: #fff;
+     background-color: rgb(66,229,193);
+     border-radius: 10%;
+     text-align: center;
+}
+.bottomNavBtn2{
+     margin-top:7%;
+     color: black;
+     background-color: transparent;
+     border-radius: 10%;
+     text-align: center;
+}
+.bottomNavBtn>span{
+    position: absolute;
+    top:50%;
+    transform:translateX(-50%) translateY(-50%); 
+}
+.bottomNavBtn2>span{
+    position: absolute;
+    top:50%;
+    transform:translateX(-50%) translateY(-50%); 
+}
+.bottomSign{
+    color: rgb(66,229,193);
+    text-align: center;
+}
+.btn-d>img{
+    margin-left: 40%;
+    width: 20%;
+}
+.btn-d{
+    float: left;
+    width: 33%;
+    max-width: 640px;
+    height: 50px;
+    margin:0px;
+    padding-top:1px;
+}
+#userPhoto{
+    width:35%;
+    padding: 15px;
+    background-color: #fff;
+    display:inline-block;
+    box-sizing: border-box;
+    margin-bottom: 5%;
+    margin-left: 10%;
+    margin-top:6%;
+        font-size: 0;
+}
+#userPhoto>img{
+    width: 100%;
+
+}
+#userUl{
+    position: absolute;
+    top:3%;
+    left: 45%;
+    list-style: none;
+    width: 35%;
+    margin-left: 10%;
+}
+.userLi{
+    background-color: #fff;
+    margin-bottom:8%;
+    height:30px;
+   font-size: 16px;
+   line-height:30px;
+}
+.userLi>img{
+    width: 26%;
+    padding-left: 10%;
+    padding-right: 5%;
+}
+.userInformation{
+    margin-bottom: 3%;
+    height:40px;
+    width: 80%;
+    background-color: #fff;
+    line-height: 40px;
+    font-size: 0.8em;
+}
+.userInformation>img{
+    width:2%; 
+    margin-left: 5%;
+    margin-right: 10%;
+}
+.blackBtn{
+    width: 35%;
+    height: 42px;
+    color: #fff;
+    background-color: black;
+    line-height: 40px;
+    border-radius: 10%;
+    text-align: center;
+    font-size: 0.9em;
+    margin-bottom: 3%;
+    margin-left: 10%;
+}
+.blackBtn>img{
+    width: 11%;
+    margin-left: 5%;
+}
+#userSanYi{
+   display: inline-block;
+    width: 20%;
+    transform: translateX(300%) translateY(-120%);
+}
+.albumBox{
+    box-sizing: border-box;
+    width: 70%;
+    border-top:10px solid #fff;
+    border-left: 5px solid #fff;
+    border-right: 5px solid #fff;
+    border-bottom: 20px solid #fff;
+    transform: translateY(-60px);
+    padding-top:1px;
+}
+#opacityPage{
+    width: 90%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.8);
+    overflow: hidden;
+    padding-bottom: 1px;
+}
+#userAlbum{
+    width: 80%;
+    margin-left: 10%;
+    margin-top:20px;
+    background-color:#fff;
+    box-sizing: border-box;
+    padding-bottom: 10px;
+    margin-bottom: 15%;
+}
+#userAlbum>img{
+    width: 100%;
+}
+#userAlbum>span{
+    text-align: center;
+    font-size: 0.8em;
+    color: black;
+    margin-top: 10px;
+    margin-left: 10%;
+    margin-bottom: 5px;
+}
+#albumBtns{
+    width: 90%;
+    height: 40px;
+    background-color: #fff;
+    border-bottom: 1px solid #fff;
+    border-top: 1px solid #fff;
+    line-height: 40px;
+}
+.albumBtn{
+     width: 30%;
+     height: 25px;
+     background-color: rgb(66,229,193);
+     color: black;
+     text-align: center;
+     margin-left: 15%;
+     display: inline-block;
+     float: left;
+     margin-top:15px;
+     font-size: 0.8em;
+     text-align: center;
+     line-height: 25px;
+}
+#reviseInformation{
+    margin-left: 10%;
+}
+.awardBox{
+    transform: translateY(-40px);
+    width: 70%;
+    background-color: #fff;
+    min-height: 300px;
+    margin-bottom: 40px;
+}
+.wordAward{
+    color: red;
+    border-bottom: 1px red solid;
+    font-size: 0.8em;
+    width: 45%;
+    display: inline-block;
+    margin-left: 5%;
+    padding-bottom: 5px;
+}
+.awardText{
+    margin-top:10px;
+    margin-left: 5%;
+}

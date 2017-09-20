@@ -1,0 +1,67 @@
+* {
+    margin: 0 auto;
+    padding: 0;
+    list-style: none;
+    text-decoration: none;
+    font-family: "Microsoft Yahei";
+}
+body {
+    background: url(../images/background.jpg) no-repeat center bottom;
+    background-color: #e94a44;
+    background-size: 100% auto;
+}
+
+.button {
+    margin-top: 20%;
+    background-color: rgb(252,233,107);
+    height: 50px;
+    width: 60%;
+    border-radius: 10px;
+    text-align: center;
+    line-height: 48px;
+    font-size: 20px;
+    font-weight: bold;
+    box-shadow: 0 0 10px rgba(0, 0, 0, .4);
+}
+.tip {
+    font-size: 12px;
+    height: 20px;
+    line-height: 20px;
+    text-align: center;
+    color: #fff;
+    margin-top: 10px;
+    margin-bottom: 10%;
+}
+.result {
+    margin-bottom: 10%;
+    color: #fff;
+    font-size: 18px;
+    text-align: center;
+    font-weight: bold;
+}
+.prize-list {
+    margin-top: 20px;
+    border-top: 2px dashed #fff;
+    border-bottom: 2px dashed #fff;
+    padding: 10px 0;
+    width: 90%;
+    color: #fff;
+}
+.prize-list .title {
+    font-size: 18px;
+    font-weight: bold;
+    padding: 10px 0;
+}
+.prize-list ul {
+    font-size: 13px;
+}
+.prize-list li {
+    padding: 10px 0 0 10px;
+}
+
+.footer {
+    font-size: 12px;
+    text-align: center;
+    color: #fff;
+    margin: 10px auto;
+}
