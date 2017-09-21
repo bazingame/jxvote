@@ -57,10 +57,12 @@ class Sign
 
     //传签到照片
     function signPic($openId,$words,$serverID){
+        $date = date("Y-m-d H:i:s");
+
         $weixin = new WeiXin();
         $imgData_json = $weixin->downloadfile($serverID);
         $imgArr = json_decode($imgData_json,true);
-        $time = date("m").date("l");
+        $time = date("m").date("d");
         $photo_list = array(
                             $time=>array('pic'=>$imgArr),
                             'words'=>$words,
@@ -69,13 +71,26 @@ class Sign
         $DB = new DataBase(DB_HOST,DB_USER,DB_PWD,DB_NAME);
         $DB->select('candidate','photo_list',"openId ='$openId'");
         $data = $DB->fetchArray(MYSQL_ASSOC);
-        $data = $data[0];
+        $data = $data[0]['photo_list'];
         $photo_old = json_decode($data,true);
 
-        $photo_list = array_merge($photo_list,$photo_old);
+//        判断是否已签到
+        if(array_key_exists($time,$photo_old)){
+            //将pic信息合并
+            $thisDaypic = array_merge($imgArr,$photo_old[$time]['pic']);
+            $thisDayInfo = array('pic'=>$thisDaypic,'words'=>$words,'lebel'=>array('开心'));
+            $thisDayInfo = array($time=>$thisDayInfo);
+            //今日与全部信息合并
+            $photo_list = array_merge($photo_old,$thisDayInfo);
+            $photo_list = json_encode($photo_list,JSON_UNESCAPED_UNICODE);
+        }else{
+            $photo_list = array_merge($photo_list,$photo_old);
+            $photo_list = json_encode($photo_list,JSON_UNESCAPED_UNICODE);
+        }
 
-        $DB->update('candidate',array('photo_list'=>$photo_list),"openId='$openId'");
-        return '123';
+        $DB->update('candidate',array('photo_list'=>$photo_list,'update_time'=>$date),"openId='$openId'");
+
+        return $photo_list;
     }
 
 

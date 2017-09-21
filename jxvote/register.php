@@ -235,14 +235,18 @@ $user->timePlus();
 
          // 下载图片
          document.querySelector('#confirm').onclick = function () {
-             if (images.serverId.length === 0) {
-                  alert('请先选择上传图片');
-                 return;
-             }
+//             if (images.serverId.length === 0) {
+//                  alert('请先选择上传图片');
+//                 return;
+//             }
+
+//             alert($("#words").val());
+//             alert($("#ttt").val());
                 $.ajax({
                     url:'signData.php?type=pic',
+                    type:'POST',
                     data:{
-                        serverId:$("#ttt").value,
+                        serverId:$("#ttt").val(),
                         words:$("#words").val()
                     },
                     success:function (res) {
