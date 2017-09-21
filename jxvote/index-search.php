@@ -67,7 +67,7 @@ $visit_num = $count[0]['vister_count'];
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="format-detection" content="telephone=no">
-    <title>必胜客杯“创意军训”风采照 - 三翼工作室</title>
+    <title>军训时光记 - 三翼工作室</title>
     <link rel="stylesheet" href="./css/index.css">
     <!-- <link href="./style.css" type="text/css" rel="stylesheet"> -->
     <link href="./css/mui.min.css" rel="stylesheet" type="text/css" />

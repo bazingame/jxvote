@@ -31,7 +31,7 @@ $user->timePlus();
 <!doctype html>
 <html>
     <head>
-        <title>三翼 · 必胜客杯 · 创意军训风采照</title>
+        <title>军训时光记 - 三翼工作室</title>
         <meta charset="utf-8"></head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width,init-scale=1.0,max-scale=1.0,userscalable=no"/>

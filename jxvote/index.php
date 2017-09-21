@@ -26,8 +26,8 @@ if($isWx) {
     $nickName = $userInfo['nickname'];       //用户昵称
     $headImgurl = substr($userInfo['headimgurl'], 0, -2) . "/132"; //用户头像
 
-//    $openId = 'oYeDBjmVqf0RhrTflYBfTBBmTo5Y1';
-//    $nickName = 'test';
+    $openId = 'oYeDBjmVqf0RhrTflYBfTBBmTo5Y1';
+    $nickName = 'test';
     /*数据存入session*/
     if (!isset($_SESSION['openId']) || !isset($_SESSION['nickName']) || !isset($_SESSION['headImgurl'])) {
         $_SESSION['openId'] = $openId;
@@ -70,7 +70,7 @@ if($isWx) {
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="format-detection" content="telephone=no">
-    <title>必胜客杯“创意军训”风采照 - 三翼工作室</title>
+    <title>军训时光记 - 三翼工作室</title>
     <link rel="stylesheet" href="./css/index.css">
     <!-- <link href="./style.css" type="text/css" rel="stylesheet"> -->
     <link href="./css/mui.min.css" rel="stylesheet" type="text/css" />

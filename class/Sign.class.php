@@ -55,6 +55,30 @@ class Sign
     }
 
 
+    //传签到照片
+    function signPic($openId,$words,$serverID){
+        $weixin = new WeiXin();
+        $imgData_json = $weixin->downloadfile($serverID);
+        $imgArr = json_decode($imgData_json,true);
+        $time = date("m").date("l");
+        $photo_list = array(
+                            $time=>array('pic'=>$imgArr),
+                            'words'=>$words,
+                            'label'=>array('开心'));
+        //获取原有照片列表信息
+        $DB = new DataBase(DB_HOST,DB_USER,DB_PWD,DB_NAME);
+        $DB->select('candidate','photo_list',"openId ='$openId'");
+        $data = $DB->fetchArray(MYSQL_ASSOC);
+        $data = $data[0];
+        $photo_old = json_decode($data,true);
+
+        $photo_list = array_merge($photo_list,$photo_old);
+
+        $DB->update('candidate',array('photo_list'=>$photo_list),"openId='$openId'");
+        return '123';
+    }
+
+
 
     /*检查报名机会*/
     function checkChance(){
