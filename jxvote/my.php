@@ -19,32 +19,48 @@ else{
 
 session_start();
 $openid = $_SESSION['openId'];
-
 $sign = new Sign();
 $times = $sign->getPrizeChance();
 
+$openid = 'oYeDBjmVqf0RhrTflYBfTBBmTo5Y';
+//判断是否报名
 $DB = new DataBase(DB_HOST,DB_USER,DB_PWD,DB_NAME);
-$DB->select("candidate", "*", "openid = '$openid'");
-$result = $DB->fetchArray(MYSQL_ASSOC);
+$DB->select("candidate", "*", "openId = '$openid'");
+$personal_info = $DB->fetchArray(MYSQL_ASSOC);
+
+if(empty($personal_info)){
+    $isRegister = 0;
+    echo '<script>alert("请先报名吧！")</script>';
+}else{
+    $isRegister = 1;
+    $prize_list = array('0922'=>'随机礼品1份','0923'=>'面膜1张','0924'=>'电话卡1','0925'=>'奶茶1杯','0926'=>'代金劵1张','0927'=>'果汁2杯','0928'=>'水果茶1杯','0929'=>'果汁2杯','0930'=>'抵用券1张','1001'=>'奶茶1杯','1002'=>'阿道夫小礼包','1003'=>'理发体验一次','1004'=>'终极大奖');
+    $key_name = array('1004','1003','1002','1001','0930','0929','0928','0927','0926','0925','0924','0923','0922');
+    $register_info = $personal_info[0];
+    $album_info = json_decode($register_info['album_info'],true);
+    $register_count = json_decode($register_info['register_count'],true);
+    foreach (array_reverse($register_count['detail']) as $key =>$value){
+        if($value=='1'){
+            $last_reg_date = $key_name[$key];
+            break;
+        }
+    }
+}
 unset($DB);
 
 $data = $result[0];
-$nickname = $data['nickname'];                      //得到用户昵称
-$openid   = $data['openid'];
+$nickname = $_SESSION['nickname'];                      //得到用户昵称
+$openid   = $_SESSION['openId'];
 $imgdata  = $_SESSION['headImgurl'];
+//echo $openid.$nickname;
+//echo $imgdata;
+
 
 $data_prize_json  = $data['prize'];
 $data_prize_array = json_decode($data_prize_json, 1);      //得到数据表数据
 $data_prize_array = $data_prize_array['prize'];            //得到奖品ID数据
 $data_prize_array = array_splice($data_prize_array,1);     //去掉第一个无用元素
 
-$prize_array = array(
 
-    );
-
-$prize = $data_prize_array[0];
-
-$prize_name = $prize_array[$prize]['name'];
 
 $user = new User($_SESSION['openId'], $_SESSION['nickName']);
 $user->timePlus();
@@ -73,31 +89,31 @@ $user->timePlus();
 </head>
 <body>
     <div id="layer2" onclick="hidelayer()"></div>
-    <div id="window">
-            <p>联系三翼招商君QQ2092674603：</p>
-            <p>输入招商君告诉你的秘密就可以领走奖品啦~</p>
-            <input type="text" id="password" onfocus="Clear()" value="Password"></br>
-            
-            <button class="mui-btn mui-btn--small mui-btn--primary mui-btn--raised" style="position: absolute;left: 5%;top: 70%;" type='submit'  onclick="upload()">确认</button>
-        </div>
+
     <div id="container">
-         <div id="userPhoto"><img src="./images/kelaosi.jpg"></div>
+         <div id="userPhoto"><img src="<?php
+             if($isWx){
+                 echo $imgdata;
+             }else{
+                 echo './images/kelaosi.jpg';
+             }
+             ?>"></div>
         <ul id="userUl">
-               <li class="userLi"><img src="./images/paiLogo.jpg">排名:</li>
-                <li class="userLi"><img src="./images/fangLogo.jpg">访问:</li>
-                <li class="userLi" style="margin:0;"><img src="./images/touLogo.jpg">票数:</li>
+               <li class="userLi"><img src="./images/paiLogo.jpg">排名:<?php if($isRegister){echo $register_info['rank'];} ?></li>
+                <li class="userLi"><img src="./images/fangLogo.jpg">访问:<?php if($isRegister){echo $register_info['vister_count'];} ?></li>
+                <li class="userLi" style="margin:0;"><img src="./images/touLogo.jpg">票数:<?php if($isRegister){echo $register_info['vote_count'];} ?></li>
         </ul>
-        <div class="userInformation"><img src="./images/littlePerson.png">台湾小帅哥第一次来湘大<span id="informationWords">[已签到:7天]</span></div>
-        <div class="userInformation"><img src="./images/circleCorrect.png" style="width:5%;margin-right:7%;">目前最大已获得奖品<span id="informationWordss">[VIP宠物面膜]</span></div>
-        <div class="blackBtn">联系管理员<img src="./images/whiteQQ.png"></div>
-        <div class="blackBtn">三翼工作室?<img src="./images/whiteSanYi.png"></div>
+        <div class="userInformation"  <?php  if(!$isRegister){echo 'style="display:none";';}?> ><img src="./images/littlePerson.png"><?php  echo $register_info['name'];?><span id="informationWords">[已签到: <?php echo $register_count['count']; ?>天]</span></div>
+        <div class="userInformation" <?php  if(!$isRegister){echo 'style="display:none";';}?>><img src="./images/circleCorrect.png" style="width:5%;margin-right:7%;">目前最新已获奖品<span id="informationWordss">[<?php echo $prize_list[$last_reg_date]; ?>]</span></div>
+        <div class="blackBtn" onclick="alert('管理员QQ是1004168799，有什么问题问他吧')">联系管理员<img src="./images/whiteQQ.png"></div>
+        <div class="blackBtn" onclick="location.href='https://www.sky31.com'">三翼工作室<img src="./images/whiteSanYi.png"></div>
         <img src="./images/sanYi.png" id="userSanYi">
-        <div class="albumBox">
+        <div class="albumBox" <?php  if(!$isRegister){echo 'style="display:none";';}?>>
            <div id="opacityPage">
              <div id="userAlbum">
-               <img src="./images/boy.jpg">
-               <span>今天再照一个，哈哈变梁杰理了</span>
-               <span style="margin-left:70%;">--9.22</span>
+               <img src="../class/recordings/<?php echo $album_info['cover']; ?>">
+               <span><?php echo $album_info['subject']; ?></span>
+               <span style="margin-left:70%;"></span>
              </div>
                <ul class="Labels">
                    <li>自拍</li>
@@ -105,7 +121,7 @@ $user->timePlus();
                 </ul>
            </div>
            <div id="albumBtns">
-               <div class="albumBtn">查看相册</div>
+               <div class="albumBtn "onclick="location.href='./personal.php?id=<?php echo $register_info['Id'];?>'">查看相册</div>
                <div class="albumBtn" id="reviseInformation">修改信息</div>
            </div>
         </div>
@@ -113,35 +129,7 @@ $user->timePlus();
          <div class="wordAward">奖项设置</div>
          <div class="awardText">123123</div>
         </div>
-        <div id="award">
-            <div class="aaward">
-                <p style="line-height: 20px;">我的抽奖机会：<?php echo $times; ?></p>
-                <p style="line-height: 20px;">我的邀请码：<?php echo $openid; ?></p>
-                <p style="line-height: 20px;">将邀请码发送给好友，报名时填写邀请码并报名成功你就能增加一次抽奖机会啦！</p>
-                <p style="line-height: 20px;">* 每人最多五个奖品。</p>
-                <button class="mui-btn mui-btn--raised mui-btn--danger" style="margin-right: 42%;float: right;margin-top: 0%;" id="goPrize">去抽奖</button>
-            </div>
-            <div style="width: 88%;margin: 156px 0 0 5%;">
-                
-            </div>
-        </div>
-        <div id="award0">
-            <div class="mui-divider"></div>
-            <div class="aaward">
-                <p style="margin-bottom: 0px;">
-                    <?php
-                        foreach ($data_prize_array as $key => $value) {
-                            echo $prize_array[$value]['name']."<br/>";
-                        }
-                        // echo $prize_name; 
-                    ?>
-                </p>
-                <button class="mui-btn mui-btn--raised mui-btn--danger" onclick="showlayer()" style="margin-right: 42%;float: right;margin-bottom: 10px;">领取</button>
-            </div>
-            <div style="width: 85%;margin-top: 160px;">
-                <!-- <p>请评此页面联系三翼招商君qq2092674603领取奖品</p><br /> -->
-            </div>
-        </div>
+
         </div>
     </div>
     <nav class="bottom-nav"> 

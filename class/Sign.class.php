@@ -15,7 +15,7 @@ class Sign
         $this->chanceA = $data['chanceA'];
         $this->chanceB = $data['chanceB'];
         if (!$data['chanceA'] && !$data['chanceB']) {
-            echo "报名机会已用完。";
+//            echo "报名机会已用完。";
         }
     }
 

@@ -35,6 +35,18 @@ if($isWx) {
 
     $user = new User($_SESSION['openId'], $_SESSION['nickName']);
     $user->timePlus();
+//查看是否报名
+    $openId = 'oYeDBjmVqf0RhrTflYBfTBBmTo5Y';
+    $DB = new DataBase(DB_HOST,DB_USER,DB_PWD,DB_NAME);
+    $DB->select("candidate", "*", "openId = '$openId'");
+    $personal_info = $DB->fetchArray(MYSQL_ASSOC);
+    if(empty($personal_info)){
+        $isRegister = 0;
+    }else{
+        $isRegister = 1;
+    }
+//    echo $isRegister;
+
 }
 
     $view = new View();
@@ -173,12 +185,22 @@ echo $html;
         <div class="btn-d">
             <div class=" bottomNavBtn" style="width:60%;height:60%;" onclick="location.href = './index.php'"> <span>首页</span></div>
         </div>
-        <div class="btn-d ">
-             <img src="./images/cross.png">
-             <div class="bottomSign" style="margin:0px;width: 100%;height: 100%;" onclick="javascript:if (!<?php echo $isWx;?>) {alert('请进入三翼校园公众号，点击下方菜单或回复军训时光记使用该功能')}else{location.href = './sign.php'}"> 签到</div>
+
+
+        <div class="btn-d "  <?php  if(!$isRegister){echo 'style="display:none";';}?>>
+            <img src="./images/cross.png">
+            <div class="bottomSign" style="margin:0px;width: 100%;height: 100%;" <?php  if($isRegister){echo 'style="display:none";';}?> onclick="javascript:if (!<?php echo $isWx;?>) {alert('请进入三翼校园公众号，点击下方菜单或回复军训时光记使用该功能')}else{location.href = './register.php'}"> 签到</div>
         </div>
+
+
+        <div class="btn-d "  <?php  if($isRegister){echo 'style="display:none";';}?>>
+             <img src="./images/cross.png">
+            <div class="bottomSign" style="margin:0px;width: 100%;height: 100%;" onclick="javascript:if (!<?php echo $isWx;?>) {alert('请进入三翼校园公众号，点击下方菜单或回复军训时光记使用该功能')}else{location.href = './sign.php'}"> 报名</div>
+        </div>
+
+
         <div class="btn-d ">
-             <div class=" bottomNavBtn2" style="width:60%;height:60%;color:black;" onclick="javascript:if (!<?php echo $isWx;?>) {alert('请进入三翼校园公众号，点击下方菜单或回复军训时光记使用该功能')}else{location.href = './my.php'}"> <span>个人</span></div>
+             <div class=" bottomNavBtn2" style="width:60%;height:60%;color:black;" onclick="javascript:if (!<?php echo $isWx;?>) {alert('请进入三翼校园公众号，点击下方菜单或回复军训时光记使用该功能')}else{location.href = './<?php if($isRegister){echo 'my.php';}else{echo 'my2.php';}?>'}"> <span>个人</span></div>
         </div>
     </nav>    
     <script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
