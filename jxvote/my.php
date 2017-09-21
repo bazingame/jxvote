@@ -73,6 +73,7 @@ $user->timePlus();
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width,init-scale=1.0,max-scale=1.0,userscalable=no"/>
     <link href="./css/css.css" type="text/css" rel="stylesheet">
+    <link href="./css/my2.css" type="text/css" rel="stylesheet">
     <link href="./css/mui.min.css" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" href="./Font-Awesome-4.4.0/css/font-awesome.min.css">
     <script src="./js/mui.min.js"></script>
@@ -114,20 +115,47 @@ $user->timePlus();
                <span><?php echo $album_info['subject']; ?></span>
                <span style="margin-left:70%;"></span>
              </div>
-               <ul class="Labels">
-                   <li>自拍</li>
-                   <li>自拍</li>
-                </ul>
+<!--               <ul class="Labels">-->
+<!--                   <li>自拍</li>-->
+<!--                   <li>自拍</li>-->
+<!--                </ul>-->
            </div>
            <div id="albumBtns">
                <div class="albumBtn "onclick="location.href='./personal.php?id=<?php echo $register_info['Id'];?>'">查看相册</div>
-               <div class="albumBtn" id="reviseInformation">修改信息</div>
+               <div class="albumBtn" id="reviseInformation" onclick="location.href='./revise.php'">修改信息</div>
            </div>
         </div>
          <div class="awardBox">
-         <div class="wordAward">奖项设置</div>
-         <div class="awardText">13</div>
-        </div>
+                 <div id="settingPart">
+                     <div class="wordAward">奖项设置</div>
+                     <div class="awardText">
+                         <div><span class="wordModeI">投票奖</span><span class="wordModeII">(No.1-20,壕礼等你)</span></div>
+                         <div><span class="wordModeI">特别奖</span><span class="wordModeII">(最创意，最搞怪，最情怀)</span></div>
+                         <div><span class="wordModeI">投票奖</span><span class="wordModeII">(每日不同，超乎想象)</span></div>
+                         <div><span class="wordModeI">投票奖</span><span class="wordModeII">(来试试运气？)</span></div>
+                         <div><span class="wordModeI">投票奖</span><span class="wordModeII">(点击底部签到进行报名，即可得奖)</span></div>
+                         <div id="showList"><span class="wordModeI">【点击查看礼品清单】</span></div>
+                     </div>
+                 </div>
+                 <div id="receiveWayPart">
+                     <div class="wordAward">领奖方式</div>
+                     <div class="awardText">
+                         <div><span class="wordModeI">投票奖</span><span class="wordModeII">、</span><span class="wordModeI">特别奖</span><span class="wordModeII">和</span><span class="wordModeI">幸运大奖</span><span class="wordModeII">于10月8日军训之夜当晚三翼摆点处领取，工作人员会提前通知</span></div>
+                         <div><span class="wordModeI">特别奖</span><span class="wordModeII">请凭兑奖码到相应的门店登记领取</span></div>
+                         <div><span class="wordModeII">(每日前n名获兑奖码，领取时间:9月22日--10月12日)</span></div>
+                     </div>
+                 </div>
+                 <div id="chooseWayPart">
+                     <div class="wordAward">评选方式</div>
+                     <div class="awardText">
+                         <div><span class="wordModeI">投票奖:</span><span class="wordModeII">关注三翼校园官方微信平台，输入我要投票，进入投票系统，选择自己最喜欢的三个参赛相册进行投票。</span></div>
+                         <div><span class="wordModeI">特别奖:</span><span class="wordModeII">由三翼评审人员综合贴吧评论，官q评论，以及大众评审评选出"最佳创意奖" "最佳搞怪奖" 以及"最具情怀奖"</span></div>
+                         <div><span class="wordModeI">打卡奖:</span><span class="wordModeII">每日打卡前n名即可获得</span></div>
+                         <div><span class="wordModeI">幸运大奖:</span><span class="wordModeII">由赞助商随机抽取幸运报名选手赠送</span></div>
+                         <div><span class="wordModeI">参与奖:</span><span class="wordModeII">参赛即可领取</span></div>
+                     </div>
+                 </div>
+             </div>
 
         </div>
     </div>

@@ -51,17 +51,19 @@ $data = $view->getPersonalAlbum($id)[0];
     <title>Document</title>
     <meta name="viewport"content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
       <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="css/my2.css">
     <link rel="stylesheet" href="css/allPhotoPage.css">
 </head>
 <body>
     <div class="background"></div>
      <div class="bannerTop">
-        <img src="./images/bannerTop.jpg" alt="">
+        <img src="./images/bannerTop2.jpg" alt="">
         <div class="phoneAfrica">
             <img src="./images/phoneAfrica.png" alt="">
         </div>
      </div>
       <div class="container"  style="padding: 15px 10px 15px 10px;">
+
             <div class="opacityPage">
              <div class="userNamePart">
                  <img src="./images/heart.png" alt="">
@@ -105,12 +107,12 @@ HTML;
                             <span style="margin-left:66%;">--</span>
                             <span class="dateWord">{$sign_time}</span>
                             <img src="./images/giftBox.png" alt="" class="giftBox" style="width:10%;">
-                             <div class="giftWord"><img src="./images/yellowCircle.png" alt="">签到6天，获得一个老冯</div>
+                             <div class="giftWord"><img src="./images/yellowCircle.png" alt=""></div>
                         </div>
-                        <ul class="Labels">
-                           <li>自拍</li>
-                           <li>自拍</li>
-                    </ul>
+                        <!--<ul class="Labels">-->
+                           <!--<li>自拍</li>-->
+                           <!--<li>自拍</li>-->
+                    <!--</ul>-->
                    </div>
 HTML;
                 echo $html;
@@ -118,7 +120,37 @@ HTML;
           ?>
 
 
-
+          <div class="awardBox">
+              <div id="settingPart">
+                  <div class="wordAward">奖项设置</div>
+                  <div class="awardText" style="margin-top:40px;">
+                      <div><span class="wordModeI">投票奖</span><span class="wordModeII">(No.1-20,壕礼等你)</span></div>
+                      <div><span class="wordModeI">特别奖</span><span class="wordModeII">(最创意，最搞怪，最情怀)</span></div>
+                      <div><span class="wordModeI">投票奖</span><span class="wordModeII">(每日不同，超乎想象)</span></div>
+                      <div><span class="wordModeI">投票奖</span><span class="wordModeII">(来试试运气？)</span></div>
+                      <div><span class="wordModeI">投票奖</span><span class="wordModeII">(点击底部签到进行报名，即可得奖)</span></div>
+                      <div id="showList"><span class="wordModeI">【点击查看礼品清单】</span></div>
+                  </div>
+              </div>
+              <div id="receiveWayPart">
+                  <div class="wordAward">领奖方式</div>
+                  <div class="awardText">
+                      <div><span class="wordModeI">投票奖</span><span class="wordModeII">、</span><span class="wordModeI">特别奖</span><span class="wordModeII">和</span><span class="wordModeI">幸运大奖</span><span class="wordModeII">于10月8日军训之夜当晚三翼摆点处领取，工作人员会提前通知</span></div>
+                      <div><span class="wordModeI">特别奖</span><span class="wordModeII">请凭兑奖码到相应的门店登记领取</span></div>
+                      <div><span class="wordModeII">(每日前n名获兑奖码，领取时间:9月22日--10月12日)</span></div>
+                  </div>
+              </div>
+              <div id="chooseWayPart">
+                  <div class="wordAward">评选方式</div>
+                  <div class="awardText">
+                      <div><span class="wordModeI">投票奖:</span><span class="wordModeII">关注三翼校园官方微信平台，输入我要投票，进入投票系统，选择自己最喜欢的三个参赛相册进行投票。</span></div>
+                      <div><span class="wordModeI">特别奖:</span><span class="wordModeII">由三翼评审人员综合贴吧评论，官q评论，以及大众评审评选出"最佳创意奖" "最佳搞怪奖" 以及"最具情怀奖"</span></div>
+                      <div><span class="wordModeI">打卡奖:</span><span class="wordModeII">每日打卡前n名即可获得</span></div>
+                      <div><span class="wordModeI">幸运大奖:</span><span class="wordModeII">由赞助商随机抽取幸运报名选手赠送</span></div>
+                      <div><span class="wordModeI">参与奖:</span><span class="wordModeII">参赛即可领取</span></div>
+                  </div>
+              </div>
+          </div>
 
             <div class="theSideLine">
                 <div class="circleGrayTop"></div>
@@ -131,7 +163,7 @@ HTML;
         </div>
         <div class="btn-d ">
             <img src="./images/cross.png">
-            <div class="bottomSign" style="margin:0px;width: 100%;height: 100%;" onclick="javascript:if (!<?php echo $isWx;?>) {alert('请进入三翼校园公众号，点击下方菜单或回复军训时光记使用该功能')}else{location.href = './sign.php'}"> 签到</div>
+            <div class="bottomSign" style="margin:0px;width: 100%;height: 100%;" onclick="javascript:if (!<?php echo $isWx;?>) {alert('请进入三翼校园公众号，点击下方菜单或回复军训时光记使用该功能')}else{location.href = './register.php'}"> 签到</div>
         </div>
         <div class="btn-d ">
             <div class=" bottomNavBtn2" style="width:60%;height:60%;color:black;" onclick="javascript:if (!<?php echo $isWx;?>) {alert('请进入三翼校园公众号，点击下方菜单或回复军训时光记使用该功能')}else{location.href = './my.php'}"> <span>个人</span></div>

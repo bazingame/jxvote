@@ -18,11 +18,13 @@ p{
     color:red;
 }
 #back{ 
-background-image:url(./images/signlow.jpg); 
+background-image:url(./images/newBg.jpg); 
 background-position:center center;
 width:100%;
 background-size:100% 100%; 
-background-repeat:no-repeat;
+position: fixed;
+top: 0;
+left: 0;
 height:100%;}
 #banner
 {

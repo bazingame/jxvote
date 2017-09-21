@@ -33,28 +33,28 @@ $user->timePlus();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
-    <title>Document</title>
+    <title>军训时光记 - 三翼工作室</title>
     <link rel="stylesheet" href="./css/index.css">
     <link rel="stylesheet" href="./css/upLoad.css">
     <script src="//cdn.static.runoob.com/libs/jquery/1.10.2/jquery.min.js"></script>
 </head>
 <body>
      <div id="topSignBanner">
-         <div id="cancelSend">取消</div>
+         <div id="cancelSend" onclick="location.href='./index.php'">取消</div>
          <div id="signWord">
              签到
          </div>
-         <div id="userName">台湾小帅哥第一次来到湘大</div>
-         <div id="send">发送</div>
+         <div id="userName"><?php echo $_SESSION['nickName'];?></div>
+         <div class="send" id = "confirm">发送</div>
      </div>
      <img src="./images/myWord2.png" alt="" id="imgWord">
      <div id="upLoadContainer">
         <div id="writeAndUpLoad">
              <input type="text" class="inputFeel" placeholder="分享你今天拍下的变化和军训心情.." id="words">
-            <div class="upBox" id="showImg">
-<!--                <img src="./images/closeImg.png" alt="" class="deleteImg">-->
-<!--                <img src="./images/blackImg.jpg" alt="" class="upImg">-->
-            </div>
+
+<!--            <div class="upBox" id="showImg">-->
+<!--            </div>-->
+
 
             <div class="upBox" id="add-photo2">
                 <img src="./images/plus.png" alt="" class="plusImg">
@@ -65,17 +65,17 @@ $user->timePlus();
 <!--            <div id="confirm"><i id="text-photo2" class="fa fa-plus"></i></div>-->
             <form action="signData.php?type=pic" method="post">
             <input id="ttt" name="serverId" type="hidden" value="" required>
-            <div  class="addLabelBtn" id="confirm">确认上传</div>
+<!--            <div  class="addLabelBtn" id="confirm">确认上传</div>-->
             </form>
 
-            <div class="addLabelBtn">添加标签</div>
-            <div id="addRemind">已添加X个，还可添加3-X个</div>
-            <div id="labelPart">
-                <div class="lbPart1">
-                    G里G气
-                    <div class="lbPart2"></div>
-                </div>
-            </div>
+<!--            <div class="addLabelBtn">添加标签</div>-->
+<!--            <div id="addRemind">已添加X个，还可添加3-X个</div>-->
+<!--            <div id="labelPart">-->
+<!--                <div class="lbPart1">-->
+<!--                    G里G气-->
+<!--                    <div class="lbPart2"></div>-->
+<!--                </div>-->
+<!--            </div>-->
         </div>
      </div>
          <nav class="bottom-nav"> 
@@ -207,8 +207,8 @@ $user->timePlus();
                      localId: images.localId[i],
                      success: function (res) {
                          //预览图片
-//                         var img = '<img src = "'+images.localId[i]+'" width="80px" style="display: inline" >';
-//                         $("#showImg").append(img);
+                         var img = '<div class="upBox" style="background-image:url('+images.localId[i]+');background-size: cover "></div>';
+                         $("#add-photo2").before(img);
                          i++;
                          // alert('已上传：' + i + '/' + length);
                          var serverId = res.serverId;

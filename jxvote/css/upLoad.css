@@ -1,7 +1,6 @@
 body{
     background-image: url(../images/myBg2.jpg);
     background-size: 100% 100%;
-    overflow: hidden;
     padding-top: 1px;
 }
 #topSignBanner{
@@ -17,7 +16,7 @@ body{
     margin-left: 5%;
     font-size: 0.9em;
 }
-#send{
+.send{
     float: right;
     margin-right:2%;
     font-size: 0.9em;
@@ -57,16 +56,16 @@ body{
 }
 #upLoadContainer{
     width: 100%;
-    height: 90%;
     margin-top:30%;
     background-color: #fff; 
     padding-top: 1px;
+    overflow: scroll;
 }
 #writeAndUpLoad{
     width: 86%;
-    height: 34%;
-
     margin-top: 3%;
+    padding-bottom: 100px;
+
 }
 .upBox{
     position: relative;
@@ -95,12 +94,16 @@ body{
     width: 40%;
 }
 .inputFeel{
+    height: 60px;
     display: block;
     font-size: 0.9em;
+    border: solid #e5e9e8 0.2px;
     outline: none;
     width: 90%;
     margin-left: 5%;
     margin-bottom: 8%;
+    padding-left: 10px;
+
 }
 input::-webkit-input-placeholder { /* WebKit browsers */  
     color: rgb(204,204,204);
@@ -156,6 +159,7 @@ input:-ms-input-placeholder { /* Internet Explorer 10+ */
 #labelPart{
     width: 100%;
     padding-top: 1px;
+    height: 250px;
 }
 .lbPart1{
     position: relative;
@@ -178,4 +182,43 @@ input:-ms-input-placeholder { /* Internet Explorer 10+ */
     width: 5px;
     height: 60px;
     background-color: rgb(255,102,51);
+}
+#redeemCode{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    width: 250px;
+    height: 120px;
+    background-color: rgb(246,245,245);
+    padding-top: 1px;
+    display: none;
+}
+#redeemCode>span{
+    margin-left: 10px;
+}
+#redeemCodes{
+    margin-top: 40px;
+    margin-left: 40px;
+    margin-bottom: 20px;
+}
+#redeemCode>ul{
+    list-style: none;
+    width: 100%;
+    
+}
+#redeemCode>ul>li{
+    width: 125px;
+    box-sizing: border-box;
+    float: left;
+    height: 40px;
+    text-align: center;
+    line-height: 40px;
+    border-top: 1px solid black;
+}
+#copy{
+    border-right: 1px solid black;
+}
+#close{
+    border-left: 1px solid black;
 }

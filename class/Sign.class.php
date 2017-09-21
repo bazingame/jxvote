@@ -44,7 +44,7 @@ class Sign
 
             //插入数据
             $DB = new DataBase(DB_HOST,DB_USER,DB_PWD,DB_NAME);
-            $userInfo = array('name'=>'dsfdsf', 'openId'=>$openId, 'personal_info'=>$personal_info, 'album_info'=>$album_info, 'rank'=>$rank, 'vister_count'=>$vister_count, 'vote_count'=>$vote_count, 'register_count'=>$register_count, 'update_time'=>$date);
+            $userInfo = array('name'=>$name, 'openId'=>$openId, 'personal_info'=>$personal_info, 'album_info'=>$album_info, 'rank'=>$rank, 'vister_count'=>$vister_count, 'vote_count'=>$vote_count, 'register_count'=>$register_count, 'update_time'=>$date);
 //             print_r($userInfo);
 
             $DB->insert("candidate", $userInfo);     //插入报名数据

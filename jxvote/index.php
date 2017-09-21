@@ -83,10 +83,10 @@ if($isWx) {
 <body>
     <div class="background"></div>
     <div class="bannerTop">
-        <img src="./images/bannerTop.jpg" alt="">
-        <div class="phoneAfrica">
-            <img src="./images/phoneAfrica.png" alt="">
-        </div>
+        <img src="./images/bannerTop2.jpg" alt="">
+<!--        <div class="phoneAfrica">-->
+<!--            <img src="./images/phoneAfrica.png" alt="">-->
+<!--        </div>-->
     </div>
     <div class="container" style="padding: 15px 10px 15px 10px;">
         <div class="opacityPage"></div>

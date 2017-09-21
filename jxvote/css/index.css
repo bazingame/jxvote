@@ -28,8 +28,8 @@ input:focus {
 }
 
 .background {
-    background: url(../images/mainBg.jpg) repeat-y center top;
-    background-size: 100% auto;
+    background-image: url(../images/newBg.jpg);
+    background-size: 100% 100%;
     background-color: #eee;
     height: 100%;
     width: 100%;
