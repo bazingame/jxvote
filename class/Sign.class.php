@@ -1,6 +1,7 @@
 <?php
 include_once '../class/DataBase.class.php';
 include_once '../class/WeiXin.class.php';
+include_once '../class/View.class.php';
 date_default_timezone_set('PRC');
 
 /**
@@ -14,90 +15,46 @@ class Sign
         $data = $this->checkChance();
         $this->chanceA = $data['chanceA'];
         $this->chanceB = $data['chanceB'];
-        if (!$data['chanceA'] && !$data['chanceB']) {
-//            echo "报名机会已用完。";
-        }
     }
 
     /*个人类型报名*/
-    function signA($name, $QQ, $tel, $introduce, $serverID){
-        if ($this->chanceA > 0) {
-            $weixin = new WeiXin();
-            $imgData_json = $weixin->downloadfile($serverID);
+    function sign($name,$sid,$department, $QQ, $tel, $album_subject){
             $date = date("Y-m-d H:i:s");
-            $type = "A";
             if (!isset($_SESSION['nickName']) || !isset($_SESSION['openId'])) {
                 echo "缺失数据！";
                 return 0;
             }
             $nickName = $_SESSION['nickName'];
             $openId = $_SESSION['openId'];
+
+            $personal_info = array('sid'=>$sid,'name'=>$name,'college'=>$department,'phone'=>$tel,'qq'=>$QQ);
+            $personal_info = json_encode($personal_info,JSON_UNESCAPED_UNICODE);
+
+            $album_info = array('subject'=>$album_subject,'cover'=>'');
+            $album_info = json_encode($album_info,JSON_UNESCAPED_UNICODE);
+
+            $view = new View();
+            $count = $view->getTotalVotes();
+            $sign_num = $count[0]['sign_up_count'];
+            $rank = $sign_num+1;
+
+            $vister_count = $vote_count = 0;
+
+            $register_count = '{"count":"0","detail":{"0922":"0","0923":"0","0924":"0","0925":"0","0926":"0","0927":"0","0928":"0","0929":"0","0930":"0","1001":"0","1002":"0","1003":"0","1004":"0"}}';
+
+            //插入数据
             $DB = new DataBase(DB_HOST,DB_USER,DB_PWD,DB_NAME);
-            $userInfo = array('name'=>$name, 'type'=>$type, 'QQ'=>$QQ, 'tel'=>$tel, 'introduce'=>$introduce, 'openid'=>$openId, 'nickname'=>$nickName, 'signdate'=>$date, 'team'=>time(), 'img'=>$imgData_json);
-            // print_r($userInfo);
+            $userInfo = array('name'=>'dsfdsf', 'openId'=>$openId, 'personal_info'=>$personal_info, 'album_info'=>$album_info, 'rank'=>$rank, 'vister_count'=>$vister_count, 'vote_count'=>$vote_count, 'register_count'=>$register_count, 'update_time'=>$date);
+//             print_r($userInfo);
+
             $DB->insert("candidate", $userInfo);     //插入报名数据
             // print_r($DB->printMessage());
-            preg_match("/id为：(.*?)$/", $DB->printMessage(), $idData);
-            $id = $idData[1];
 
-            $DB->select("userinfo", "sign", "openid = '$openId'");     //数据查询
-            $result = $DB->fetchArray(MYSQL_ASSOC);
-            $data = $result[0]['sign'];
-            $data = json_decode($data, 1);
-            $data['chanceA'] = $data['chanceA']-1;
-            $data['sign'][] = $id;
-            $json_data = json_encode($data);
-            $userInfo = array('sign' => $json_data);
-            $DB->update("userinfo", $userInfo, "openid = '$openId'");    //报名机会减一
-            $this->plusChance($DB);    //抽奖机会+1
-            // print_r($DB->printMessage());
+            $DB->update("count",array('sign_up_count'=>$rank) , "Id = 1");   //总人数加一
             return true;
-        }
-        else{
-            echo "个人报名机会已用完。";
-        }
     }
 
-    /*团队类型*/
-    function signB($name, $QQ, $tel, $introduce, $team, $serverID){
-        if ($this->chanceB > 0) {
-            $weixin = new WeiXin();
-            $imgData_json = $weixin->downloadfile($serverID);
-            $date = date("Y-m-d H:i:s");
-            $nickName = $_SESSION['nickName'];
-            $openId = $_SESSION['openId'];
-            $type = "B";
-//            $DB = new DataBase(DB_HOST,DB_USER,DB_PWD,DB_NAME);
-            $DB = new DataBase(DB_HOST,DB_USER,DB_PWD,DB_NAME);
-            $userInfo = array('name'=>$name, 'type'=>$type, 'tel'=>$tel, 'QQ'=>$QQ, 'introduce'=>$introduce, 'team'=>$team, 'openid'=>$openId, 'nickname'=>$nickName, 'signdate'=>$date, 'img'=>$imgData_json);
-            print_r($userInfo);
-            $DB->insert("candidate", $userInfo);     //插入报名数据
-            preg_match("/id为：(.*?)$/", $DB->printMessage(), $idData);
-            $id = $idData[1];
-            preg_match("/错误编号：(.*?)错/", $DB->printMessage(), $data);
-            if ($data[1] == '1062') {
-                $tip = "该团队已报名！";
-                return $tip;
-            }
-            else{
-                $DB->select("userinfo", "sign", "openid = '$openId'");      //数据查询
-                $result = $DB->fetchArray(MYSQL_ASSOC);
-                $data = $result[0]['sign'];
-                $data = json_decode($data, 1);
-                $data['chanceB'] = $data['chanceB']-1;
-                $data['sign'][] = $id;
-                $json_data = json_encode($data);
-                $userInfo = array('sign' => $json_data);
-                $DB->update("userinfo", $userInfo, "openid = '$openId'");    //报名机会减一
-                $this->plusChance($DB);    //抽奖机会+1
-                // print_r($DB->printMessage());
-                return true;
-            }
-        }
-        else{
-            echo "团体报名机会已用完。";
-        }
-    }
+
 
     /*检查报名机会*/
     function checkChance(){

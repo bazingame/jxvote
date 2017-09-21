@@ -27,10 +27,10 @@
         </div>
         <div class="btn-d ">
              <img src="./images/cross.png">
-             <div class="bottomSign" style="margin:0px;width: 100%;height: 100%;" onclick="location.href = './sign.php'"> 签到</div>
+             <div class="bottomSign" style="margin:0px;width: 100%;height: 100%;" onclick="location.href = './sign.php'"> 报名</div>
         </div>
         <div class="btn-d ">
-             <div class=" bottomNavBtn" style="width:60%;height:60%;color:black;" onclick="location.href = './my.php'"> <span>个人</span></div>
+             <div class=" bottomNavBtn" style="width:60%;height:60%;color:black;"> <span>个人</span></div>
         </div>
     </nav>
 </body>

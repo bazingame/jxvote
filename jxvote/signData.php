@@ -7,39 +7,13 @@ $sign = new Sign();
 session_start();
 $openid = $_SESSION['openId'];
 
-/*邀请码增加抽奖机会*/
-if ($_POST['code'] !== '' && $openid !== $_POST['code']) {
-    $code = $_POST['code'];
-    $DB = new DataBase(DB_HOST,DB_USER,DB_PWD,DB_NAME);
-    $DB->select("userinfo", "*", "openid = '$code'");
-    $result = $DB->fetchArray(MYSQL_ASSOC);
-    $prizeData = json_decode($result[0]['prize'], 1);
-    $prizeData = $prizeData['prize'];
-    $num = count($prizeData);
-    unset($DB);
-    if ($result && $num < 6) {     //限制最多抽五个奖
-        $sign->plusChanceOther($code);
-    }
-    else{
-        ;
-    }
-}
-
-
-if ($_POST['type'] == 'A') {
-    $status = $sign->signA($_POST['name'], $_POST['QQ'], $_POST['tel'], $_POST['introduce'], $_POST['serverId']);
+    $status = $sign->sign($_POST['name'], $_POST['sid'],$_POST['department'],$_POST['QQ'], $_POST['tel'], $_POST['album_subject']);
     if ($status) {
+        echo "<script>alert('报名成功！请开始上传照片吧！');location.href='register.php'</script>";
         // print_r($_POST);
-        header("Location:./lottery.php");
+//        header("Location:./lottery.php");
         // echo "$status";
     }
-}
-if ($_POST['type'] == 'B') {
-    $status = $sign->signB($_POST['name'], $_POST['QQ'], $_POST['tel'], $_POST['introduce'], $_POST['team'], $_POST['serverId']);
-    if ($status) {
-        header("Location:./index.php");
-        // echo "$status";
-    }
-}
+
 
 

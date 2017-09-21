@@ -26,6 +26,8 @@ if($isWx) {
     $nickName = $userInfo['nickname'];       //用户昵称
     $headImgurl = substr($userInfo['headimgurl'], 0, -2) . "/132"; //用户头像
 
+//    $openId = 'oYeDBjmVqf0RhrTflYBfTBBmTo5Y1';
+//    $nickName = 'test';
     /*数据存入session*/
     if (!isset($_SESSION['openId']) || !isset($_SESSION['nickName']) || !isset($_SESSION['headImgurl'])) {
         $_SESSION['openId'] = $openId;
@@ -36,7 +38,9 @@ if($isWx) {
     $user = new User($_SESSION['openId'], $_SESSION['nickName']);
     $user->timePlus();
 //查看是否报名
-    $openId = 'oYeDBjmVqf0RhrTflYBfTBBmTo5Y';
+    $openId = $_SESSION['openId'];
+    $nickName = $_SESSION['nickName'];
+    $headImgurl =  $_SESSION['headImgurl'];
     $DB = new DataBase(DB_HOST,DB_USER,DB_PWD,DB_NAME);
     $DB->select("candidate", "*", "openId = '$openId'");
     $personal_info = $DB->fetchArray(MYSQL_ASSOC);
@@ -104,7 +108,7 @@ if($isWx) {
 
         <div class="register clearFix">
             <div class="rank" onclick="javascript:if (!<?php echo $isWx;?>) {alert('请进入三翼校园公众号，点击下方菜单或回复军训时光记使用该功能')}else{location.href = './index-team.php'}" id="New">我的签到</div>
-            <div class="attention" onclick="javascript:if (!<?php echo $isWx;?>) {alert('请进入三翼校园公众号，点击下方菜单或回复军训时光记使用该功能')}else{location.href = './index-fcous.php'}" id="Attention">我的关注</div>
+            <div class="attention" onclick="javascript:if (!<?php echo $isWx;?>) {alert('请进入三翼校园公众号，点击下方菜单或回复军训时光记使用该功能')}else{location.href = ''}" id="Attention">我的关注</div>
             <div class="new" onclick="javascript:location.href = './index-vote.php';" id="Rank">投票排行</div>
         </div>
         <div class="user clearFix">

@@ -10,10 +10,11 @@ if (preg_match('/MicroMessenger/', $UA)) {
     $action = './signData.php';
 }
 else{
+    header('Location:index.php');
     $isWx = 0 ;
     $action = '';
 }
-
+session_start();
 /*获取JDk签名并解析*/
 $weixin = new WeiXin();
 $url = 'http://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];   //获取地址栏完整url（带参数）
@@ -67,11 +68,11 @@ $user->timePlus();
                 <label>姓名</label>
               </div>
               <div class="mui-textfield mui-textfield--float-label">
-                <input type="text" name="xuehao"  required>
+                <input type="text" name="sid"  required>
                 <label>学号</label>
               </div>
               <div class="mui-textfield mui-textfield--float-label">
-                <input type="text" name="yuanxi"  required>
+                <input type="text" name="department"  required>
                 <label>院系</label>
               </div>
               <div class="mui-textfield mui-textfield--float-label">
@@ -83,11 +84,9 @@ $user->timePlus();
                 <label>电话</label>
               </div>
               <div class="mui-textfield mui-textfield--float-label">
-                <textarea name="introduce"  required></textarea>
+                <textarea name="album_subject"  required></textarea>
                 <label>相册主题</label>
               </div>
-              <input name="type" type="hidden" value="A">
-              <input id="ttt" name="serverId" type="hidden" value="" required>
               <br />
               <button id="confirm" class="mui-btn mui-btn--raised mui-btn--primary" type="submit" style="background-color:rgb(102,153,102);">确认报名</button>
             </form>
@@ -106,10 +105,10 @@ $user->timePlus();
         </div>
         <div class="btn-d ">
              <img src="./images/cross.png">
-             <div class="bottomSign" style="margin:0px;width: 100%;height: 100%;" onclick="location.href = './sign.php'"> 签到</div>
+             <div class="bottomSign" style="margin:0px;width: 100%;height: 100%;" >报名</div>
         </div>
         <div class="btn-d ">
-             <div class=" bottomNavBtn2" style="width:60%;height:60%;color:black;" onclick="location.href = './my.php'"> <span>个人</span></div>
+             <div class=" bottomNavBtn2" style="width:60%;height:60%;color:black;" onclick="location.href = './my2.php'"> <span>个人</span></div>
         </div>
     </nav> 
 </body>

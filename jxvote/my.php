@@ -22,7 +22,6 @@ $openid = $_SESSION['openId'];
 $sign = new Sign();
 $times = $sign->getPrizeChance();
 
-$openid = 'oYeDBjmVqf0RhrTflYBfTBBmTo5Y';
 //判断是否报名
 $DB = new DataBase(DB_HOST,DB_USER,DB_PWD,DB_NAME);
 $DB->select("candidate", "*", "openId = '$openid'");
@@ -138,10 +137,10 @@ $user->timePlus();
         </div>
         <div class="btn-d ">
              <img src="./images/cross.png">
-             <div class="bottomSign" style="margin:0px;width: 100%;height: 100%;" onclick="location.href = './sign.php'"> 签到</div>
+             <div class="bottomSign" style="margin:0px;width: 100%;height: 100%;" onclick="location.href = './register.php'"> 签到</div>
         </div>
         <div class="btn-d ">
-             <div class=" bottomNavBtn" style="width:60%;height:60%;color:#fff;" onclick="location.href = './my.php'"> <span>个人</span></div>
+             <div class=" bottomNavBtn" style="width:60%;height:60%;color:#fff;" > <span>个人</span></div>
         </div>
     </nav>   
 </body>
