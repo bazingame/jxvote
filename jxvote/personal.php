@@ -66,8 +66,8 @@ $data = $view->getPersonalAlbum($id)[0];
              <div class="userNamePart">
                  <img src="./images/heart.png" alt="">
                  <?php
-                    $subject = json_decode($data['album_info'],true);
-                 echo $subject['subject']; ?>
+//                    $subject = json_decode($data['name'],true);
+                 echo $data['name']; ?>
                  <img src="./images/littlePerson.png" alt="" style="width:auto; height:50%;">
              </div>
              <ul class="photoPageNav">
@@ -76,7 +76,7 @@ $data = $view->getPersonalAlbum($id)[0];
                  $visiter_count = $data['vister_count'];
                  $vote_count = $data['vote_count'];
                  $html = <<<HTML
-                <li>排名:{$rank}</li>
+                 <li>排名:{$rank}</li>
                  <li>访问:{$visiter_count}</li>
                  <li>票数:{$vote_count}</li>
 HTML;
@@ -84,11 +84,11 @@ HTML;
 
                  ?>
              </ul>
-             <div id="voteBtn">投一票</div>
+             <div id="voteBtn" pid = "<?php echo $id; ?>">投一票</div>
          </div>
           <?php
             $album_info = json_decode($data['photo_list'],true);
-            foreach ($album_info as $key => $value){
+            foreach (array_reverse($album_info) as $key => $value){
                 $month = substr($key,0,2);
                 $day = substr($key,2,2);
                 $sign_time = $month.'.'.$day;
@@ -130,12 +130,54 @@ HTML;
             <div class=" bottomNavBtn2" style="width:60%;height:60%;" onclick="location.href = './index.php'"> <span>首页</span></div>
         </div>
         <div class="btn-d ">
-             <img src="./images/cross.png">
-             <div class="bottomSign" style="margin:0px;width: 100%;height: 100%;" onclick="location.href = './sign.php'"> 签到</div>
+            <img src="./images/cross.png">
+            <div class="bottomSign" style="margin:0px;width: 100%;height: 100%;" onclick="javascript:if (!<?php echo $isWx;?>) {alert('请进入三翼校园公众号，点击下方菜单或回复军训时光记使用该功能')}else{location.href = './sign.php'}"> 签到</div>
         </div>
         <div class="btn-d ">
-             <div class=" bottomNavBtn2" style="width:60%;height:60%;color:black;" onclick="location.href = './my.php'"> <span>个人</span></div>
+            <div class=" bottomNavBtn2" style="width:60%;height:60%;color:black;" onclick="javascript:if (!<?php echo $isWx;?>) {alert('请进入三翼校园公众号，点击下方菜单或回复军训时光记使用该功能')}else{location.href = './my.php'}"> <span>个人</span></div>
         </div>
     </nav>
+    <script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script>
+        var voting=false;
+        $('#voteBtn').on("click",function(){
+            if (<?php echo $isWx; ?>) {
+                if(voting)return false;
+                var cur=$(this);
+                var pid=$(this).attr("pid");
+                var counter=$(".voteC[pid="+pid+"]");
+                var counterNum=parseInt(counter.html());
+                voting=true;
+                $(this).html("ing...");
+                $.ajax({
+                    url:"./vote.php?id="+pid,
+                    type:"get",
+                    success:function(data){
+                        try{
+                            var jsonD=JSON.parse(data);
+                            if(jsonD.code==0){
+                                alert(jsonD.msg);
+                                counterNum++;
+                                counter.html(counterNum);
+                            }
+                            else{
+                                alert(jsonD.msg);
+                            }
+                        }
+                        catch(e){
+                            alert("解析错误");
+                        }
+                        voting=false;
+                        cur.html("投票");
+                    }
+                });
+            }
+            else{
+                alert("投票已经截止咯。");
+            }
+        });
+
+    </script>
 </body>
+
 </html>

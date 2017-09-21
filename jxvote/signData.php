@@ -10,7 +10,7 @@ $openid = $_SESSION['openId'];
 /*邀请码增加抽奖机会*/
 if ($_POST['code'] !== '' && $openid !== $_POST['code']) {
     $code = $_POST['code'];
-    $DB = new DataBase('localhost', 'root', '***REMOVED***', "junxun");
+    $DB = new DataBase(DB_HOST,DB_USER,DB_PWD,DB_NAME);
     $DB->select("userinfo", "*", "openid = '$code'");
     $result = $DB->fetchArray(MYSQL_ASSOC);
     $prizeData = json_decode($result[0]['prize'], 1);

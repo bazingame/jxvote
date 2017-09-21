@@ -177,10 +177,10 @@ HTML;
     </div>
     <div class="btn-d ">
         <img src="./images/cross.png">
-        <div class="bottomSign" style="margin:0px;width: 100%;height: 100%;" onclick="location.href = './sign.php'"> 签到</div>
+        <div class="bottomSign" style="margin:0px;width: 100%;height: 100%;" onclick="javascript:if (!<?php echo $isWx;?>) {alert('请进入三翼校园公众号，点击下方菜单或回复军训时光记使用该功能')}else{location.href = './sign.php'}"> 签到</div>
     </div>
     <div class="btn-d ">
-        <div class=" bottomNavBtn2" style="width:60%;height:60%;color:black;" onclick="location.href = './my.php'"> <span>个人</span></div>
+        <div class=" bottomNavBtn2" style="width:60%;height:60%;color:black;" onclick="javascript:if (!<?php echo $isWx;?>) {alert('请进入三翼校园公众号，点击下方菜单或回复军训时光记使用该功能')}else{location.href = './my.php'}"> <span>个人</span></div>
     </div>
 </nav>
 <script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
