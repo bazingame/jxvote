@@ -13,47 +13,37 @@ if (preg_match('/MicroMessenger/', $UA)) {
 else{
     $isWx = 0 ;
 }
-$isWx = 0 ;
 
-/*初始化对象并获取用户数据*/
-$weixin = new WeiXin();
-$userInfo = $weixin->getUserInfo();
+if($isWx) {
+    /*初始化对象并获取用户数据*/
+    $weixin = new WeiXin();
+    $userInfo = $weixin->getUserInfo();
 
-/*解析用户数据*/
-$userInfo = json_decode($userInfo, 1);
-session_start();
-$openId     = $userInfo['openid'];
-$nickName   = $userInfo['nickname'];       //用户昵称
-$headImgurl = substr($userInfo['headimgurl'], 0,-2)."/132" ; //用户头像
+    /*解析用户数据*/
+    $userInfo = json_decode($userInfo, 1);
+    session_start();
+    $openId = $userInfo['openid'];
+    $nickName = $userInfo['nickname'];       //用户昵称
+    $headImgurl = substr($userInfo['headimgurl'], 0, -2) . "/132"; //用户头像
 
-/*数据存入session*/
-if (!isset($_SESSION['openId'])||!isset($_SESSION['nickName'])||!isset($_SESSION['headImgurl'])) {
-  $_SESSION['openId']     = $openId;
-  $_SESSION['nickName']   = $nickName;
-  $_SESSION['headImgurl'] = $headImgurl;
+    /*数据存入session*/
+    if (!isset($_SESSION['openId']) || !isset($_SESSION['nickName']) || !isset($_SESSION['headImgurl'])) {
+        $_SESSION['openId'] = $openId;
+        $_SESSION['nickName'] = $nickName;
+        $_SESSION['headImgurl'] = $headImgurl;
+    }
+
+    $user = new User($_SESSION['openId'], $_SESSION['nickName']);
+    $user->timePlus();
 }
 
-/*获取JDk签名并解析*/
-// $url = 'http://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];   //获取地址栏完整url（带参数）
-// $signature = $weixin->getSignature($url);
-// $signature = json_decode($signature, 1);
-
-
-$user = new User($_SESSION['openId'], $_SESSION['nickName']);
-$user->timePlus();
-
-$view = new View();
-$data = $view->filterTime();
-$times = $view->getTotalVotes();
-$num2 = $times[0]['votes'];
-$num3 = $times[0]['ipdata'];
-$num = count($data);
-//排名
-//$list = $view->getList();
-
-// print_r($data);
-
-// $data = $view->filterTime();
+    $view = new View();
+    $data = $view->filterTime();
+    $count = $view->getTotalVotes();
+    $register_num = $count[0]['register_count'];
+    $sign_num = $count[0]['sign_up_count'];
+    $vote_num = $count[0]['vote_count'];
+    $visit_num = $count[0]['vister_count'];
 
 ?>
 
@@ -85,10 +75,10 @@ $num = count($data);
         <div class="info">
             <table id="infoTable">
                 <tr>
-                    <td>报名人数<div class="number"><?php echo $num ?></div></td>
-                    <td>签到总数<div class="number"></div></td>
-                    <td>累计投票<div class="number"><?php echo $num2 ?></div></td>
-                    <td>访问次数<div class="number"><?php echo $num3 ?></div></td> 
+                    <td>报名人数<div class="number"><?php echo $sign_num ?></div></td>
+                    <td>签到总数<div class="number"><?php echo $register_num ?></div></td>
+                    <td>累计投票<div class="number"><?php echo $vote_num ?></div></td>
+                    <td>访问次数<div class="number"><?php echo $visit_num ?></div></td>
                 </tr>
             </table>
         </div>
@@ -101,59 +91,40 @@ $num = count($data);
         </form>
 
         <div class="register clearFix">
-            <div class="rank" onclick="javascript:location.href = './index-team.php';" id="New"></div>
-            <div class="attention" onclick="javascript:if (!<?php echo $isWx;?>) {alert('微信端才有此功能哦，快去关注“湘潭大学三翼校园”吧~')}else{location.href = './index-fcous.php'}" id="Attention"></div>
-            <div class="new" onclick="javascript:location.href = './index-vote.php';" id="Rank"></div>
+            <div class="rank" onclick="javascript:if (!<?php echo $isWx;?>) {alert('请进入三翼校园公众号，点击下方菜单或回复军训时光记使用该功能')}else{location.href = './index-team.php'}" id="New">我的签到</div>
+            <div class="attention" onclick="javascript:if (!<?php echo $isWx;?>) {alert('请进入三翼校园公众号，点击下方菜单或回复军训时光记使用该功能')}else{location.href = './index-fcous.php'}" id="Attention">我的关注</div>
+            <div class="new" onclick="javascript:location.href = './index-vote.php';" id="Rank">投票排行</div>
         </div>
         <div class="user clearFix">
             <div class="list-one">
             <?php
                 foreach ($data as $key=>$value) {
                     $row = $value;
-                    $imgurl = $row['img'];
+                    $personal_info = json_decode($row['personal_info'],true);
+                    $name = $personal_info['name'];
+                    $imgurl = $row['album_info'];
                     $imgurl = json_decode($imgurl, 1);
-                    $imgurl = $imgurl[0];
+                    $imgurl = $imgurl['cover'];
+                    $subject = $imgurl['subject'];
                     if ($key%2 == 0) {
-                        $id = $row['id'];
-                        if ($row['type']=='A') {
+                        $id = $row['Id'];
                         $html = <<<HTML
                                     <div class="mui-panel mui--z2" style="padding: 0px;width: 95%;" style="padding: 0px;width: 95%;">
-                    <div class="userNum"><span>$id</span>号</div>
-                    <img class="one-img" data-original="../class/recordings/$imgurl" alt="name" width="100%" onclick="javascript:location.href = './personal.php?id=$id';">
+                    <div class="userNum"><span>{$id}</span>号</div>
+                    <img class="one-img" data-original="../class/recordings/{$imgurl}" alt="name" width="100%" onclick="javascript:location.href = './personal.php?id={$id}';">
                     <div class="user-bottom">
                         <div class="information">
-                            <div class="name">{$row['name']}</div>
-                            <div class="vote-count"><span class="voteC" pid="$id" >{$row['votes']}</span>票&nbsp;&nbsp;{$row['introduce']}。</div>
+                            <div class="name">{$name}</div>
+                            <div class="vote-count"><span class="voteC" pid="{$id}" >{$row['vote_count']}</span>票&nbsp;&nbsp;{$subject}</div>
                         </div>
                         <div class="operation">
-                            <div class="op-attention" fcous="$id">关注</div>
-                            <div class="op-vote" pid="$id">投票</div>
+                            <div class="op-attention" fcous="{$id}">关注</div>
+                            <div class="op-vote" pid="{$id}">投票</div>
                         </div>
                     </div>
                 </div>
 HTML;
 echo $html;
-                        }
-                        if ($row['type']=='B') {
-                        $html = <<<HTML
-                                    <div class="mui-panel mui--z2" style="padding: 0px;width: 95%;" style="padding: 0px;width: 95%;">
-                    <div class="userNum"><span>{$row['id']}</span>号</div>
-                    <img class="one-img" data-original="../class/recordings/$imgurl" alt="name" width="100%" onclick="javascript:location.href = './personal.php?id=$id';">
-                    <div class="user-bottom">
-                        <div class="information">
-                            <div class="name">{$row['team']}<button class="mui-btn mui-btn--raised mui-btn--primary" style="width: 30px;height: 17px;margin: 0 0 3px 5px;font-size: 1px;padding: 0px;line-height: 1px;">团队</button></div>
-                            <div class="vote-count"><span class="voteC" pid="$id" >{$row['votes']}</span>票&nbsp;&nbsp;{$row['introduce']}。</div>
-                        </div>
-                        <div class="operation">
-                            <div class="op-attention" fcous="$id">关注</div>
-                            <div class="op-vote" pid="$id">投票</div>
-                        </div>
-                    </div>
-                </div>
-HTML;
-echo $html;
-                        }                        
-                       
 
                     }
                 }
@@ -164,56 +135,39 @@ echo $html;
                         <?php
                 foreach ($data as $key=>$value) {
                     $row = $value;
-                    $imgurl = $row['img'];
+                    $personal_info = json_decode($row['personal_info'],true);
+                    $name = $personal_info['name'];
+                    $imgurl = $row['album_info'];
                     $imgurl = json_decode($imgurl, 1);
-                    $imgurl = $imgurl[0];
+                    $imgurl = $imgurl['cover'];
+                    $subject = $imgurl['subject'];
                     if ($key%2 !== 0) {
-                        $id = $row['id'];
-                        if ($row['type']=='A') {
+                        $id = $row['Id'];
                         $html = <<<HTML
                                     <div class="mui-panel mui--z2" style="padding: 0px;width: 95%;" style="padding: 0px;width: 95%;">
-                    <div class="userNum"><span>$id</span>号</div>
-                    <img class="two-img" data-original="../class/recordings/$imgurl" alt="name" width="100%" onclick="javascript:location.href = './personal.php?id=$id';">
+                    <div class="userNum"><span>{$id}</span>号</div>
+                    <img class="two-img" data-original="../class/recordings/{$imgurl}" alt="name" width="100%" onclick="javascript:location.href = './personal.php?id={$id}';">
                     <div class="user-bottom">
                         <div class="information">
-                            <div class="name">{$row['name']}</div>
-                            <div class="vote-count"><span class="voteC" pid="$id" >{$row['votes']}</span>票&nbsp;&nbsp;{$row['introduce']}。</div>
+                            <div class="name">{$name}</div>
+                            <div class="vote-count"><span class="voteC" pid="{$id}" >{$row['vote_count']}</span>票&nbsp;&nbsp;{$subject}</div>
                         </div>
                         <div class="operation">
-                            <div class="op-attention" fcous="$id">关注</div>
-                            <div class="op-vote" pid="$id">投票</div>
+                            <div class="op-attention" fcous="{$id}">关注</div>
+                            <div class="op-vote" pid="{$id}">投票</div>
                         </div>
                     </div>
                 </div>
 HTML;
 echo $html;
                         }
-                        if ($row['type']=='B') {
-                        $html = <<<HTML
-                                    <div class="mui-panel mui--z2" style="padding: 0px;width: 95%;" style="padding: 0px;width: 95%;">
-                    <div class="userNum"><span>{$row['id']}</span>号</div>
-                    <img class="two-img" data-original="../class/recordings/$imgurl" alt="name" width="100%"  onclick="javascript:location.href = './personal.php?id=$id';">
-                    <div class="user-bottom">
-                        <div class="information">
-                            <div class="name">{$row['team']}<button class="mui-btn mui-btn--raised mui-btn--primary" style="width: 30px;height: 17px;margin: 0 0 3px 5px;font-size: 1px;padding: 0px;line-height: 1px;">团队</button></div>
-                            <div class="vote-count"><span class="voteC" pid="$id" >{$row['votes']}</span>票&nbsp;&nbsp;{$row['introduce']}。</div>
-                        </div>
-                        <div class="operation">
-                            <div class="op-attention" fcous="$id">关注</div>
-                            <div class="op-vote" pid="$id">投票</div>
-                        </div>
-                    </div>
-                </div>
-HTML;
-echo $html;
-                        } 
-                    }
+
                 }
             ?>
 
             </div>
         </div>
-        <div class="footer">Copyright &copy; 2004-2016湘潭大学三翼工作室</div>
+        <div class="footer">Copyright &copy; 2004-2017湘潭大学三翼工作室</div>
     </div>
     <nav class="bottom-nav"> 
         <div class="btn-d">

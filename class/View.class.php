@@ -49,16 +49,20 @@ class View
     }
 
     /*按时间排序返回-可选类型*/
-    function filterTime($type = ''){
+    function filterTime(){
         $DB = new DataBase(DB_HOST,DB_USER,DB_PWD,DB_NAME);
-        if ($type != '') {
-            $DB->selectOrder("candidate", "signDate", "DESC", "*", "type = '$type'");
-        }
-        else{
-            $DB->selectOrder("candidate", "signDate", "DESC", "*");
-        }
+        $DB->selectOrder("candidate", "update_time", "DESC", "*");
         $result = $DB->fetchArray(MYSQL_ASSOC);
         // print_r($result);
+        return $result;
+    }
+
+
+    /*返回个人相册*/
+    function getPersonalAlbum($id){
+        $DB = new DataBase(DB_HOST,DB_USER,DB_PWD,DB_NAME);
+        $DB->select("candidate", "*","id = $id");
+        $result = $DB->fetchArray(MYSQL_ASSOC);
         return $result;
     }
 
@@ -92,14 +96,9 @@ class View
     }
 
     /*按票数排序返回-可选类型*/
-    function filterVotes($type = ''){
+    function filterVotes(){
         $DB = new DataBase(DB_HOST,DB_USER,DB_PWD,DB_NAME);
-        if ($type != '') {
-            $DB->selectOrder("candidate", "votes", "DESC", "*", "type = '$type'");
-        }
-        else{
-            $DB->selectOrder("candidate", "votes", "DESC", "*");
-        }
+        $DB->selectOrder("candidate", "vote_count", "DESC", "*");
         $result = $DB->fetchArray(MYSQL_ASSOC);
         // print_r($result);
         return $result;
@@ -117,7 +116,7 @@ class View
     /*返回vote和ipdata总票数-数组*/
     function getTotalVotes(){
         $DB = new DataBase(DB_HOST,DB_USER,DB_PWD,DB_NAME);
-        $DB->select("sAv", "*", "id = '1'");
+        $DB->select("count", "*", "id = '1'");
         $result = $DB->fetchArray(MYSQL_ASSOC);
         // print_r($result);
         return $result;

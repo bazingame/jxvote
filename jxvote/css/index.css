@@ -174,7 +174,7 @@ input:focus {
     height: 100%;
     margin-left: 5%;
     float: right;
-    border-radius: 4px;
+    /*border-radius: 4px;*/
     font-size: 14px;
     color: #fff;
     text-align: center;
@@ -334,7 +334,7 @@ input:focus {
 }
 .bannerTop{
     position: absolute;
-    top:3%;
+    top:10px;
     width: 100%;
     margin-top:3.6%;
 }
@@ -369,19 +369,25 @@ input:focus {
     z-index: -1;
 }
 #Rank{
-    background-image: url(../images/paiHang.jpg);
-    background-size: contain;
-    background-repeat: no-repeat;
+    background-color: rgb(240,62,108);
+   height: 23px;
+   line-height: 23px;
+   font-size: 12px;
+   color: #fff;
 }
 #Attention{
-    background-image: url(../images/guanZhu.jpg);
-    background-size: contain;
-    background-repeat: no-repeat;
+   background-color: rgb(73,204,175);
+   height: 23px;
+   line-height: 23px;
+   font-size: 12px;
+   color: #fff;
 }
 #New{
-    background-image: url(../images/qianDao.jpg);
-    background-size: contain;
-    background-repeat: no-repeat;
+   background-color: rgb(230,230,60);
+   height: 23px;
+   line-height: 23px;
+   font-size: 12px;
+   color: #fff;
 }
 .bottomNavBtn{
      margin-top:7%;

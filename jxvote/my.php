@@ -23,7 +23,7 @@ $openid = $_SESSION['openId'];
 $sign = new Sign();
 $times = $sign->getPrizeChance();
 
-$DB = new DataBase(DB_HOST,DB_USER,DB_PWD,DB_NAME);
+$DB = new DataBase('127.0.0.1', 'root', '***REMOVED***', "junxun");
 $DB->select("userinfo", "*", "openid = '$openid'");
 $result = $DB->fetchArray(MYSQL_ASSOC);
 unset($DB);
@@ -103,8 +103,8 @@ $user->timePlus();
                 <li class="userLi"><img src="./images/fangLogo.jpg">访问:</li>
                 <li class="userLi" style="margin:0;"><img src="./images/touLogo.jpg">票数:</li>
         </ul>
-        <div class="userInformation"><img src="./images/littlePerson.png">台湾小帅哥第一次来湘大</div>
-        <div class="userInformation"><img src="./images/circleCorrect.png" style="width:5%;margin-right:7%;">目前最大已获得奖品</div>
+        <div class="userInformation"><img src="./images/littlePerson.png">台湾小帅哥第一次来湘大<span id="informationWords">[已签到:7天]</span></div>
+        <div class="userInformation"><img src="./images/circleCorrect.png" style="width:5%;margin-right:7%;">目前最大已获得奖品<span id="informationWordss">[VIP宠物面膜]</span></div>
         <div class="blackBtn">联系管理员<img src="./images/whiteQQ.png"></div>
         <div class="blackBtn">三翼工作室?<img src="./images/whiteSanYi.png"></div>
         <img src="./images/sanYi.png" id="userSanYi">
@@ -115,6 +115,10 @@ $user->timePlus();
                <span>今天再照一个，哈哈变梁杰理了</span>
                <span style="margin-left:70%;">--9.22</span>
              </div>
+               <ul class="Labels">
+                   <li>自拍</li>
+                   <li>自拍</li>
+                </ul>
            </div>
            <div id="albumBtns">
                <div class="albumBtn">查看相册</div>

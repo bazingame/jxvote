@@ -89,7 +89,7 @@ $user->timePlus();
               <input name="type" type="hidden" value="A">
               <input id="ttt" name="serverId" type="hidden" value="" required>
               <br />
-              <button id="confirm" class="mui-btn mui-btn--raised mui-btn--primary" type="submit" onclick="check(this.form)" style="background-color:rgb(102,153,102);">确认报名</button>
+              <button id="confirm" class="mui-btn mui-btn--raised mui-btn--primary" type="submit" style="background-color:rgb(102,153,102);">确认报名</button>
             </form>
         </div>
        

@@ -31,7 +31,7 @@ header("Content-type:text/html;charset=utf-8");
 // $user = new User($_SESSION['openId'], $_SESSION['nickName']);
 $id = $_GET['id'];
 
-$DB = new DataBase(DB_HOST,DB_USER,DB_PWD,DB_NAME);
+$DB = new DataBase('localhost', 'root', '***REMOVED***', "junxun");
 $DB->select("candidate", "*", "id = $id");
 $result = $DB->fetchArray(MYSQL_ASSOC);
 // print_r($result);

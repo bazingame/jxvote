@@ -1,9 +1,8 @@
 <?php
 define('DB_HOST','127.0.0.1');
 define('DB_USER','root');
-//define('DB_PWD','***REMOVED***');
-define('DB_PWD','root');
-define('DB_NAME','junxun');
+define('DB_PWD','***REMOVED***');
+define('DB_NAME','junxun2017');
 
 /**
 * 连接数据库
@@ -84,7 +83,7 @@ class DataBase {
 
      public function selectSearch($tableName, $str, $columnName, $name, $where = "") {
          $sql = "SELECT " . $columnName . " FROM " . $tableName;
-         $sql .= $where ? " WHERE " . $where . " AND ". $name ." LIKE '%" . $str . "%'" : " WHERE $name" ." LIKE '%" . $str . "%' AND type = 'A'";
+         $sql .= $where ? " WHERE " . $where . " AND ". $name ." LIKE '%" . $str . "%'" : " WHERE $name" ." LIKE '%" . $str . "%' ";
          $this->query($sql);
          // echo $sql;
      }

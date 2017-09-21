@@ -327,6 +327,14 @@ a{
     margin-left: 5%;
     margin-right: 10%;
 }
+#informationWords{
+    margin-left: 8%;
+    display: inline-block;
+}
+#informationWordss{
+    margin-left: 15%;
+    display: inline-block;
+}
 .blackBtn{
     width: 35%;
     height: 42px;
@@ -430,3 +438,23 @@ a{
     margin-top:10px;
     margin-left: 5%;
 }
+ .Labels{
+     position: absolute;
+     top:75%;
+     left:29%;
+     width: 70%;
+     list-style: none;
+     padding: 0;
+     float: left;
+ }
+ .Labels>li{
+     width: 40px;
+     height: 15px;
+     color: #fff;
+     background-color: rgb(246,83,125);
+     float: left;
+     font-size: 0.5em;
+     line-height: 15px;
+     text-align: center;
+     margin-right: 20px;
+ }

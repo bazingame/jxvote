@@ -65,7 +65,7 @@ body{
 #writeAndUpLoad{
     width: 86%;
     height: 34%;
-    border: 3px dashed rgb(204,204,204);
+
     margin-top: 3%;
 }
 .upBox{
@@ -77,6 +77,16 @@ body{
     height: 80px;
     border: 1px dashed rgb(204,204,204);
 }
+.deleteImg{
+    position: absolute;
+    width: 10%;
+    top: -9%;
+    left: 90%;
+}
+.upImg{
+    width: 100%;
+    height: 100%;
+}
 .plusImg{
     position: absolute;
     top:50%;
@@ -86,7 +96,7 @@ body{
 }
 .inputFeel{
     display: block;
-    font-size: 0.5em;
+    font-size: 0.9em;
     outline: none;
     width: 90%;
     margin-left: 5%;
@@ -125,4 +135,47 @@ input:-ms-input-placeholder { /* Internet Explorer 10+ */
     left: 50%;
     transform: translateX(-50%) translateY(-50%);
     margin-left: 0;
+}
+.addLabelBtn{
+    width: 30%;
+    color: black;
+    background-color: rgb(210,210,210);
+    border-radius: 15px;
+    height: 35px;
+    line-height: 35px;
+    text-align: center;
+    margin-top:5%;
+    margin-left:1%;
+}
+#addRemind{
+    margin-top:5%;
+    margin-left:1%;
+    font-size: 0.9em;
+    color: rgb(173,173,173);
+}
+#labelPart{
+    width: 100%;
+    padding-top: 1px;
+}
+.lbPart1{
+    position: relative;
+    width: 65px;
+    height: 28px;
+    background-color: #ff6633;
+    font-size: 0.9em;
+    line-height: 28px;
+    text-align: center;
+    color: #fff;
+    margin-top: 20px;
+    margin-left: 20px;
+    padding-top:0.5px;
+    box-sizing: border-box;
+}
+.lbPart2{
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 5px;
+    height: 60px;
+    background-color: rgb(255,102,51);
 }
