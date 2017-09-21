@@ -73,7 +73,7 @@ class WeiXin
 
     /*获取JDk签名*/
     function getSignature(){
-        $url = 'http://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']; //获取地址栏完整url（带参数）
+        $url = 'https://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']; //获取地址栏完整url（带参数）
         $jsTicket  = $this->getJsTicket($this->token);
         $timestamp = time();
         $noncestr  = "JiaoWoSuiJiZiFuChuan";
@@ -100,7 +100,7 @@ class WeiXin
     /*重新获取失败的图片*/
     function getPic($media_id){
         $token = $this->token;
-        $url = "http://file.api.weixin.qq.com/cgi-bin/media/get?access_token=$token&media_id=$media_id";
+        $url = "https://file.api.weixin.qq.com/cgi-bin/media/get?access_token=$token&media_id=$media_id";
         $ch = curl_init($url);
         curl_setopt($ch, CURLOPT_HEADER, 0);
         curl_setopt($ch, CURLOPT_NOBODY, 0);    //只取body头
@@ -125,7 +125,7 @@ class WeiXin
         }
         $imgData_json = json_encode($imgData);
         foreach ($mediaData as $value) {
-            $url = "http://file.api.weixin.qq.com/cgi-bin/media/get?access_token=$token&media_id=$value";
+            $url = "https://file.api.weixin.qq.com/cgi-bin/media/get?access_token=$token&media_id=$value";
             $ch = curl_init($url);
             curl_setopt($ch, CURLOPT_HEADER, 0);
             curl_setopt($ch, CURLOPT_NOBODY, 0);    //只取body头

@@ -100,7 +100,7 @@ function json_encode_ex($value)
     </div>
     <div class="footer">Copyright &copy; 2004-2016 湘潭大学三翼工作室</div>
 
-    <script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script src="apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
     <script>
         var i = 0;
         $(function(){

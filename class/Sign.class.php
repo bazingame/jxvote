@@ -73,8 +73,9 @@ class Sign
         $data = $DB->fetchArray(MYSQL_ASSOC);
         $data = $data[0]['photo_list'];
         $photo_old = json_decode($data,true);
-
-//        判断是否已签到
+//        return $photo_old;
+//        return json_encode($photo_old,JSON_UNESCAPED_UNICODE);
+        // 判断是否已签到
         if(array_key_exists($time,$photo_old)){
             //将pic信息合并
             $thisDaypic = array_merge($imgArr,$photo_old[$time]['pic']);
@@ -83,14 +84,91 @@ class Sign
             //今日与全部信息合并
             $photo_list = array_merge($photo_old,$thisDayInfo);
             $photo_list = json_encode($photo_list,JSON_UNESCAPED_UNICODE);
+//            return $photo_list;
+            //未参与抽奖返回-1
+            $code = -1;
         }else{
-            $photo_list = array_merge($photo_list,$photo_old);
+            //
+            //获取兑奖码 (中奖为十位数字，否则为0)
+            $code = $this->getPrizeCode();
+            if($code!=0){
+               $res =  $this->addPrize($openId,$time,$code);
+            }
+            $this->setReg($date,$openId);
+            //判断是否第一次
+            if($photo_old==''){
+            }else{
+                $photo_list = array_merge($photo_list,$photo_old);
+            }
             $photo_list = json_encode($photo_list,JSON_UNESCAPED_UNICODE);
+//            return  $photo_list;
         }
+        $data = $photo_list;
+        $DB = new DataBase(DB_HOST,DB_USER,DB_PWD,DB_NAME);
+        $DB->update('candidate',array('photo_list'=>$data),"openId='$openId'");   //再次打卡会失败！
+//        $DB->update_1('candidate','photo_list',$data,"openId='$openId'");
+        $DB->update('candidate',array('update_time'=>$date),"openId='$openId'");
+//        $sql = "UPDATE candidate SET photo_list = '$data' WHERE openId = '$openId'";
+//        $DB->query($sql);
 
-        $DB->update('candidate',array('photo_list'=>$photo_list,'update_time'=>$date),"openId='$openId'");
+        return $res;
+//        return $photo_list;
+    }
 
-        return $photo_list;
+
+    //获取兑奖码
+    function getPrizeCode(){
+        $date = date("m").date("d");
+        $DB = new DataBase(DB_HOST,DB_USER,DB_PWD,DB_NAME);
+        $DB->select('register_limit','*',"date ='$date'");
+        $data = $DB->fetchArray(MYSQL_ASSOC);
+        $limit = $data[0]['limit'];
+        $now_num = $data[0]['monitor'];
+        if($now_num<$limit){
+            $now_num++;
+            $DB->update('register_limit',array('monitor'=>$now_num),"date = '$date'");
+            $DB->select('prize_code','code',"date ='$date' AND code_order = '$now_num' ");
+            $data = $DB->fetchArray(MYSQL_ASSOC);
+            $code = $data[0]['code'];
+            return $code;
+        }else{
+            return 0;
+        }
+    }
+
+
+    //设置register_count (有点问题)
+
+    function setReg($date,$openId){
+        $DB = new DataBase(DB_HOST,DB_USER,DB_PWD,DB_NAME);
+        $DB->select('candidate','*',"openId='$openId'");
+        $data = $DB->fetchArray(MYSQL_ASSOC);
+        $register_list = $data[0]['register_count'];
+        $res = json_decode($register_list,true);
+        $res['count']++;
+        $res['detail'][$date] = 1;
+        $res = json_encode($res,JSON_UNESCAPED_UNICODE);
+        $DB->update('candidate',array('register_count'=>$res),"openId = '$openId'");
+    }
+
+    //记录兑奖码
+    function addPrize($openId,$date,$code){
+        $DB = new DataBase(DB_HOST,DB_USER,DB_PWD,DB_NAME);
+        $DB->select('candidate','prize',"openId='$openId'");
+        $data = $DB->fetchArray(MYSQL_ASSOC);
+        $data = $data[0]['prize'];
+//        return $data;
+        $data = json_decode($data,true);
+//        return $data;
+        if($data==''){
+            $res = array($date=>$code);
+        }else{
+            $thisPrize = array($date=>$code);
+            $res = array_merge($thisPrize,$data);
+//            return $res;
+        }
+        $res = json_encode($res,JSON_UNESCAPED_UNICODE);
+        $DB->update('candidate',array('prize'=>$res),"openId = '$openId'");
     }
 
 
@@ -176,3 +254,7 @@ class Sign
         return $times;
     }
 }
+
+//$aa = new Sign();
+//$res = $aa->setReg('0923','oYeDBjmVqf0RhrTflYBfTBBmTo5Y');
+//print_r($res);

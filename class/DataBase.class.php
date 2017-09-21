@@ -1,8 +1,8 @@
 <?php
 define('DB_HOST','127.0.0.1');
 define('DB_USER','root');
-//define('DB_PWD','***REMOVED***');
-define('DB_PWD','root');
+define('DB_PWD','***REMOVED***');
+//define('DB_PWD','root');
 define('DB_NAME','junxun_2017');
 //define('DB_NAME','junxun');
 
@@ -131,6 +131,15 @@ class DataBase {
          $updateValue = substr($updateValue, 0, strlen($updateValue) - 1);
          $sql = "UPDATE $tableName SET $updateValue";
          $sql .= $where ? " WHERE $where" : null;
+         $this->query($sql);
+         if($this->result){
+             $this->msg = "数据更新成功。受影响行数：" . mysql_affected_rows($this->conn);
+         }
+     }
+
+     public function update_1($tableName, $key,$value, $where){
+
+         $sql = "UPDATE $tableName SET $key = $value WHERE $where";
          $this->query($sql);
          if($this->result){
              $this->msg = "数据更新成功。受影响行数：" . mysql_affected_rows($this->conn);

@@ -216,7 +216,7 @@ echo $html;
              <button class="mui-btn" style="margin:0px;width: 100%;height: 100%;"><i class="fa fa fa-user"> 个人</i></button>
         </div>
     </nav>    
-    <script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script src="//apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
     <script type="text/javascript">
     // $('#id233').html();
         $('.op-vote').click(function() {

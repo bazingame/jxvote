@@ -177,8 +177,8 @@ echo $html;
              <button class="mui-btn" style="margin:0px;width: 100%;height: 100%;" onclick="location.href = './my.php'"><i class="fa fa fa-user"> 个人</i></button>
         </div>
     </nav>    
-    <script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
-    <script type="text/javascript" src="http://j.sky31.com/jQuery.LazyLoad/"></script>
+    <script src="//apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script type="text/javascript" src="//j.sky31.com/jQuery.LazyLoad/"></script>
 
     <script>
         $(function() {

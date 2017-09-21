@@ -17,7 +17,7 @@ else{
 
 /*获取JDk签名并解析*/
 $weixin = new WeiXin();
-$url = 'http://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];   //获取地址栏完整url（带参数）
+$url = 'https://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];   //获取地址栏完整url（带参数）
 $signature = $weixin->getSignature($url);
 $signature = json_decode($signature, 1);
 //print_r($signature);
@@ -36,7 +36,7 @@ $user->timePlus();
     <title>Document</title>
     <link rel="stylesheet" href="./css/index.css">
     <link rel="stylesheet" href="./css/upLoad.css">
-    <script src="http://cdn.static.runoob.com/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="//cdn.static.runoob.com/libs/jquery/1.10.2/jquery.min.js"></script>
 </head>
 <body>
      <div id="topSignBanner">
@@ -93,8 +93,8 @@ $user->timePlus();
 
 <!-- script    -------------------->
 
-     <script type="text/javascript" src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
-     <script type="text/javascript" src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+     <script type="text/javascript" src="//res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+     <script type="text/javascript" src="//apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
 
      <script type="text/javascript">
          wx.config({

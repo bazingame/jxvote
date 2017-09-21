@@ -128,7 +128,7 @@ HTML;
         <div class="footer">Copyright &copy; 2004-2016湘潭大学三翼工作室</div>
     </div>
     
-    <script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script src="//apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
     <script src="./js/personal.js"></script>
     <!-- <script src="./js/index.js"></script> -->
 </body>

@@ -24,10 +24,11 @@ if($isWx) {
     session_start();
     $openId = $userInfo['openid'];
     $nickName = $userInfo['nickname'];       //用户昵称
-    $headImgurl = substr($userInfo['headimgurl'], 0, -2) . "/132"; //用户头像
-
-    $openId = 'oYeDBjmVqf0RhrTflYBfTBBmTo5Y1';
-    $nickName = 'test';
+    $headImgurl = substr($userInfo['headimgurl'], 5, -2) . "/132"; //用户头像
+    $headImgurl = 'https:'.$headImgurl;
+//    echo $headImgurl;
+//    $openId = 'oYeDBjmVqf0RhrTflYBfTBBmTo5Y1';
+//    $nickName = 'test';
     /*数据存入session*/
     if (!isset($_SESSION['openId']) || !isset($_SESSION['nickName']) || !isset($_SESSION['headImgurl'])) {
         $_SESSION['openId'] = $openId;
@@ -38,6 +39,7 @@ if($isWx) {
     $user = new User($_SESSION['openId'], $_SESSION['nickName']);
     $user->timePlus();
 //查看是否报名
+//    echo $_SESSION['headImgurl'];
     $openId = $_SESSION['openId'];
     $nickName = $_SESSION['nickName'];
     $headImgurl =  $_SESSION['headImgurl'];
@@ -207,8 +209,8 @@ echo $html;
              <div class=" bottomNavBtn2" style="width:60%;height:60%;color:black;" onclick="javascript:if (!<?php echo $isWx;?>) {alert('请进入三翼校园公众号，点击下方菜单或回复军训时光记使用该功能')}else{location.href = './<?php if($isRegister){echo 'my.php';}else{echo 'my2.php';}?>'}"> <span>个人</span></div>
         </div>
     </nav>    
-    <script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
-    <script type="text/javascript" src="http://j.sky31.com/jQuery.LazyLoad/"></script>
+    <script src="//apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script type="text/javascript" src="//j.sky31.com/jQuery.LazyLoad/"></script>
 
     <script>
         $(function() {

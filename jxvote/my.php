@@ -126,7 +126,7 @@ $user->timePlus();
         </div>
          <div class="awardBox">
          <div class="wordAward">奖项设置</div>
-         <div class="awardText">123123</div>
+         <div class="awardText">13</div>
         </div>
 
         </div>
@@ -144,7 +144,7 @@ $user->timePlus();
         </div>
     </nav>   
 </body>
-<script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
 <script>
     var isshow=0;
     var isshow0=0;

@@ -11,8 +11,15 @@ $openid = $_SESSION['openId'];
     if($_GET['type']=='pic'){
         $words = $_POST['words'];
         $serverId = $_POST['serverId'];
-        $status = $sign->signPic($openid,$words,$serverId);
-        echo $status;
+        $res = $sign->signPic($openid,$words,$serverId);
+        if($res == '0'){
+            echo "打卡成功！但今日抽奖人数已达上限了:-(";
+        }else if($res == '-1'){
+            echo "今天又一次打卡成功啦！";
+        }else{
+            echo '您的兑奖码是:'.$res.'。';
+        }
+//        echo $res;
     }else {
         $status = $sign->sign($_POST['name'], $_POST['sid'], $_POST['department'], $_POST['QQ'], $_POST['tel'], $_POST['album_subject']);
         if ($status) {
