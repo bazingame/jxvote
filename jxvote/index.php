@@ -96,7 +96,7 @@ if($isWx) {
                 <tr>
                     <td>报名人数<div class="number"><?php echo $sign_num ?></div></td>
                     <td>签到总数<div class="number"><?php echo $register_num ?></div></td>
-                    <td>累计投票<div class="number"><?php echo $vote_num ?></div></td>
+                    <td>累计投票<div class="number" id="vote_count"><?php echo $vote_num ?></div></td>
                     <td>访问次数<div class="number"><?php echo $visit_num ?></div></td>
                 </tr>
             </table>
@@ -122,18 +122,18 @@ if($isWx) {
                     $name = $personal_info['name'];
                     $imgurl = $row['album_info'];
                     $imgurl = json_decode($imgurl, 1);
-                    $imgurl = $imgurl['cover'];
-                    $subject = $imgurl['subject'];
+                    $imgurl_path = $imgurl['cover'];
+                    $album_subject = $imgurl['subject'];
                     if ($key%2 == 0) {
                         $id = $row['Id'];
                         $html = <<<HTML
                                     <div class="mui-panel mui--z2" style="padding: 0px;width: 95%;" style="padding: 0px;width: 95%;">
                     <div class="userNum"><span>{$id}</span>号</div>
-                    <img class="one-img" data-original="../class/recordings/{$imgurl}" alt="name" width="100%" onclick="javascript:location.href = './personal.php?id={$id}';">
+                    <img class="one-img" data-original="../class/recordings/{$imgurl_path}" alt="name" width="100%" onclick="javascript:location.href = './personal.php?id={$id}';">
                     <div class="user-bottom">
                         <div class="information">
                             <div class="name">{$name}</div>
-                            <div class="vote-count"><span class="voteC" pid="{$id}" >{$row['vote_count']}</span>票&nbsp;&nbsp;{$subject}</div>
+                            <div class="vote-count"><span class="voteC" pid="{$id}" >{$row['vote_count']}</span>票&nbsp;&nbsp;{$album_subject}</div>
                         </div>
                         <div class="operation">
                             <div class="op-attention" fcous="{$id}">关注</div>
@@ -157,18 +157,18 @@ echo $html;
                     $name = $personal_info['name'];
                     $imgurl = $row['album_info'];
                     $imgurl = json_decode($imgurl, 1);
-                    $imgurl = $imgurl['cover'];
-                    $subject = $imgurl['subject'];
+                    $imgurl_path = $imgurl['cover'];
+                    $album_subject = $imgurl['subject'];
                     if ($key%2 !== 0) {
                         $id = $row['Id'];
                         $html = <<<HTML
                                     <div class="mui-panel mui--z2" style="padding: 0px;width: 95%;" style="padding: 0px;width: 95%;">
                     <div class="userNum"><span>{$id}</span>号</div>
-                    <img class="two-img" data-original="../class/recordings/{$imgurl}" alt="name" width="100%" onclick="javascript:location.href = './personal.php?id={$id}';">
+                    <img class="two-img" data-original="../class/recordings/{$imgurl_path}" alt="name" width="100%" onclick="javascript:location.href = './personal.php?id={$id}';">
                     <div class="user-bottom">
                         <div class="information">
                             <div class="name">{$name}</div>
-                            <div class="vote-count"><span class="voteC" pid="{$id}" >{$row['vote_count']}</span>票&nbsp;&nbsp;{$subject}</div>
+                            <div class="vote-count"><span class="voteC" pid="{$id}" >{$row['vote_count']}</span>票&nbsp;&nbsp;{$album_subject}</div>
                         </div>
                         <div class="operation">
                             <div class="op-attention" fcous="{$id}">关注</div>
@@ -231,6 +231,8 @@ echo $html;
                 var pid=$(this).attr("pid");
                 var counter=$(".voteC[pid="+pid+"]");
                 var counterNum=parseInt(counter.html());
+                var vote_count = $("#vote_count").html();
+                var vote_count_num = parseInt(vote_count);
                 voting=true;
                 $(this).html("ing...");
                 $.ajax({
@@ -243,6 +245,7 @@ echo $html;
                                 alert(jsonD.msg);
                                 counterNum++;
                                 counter.html(counterNum);
+                                $("#vote_count").html(++vote_count_num);
                             }
                             else{
                                 alert(jsonD.msg);

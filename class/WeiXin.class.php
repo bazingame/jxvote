@@ -49,6 +49,7 @@ class WeiXin
             $access_token = $data[0]['token'];
             $expires_in   = $data[0]['expires_in']; //有效时间
             $expires_time = $data[0]['expires_time']; //录入时间
+            //重新获取
             if (time() >= ($expires_time + $expires_in) || $access_token == "") {
                 $url = "https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=".$appId."&secret=".$secret;
                 $res = file_get_contents($url);
@@ -85,9 +86,6 @@ class WeiXin
 //            $db->query("INSERT INTO access_token (token,expires_in,expires_time,date) VALUES ('$access_token','$expires_in','$expires_time','$date') ");
             $db->insert('access_token',array('token'=>$access_token,'expires_time'=>$expires_time,'expires_in'=>$expires_in,'date'=>$date));
         }
-//        $this->access_token = $access_token;   //传入类全局变量
-//        $this->db = $db;
-//        return $access_token;
         $this->token = $access_token;
         return 0;
     }

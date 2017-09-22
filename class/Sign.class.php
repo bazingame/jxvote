@@ -85,7 +85,7 @@ class Sign
 //        return $photo_old;
 //        return json_encode($photo_old,JSON_UNESCAPED_UNICODE);
         // 判断是否已签到
-        if(array_key_exists($time,$photo_old)){
+        if(array_key_exists($time,$photo_old)){     //已签到
             //将pic信息合并
             $thisDaypic = array_merge($imgArr,$photo_old[$time]['pic']);
             $thisDayInfo = array('pic'=>$thisDaypic,'words'=>$words,'lebel'=>array('开心'));
@@ -93,12 +93,12 @@ class Sign
             //今日与全部信息合并
             $photo_list = array_merge($photo_old,$thisDayInfo);
             $photo_list = json_encode($photo_list,JSON_UNESCAPED_UNICODE);
-//            return $photo_list;
+            $DB->update('candidate',array('photo_list'=>$photo_list),"openId='$openId'");   //再次打卡会失败！
             //未参与抽奖返回-1
             $code = -1;
-        }else{
-            //
-            //获取兑奖码 (中奖为十位数字，否则为0)
+            return $code;
+        }else{      //未签到
+            //获取兑奖码 (中奖为5位数字，否则为0)
             $code = $this->getPrizeCode();
             if($code!=0){
                $res =  $this->addPrize($openId,$time,$code);
@@ -113,10 +113,11 @@ class Sign
 //            return  $photo_list;
         }
         $data = $photo_list;
+//        return $data;
         $DB = new DataBase(DB_HOST,DB_USER,DB_PWD,DB_NAME);
-        $DB->update('candidate',array('photo_list'=>$data),"openId='$openId'");   //再次打卡会失败！
+        $DB->update('candidate',array('photo_list'=>$data,'update_time'=>$date),"openId='$openId'");   //再次打卡会失败！
 //        $DB->update_1('candidate','photo_list',$data,"openId='$openId'");
-        $DB->update('candidate',array('update_time'=>$date),"openId='$openId'");
+//        $DB->update('candidate',array('update_time'=>$date),"openId='$openId'");
 //        $sql = "UPDATE candidate SET photo_list = '$data' WHERE openId = '$openId'";
 //        $DB->query($sql);
 

@@ -3,6 +3,8 @@
 //ini_set('max_execution_time', '0');
 include_once '../class/DataBase.class.php';
 include_once '../class/WeiXin.class.php';
+include_once '../class/VF.class.php';
+header('Content-type:text/html;charset=utf-8');
 //include_once '../class/View.class.php';
 //echo 123;
 
@@ -25,9 +27,15 @@ include_once '../class/WeiXin.class.php';
 //}
 //-----------------------------=-------------------------------
 
-$wx = new WeiXin();
-$access_token = $wx->access_token;
+//$wx = new WeiXin();
+//$access_token = $wx->access_token;
 //$access_token = $wx->getAccessToken2('wxc5d217408956f8ea','143ac50a4abb8a47c9ac8f330fc1972a');
-print_r($access_token);
+//print_r($access_token);
 
+
+$vf = new VF();
+$DB = new DataBase(DB_HOST,DB_USER,DB_PWD,DB_NAME);
+//$res = $vf->addRecord('10');
+$res = $vf->getArea('202.197.225.16');
+print_r($res);
 ?>

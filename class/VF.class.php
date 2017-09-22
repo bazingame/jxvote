@@ -16,56 +16,18 @@ class VF
     function vote($id){
         $openId = $_SESSION['openId'];
         $DB = new DataBase(DB_HOST,DB_USER,DB_PWD,DB_NAME);
-        $data  = $this->votes($DB);
-        if ($data['A'] || $data['B']) {
-            $DB->select("candidate", "*", "id = $id");    //查询
+        $data  = $this->votes($DB);//获得今日可用投票数
+//        $data = 1;
+        if ($data) {
+            $DB->select("candidate", "*", "Id = $id");    //查询
             $result = $DB->fetchArray(MYSQL_ASSOC);
-            $type = $result[0]['type'];
-            if ($type == 'A' && $data['A']=='0') {
-                $tip = "今日的个人类投票机会已用完！";
-                $jsonA= array(
-                    'code'=>-1,
-                    'msg'=>$tip
-                );
-                die(json_encode($jsonA));
-                //return $tip;
-            }
-            else if ($type == 'B' && $data['B']=='0') {
-                $tip = "今日的团队类投票机会已用完！";
-                $jsonA= array(
-                    'code'=>-1,
-                    'msg'=>$tip
-                );
-                die(json_encode($jsonA));
-                //return $tip;
-            }
-            else{
-                if ($type == 'A') {
-                    $userInfo = array('votes' => 'votes');
-                    $DB->updatePlus("candidate", $userInfo, "id = $id");    //增加票数
-                    // print_r($DB->printMessage());
-                    $votesA = $data['A'] - 1;
-                    $votesAll = array('A' => $votesA, 'B' => $data['B']);
-                    $votesAll_json = json_encode($votesAll);
-                    $userInfo = array('votes' => $votesAll_json);
-                    $DB->update("userinfo", $userInfo, "openid = '$openId'");
-                    // print_r($DB->printMessage());
-                    $this->votePlus();
+            $userInfo = array('vote_count' => 'vote_count');
+            $DB->updatePlus("candidate", $userInfo, "Id = $id");    //增加票数
+            //添加用户信息---
+            $this->addRecord($id);
+            //增加总计数
+            $this->votePlus();
                     //return true;
-                }
-                else if ($type == 'B') {
-                    $userInfo = array('votes' => 'votes');
-                    $DB->updatePlus("candidate", $userInfo, "id = $id");    //增加票数
-                    // print_r($DB->printMessage());
-                    $votesB = $data['B'] - 1;
-                    $votesAll = array('A' => $data['A'], 'B' => $votesB);
-                    $votesAll_json = json_encode($votesAll);
-                    $userInfo = array('votes' => $votesAll_json);
-                    $DB->update("userinfo", $userInfo, "openid = '$openId'");
-                    // print_r($DB->printMessage());
-                    $this->votePlus();
-                }
-            }
         }
         else{
             $jsonA= array(
@@ -78,12 +40,18 @@ class VF
 
     /*返回剩余可投票数*/
     function votes($DB){
+        $date = date("m").date("d");
+//        $openId = 'ewgfug';
         $openId = $_SESSION['openId'];
-        $DB->select("userinfo", "votes", "openid = '$openId'");
+        //用户名相同且投票时间戳同时相同则不可再投
+        $DB->select("record", "*", "user_key = '$openId' AND time_no = '$date'");
         $result = $DB->fetchArray(MYSQL_ASSOC);
-        $data = json_decode($result[0]['votes'], 1);
-        // print_r($DB->printMessage());
-        return $data;
+        if(empty($result)){
+            $vote_time = 1;
+        }else{
+            $vote_time = 0;
+        }
+        return $vote_time;
     }
 
     /*返回剩余可投票数*/
@@ -96,6 +64,40 @@ class VF
         $json = json_encode($data);
         // print_r($DB->printMessage());
         return $json;
+    }
+
+    //添加投票记录
+    function addRecord($id){
+        $date = date("m").date("d");
+        $time = date("Y-m-d H:i:s");
+        $ip = $this->getip();
+        $vote_area = $this->getArea($ip);
+        $DB = new DataBase(DB_HOST,DB_USER,DB_PWD,DB_NAME);
+        $DB->insert('record',array('user_key'=>$_SESSION['openId'],'vote_username'=>$_SESSION['nickName'],'towho'=>$id,'vote_area'=>$vote_area,'vote_ip'=>$ip,'time_no'=>$date,'votetime'=>$time));
+    }
+
+
+    public function getip() {
+        //strcasecmp 比较两个字符，不区分大小写。返回0，>0，<0。
+        if(getenv('HTTP_CLIENT_IP') && strcasecmp(getenv('HTTP_CLIENT_IP'), 'unknown')) {
+            $ip = getenv('HTTP_CLIENT_IP');
+        } elseif(getenv('HTTP_X_FORWARDED_FOR') && strcasecmp(getenv('HTTP_X_FORWARDED_FOR'), 'unknown')) {
+            $ip = getenv('HTTP_X_FORWARDED_FOR');
+        } elseif(getenv('REMOTE_ADDR') && strcasecmp(getenv('REMOTE_ADDR'), 'unknown')) {
+            $ip = getenv('REMOTE_ADDR');
+        } elseif(isset($_SERVER['REMOTE_ADDR']) && $_SERVER['REMOTE_ADDR'] && strcasecmp($_SERVER['REMOTE_ADDR'], 'unknown')) {
+            $ip = $_SERVER['REMOTE_ADDR'];
+        }
+        $res =  preg_match ( '/[\d\.]{7,15}/', $ip, $matches ) ? $matches [0] : '';
+        return $res;
+        //dump(phpinfo());//所有PHP配置信息
+    }
+
+    function getArea($ip){
+        $ip = @file_get_contents("http://ip.taobao.com/service/getIpInfo.php?ip=".$ip);
+        $ip = json_decode($ip,true);
+        $area = $ip['data']['region'].$ip['data']['city'];
+        return $area;
     }
 
     /*添加关注*/
@@ -162,11 +164,11 @@ class VF
         }
     }
 
-    /*计数1*/
+    /*总计数1*/
     function votePlus(){
         $DB = new DataBase(DB_HOST,DB_USER,DB_PWD,DB_NAME);
-        $userInfo = array('votes' => 'votes');
-        $DB->updatePlus("sAv", $userInfo, "id = 1");    //计数加一
+        $userInfo = array('vote_count' => 'vote_count');
+        $DB->updatePlus("count", $userInfo, "Id = 1");    //计数加一
         $jsonA= array(
             'code'=>0,
             'msg'=>"投票成功"
