@@ -20,8 +20,16 @@ else{
 if($isWx) {
     /*初始化对象并获取用户数据*/
     $weixin = new WeiXin();
-    $userInfo = $weixin->getUserInfo();
-
+//    $userInfo = $weixin->getUserInfo();
+//    $userInfo = $weixin->getUserInfo2();
+//    print_r($userInfo);
+    $userInfo = $weixin->getUserInfo2();
+    if($userInfo=='0'){
+        $_SESSION['isSubcribe']=0;
+    }else{
+        $_SESSION['isSubcribe']=1;
+    }
+    $isSubcribe = $_SESSION['isSubcribe'];
     /*解析用户数据*/
     $userInfo = json_decode($userInfo, 1);
     session_start();
@@ -62,6 +70,8 @@ if($isWx) {
     }
 //    echo $isRegister;
 
+}else{
+    $isSubcribe = 0;
 }
 
     $view = new View();
@@ -233,7 +243,7 @@ echo $html;
 		});
         var voting=false;
         $('.op-vote').on("click",function(){
-            if (<?php echo $isWx; ?>) {
+            if (<?php echo $isWx.'&&'.$isSubcribe; ?>) {
                 if(voting)return false;
                 var cur=$(this);
                 var pid=$(this).attr("pid");
@@ -268,11 +278,11 @@ echo $html;
                 });                
             }
             else{
-                alert("请进入三翼校园公众号，点击下方菜单或回复军训时光记使用该功能");
+                alert("请进入三翼校园公众号，点击下方菜单或回复我要报名使用该功能");
             }                
         }); 
         $('.op-attention').on("click",function(){
-        if (<?php echo $isWx; ?>) {
+        if (<?php echo $isWx;?>) {
             var fcousStr=$(this);
             var fcous=$(this).attr("fcous");
             $(this).html("ing...");
@@ -299,7 +309,7 @@ echo $html;
             });                
         }
         else{
-            alert("请进入三翼校园公众号，点击下方菜单或回复军训时光记使用该功能");
+            alert("请进入三翼校园公众号，点击下方菜单或回复我要报名使用该功能");
         }
         });           
     </script>

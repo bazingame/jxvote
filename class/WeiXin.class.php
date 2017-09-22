@@ -153,6 +153,21 @@ class WeiXin
         return $userInfo;
     }
 
+    function getUserInfo2(){
+        $access_token = $this->token;
+        preg_match('/code=(.*?)&/', $_SERVER["QUERY_STRING"], $data);   //获取认证授权code
+        $code = $data[1];
+        $AccreditTokenData = $this->getAccreditToken($code);           //获取网页认证授权access_token
+        $AccreditToken = $AccreditTokenData['access_token'];
+        $openId = $AccreditTokenData['openid'];                         //获取用户openid
+        $userInfo = file_get_contents("https://api.weixin.qq.com/cgi-bin/user/info?access_token=$access_token&openid=$openId&lang=zh_CN");
+        if(json_decode($userInfo,true)['subscribe']=='0'){
+            return '0';
+        }else{
+            return $userInfo;
+        }
+    }
+
     /*重新获取失败的图片*/
     function getPic($media_id){
         $token = $this->token;

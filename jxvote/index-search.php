@@ -17,7 +17,14 @@ else{
 if($isWx) {
     /*初始化对象并获取用户数据*/
     $weixin = new WeiXin();
-    $userInfo = $weixin->getUserInfo();
+//    $userInfo = $weixin->getUserInfo();
+    $userInfo = $weixin->getUserInfo2();
+    if($userInfo=='0'){
+        $_SESSION['isSubcribe']=0;
+    }else{
+        $_SESSION['isSubcribe']=1;
+    }
+    $isSubcribe = $_SESSION['isSubcribe'];
 
     /*解析用户数据*/
     $userInfo = json_decode($userInfo, 1);
@@ -51,6 +58,8 @@ if($isWx) {
         $personal_id = $personal_info[0]['Id'];
 
     }
+}else{
+    $isSubcribe = 0;
 }
 
 
@@ -225,7 +234,7 @@ HTML;
     });
     var voting=false;
     $('.op-vote').on("click",function(){
-        if (<?php echo $isWx; ?>) {
+        if (<?php echo $isWx; ?>&&<?php echo $isSubcribe;?>) {
             if(voting)return false;
             var cur=$(this);
             var pid=$(this).attr("pid");
@@ -261,7 +270,7 @@ HTML;
         }
     });
     $('.op-attention').on("click",function(){
-        if (<?php echo $isWx; ?>) {
+        if (<?php echo $isWx; ?>&&<?php echo $isSubcribe;?>) {
             var fcousStr=$(this);
             var fcous=$(this).attr("fcous");
             $(this).html("ing...");
