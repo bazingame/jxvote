@@ -1,0 +1,164 @@
+#mainPartAllPhoto{
+     border-top:70px solid #fff;
+}
+.userNamePart{
+    position: absolute;
+    top: -60px;
+    left: 0px;
+    width: 80%;
+    height: 22px;
+    font-size: 0.8em;
+    line-height: 22px;
+}
+.userNamePart>img{
+    display: inline-block;
+    width: 6%;
+    margin-left:3%;
+ }
+ .photoPageNav{
+     position: absolute;
+     top:-34px;
+     list-style: none;
+     float: left;
+     height: 20px;
+     padding: 0;
+     width: 80%;
+ }
+ .photoPageNav>li{
+     float:left;
+     width: 25%;
+     height: 100%;
+     background-color: rgb(86,85,85);
+    margin-top: 0%;
+    margin-bottom: 0%;
+    margin-left: 2%;
+    margin-right: 2%;
+    color: #fff;
+    line-height: 20px;
+    font-size: 10px;
+    text-align: center;
+ }
+ #voteBtn{
+     position: absolute;
+     right: 0;
+     top:-60px;
+     width: 23%;
+     height:35px;
+     background-color: rgb(251,134,155);
+     color: #fff;
+     margin-right: 3%;
+     text-align: center;
+     line-height: 35px;
+     border-radius:5px;
+     font-size: 0.8em;
+ }
+ .onePhotoPart{
+     display: inline-block;
+     width: 60%; 
+
+     background-color: #fff;
+     margin-left: 30%; 
+     margin-bottom: 90px;
+ }
+ .onePhotoPartBox{
+         position: relative;
+ }
+ .onePhotoPart>img{
+     width: 100%;
+ }
+ .itdPhotoWord{
+     font-size: 0.7em;
+     margin-left:5%;
+ }
+ .dateWord{
+     font-size: 0.7em;
+     margin-left:0%;
+ }
+ .divideLine{
+     position: absolute;
+     top:92%;
+     left:3%;
+     width: 15%;
+     height:6px;
+     border-radius:10%; 
+     background-color: rgb(139,147,148);
+     z-index: 4;
+     transform: translateY(-50%); 
+ }
+ .giftBox{
+     position: absolute;
+     top:92%;
+     transform: translateY(-50%); 
+     left: 22%;
+     width: 10%;
+ }
+ .giftWord{
+    position: absolute;
+     top:92%;
+     transform: translateY(-50%); 
+     left: 35%;
+     width: 55%;
+     height: 12px;
+     line-height: 12px;
+     border-radius: 5px;
+     background-color: rgb(146,147,147);
+     color: yellow;
+     font-size: 8px;
+     font-weight:lighter;
+     padding-top: 1px;
+ }
+ .giftWord>img{
+     width: 10px;
+     margin-left: 20px;
+     margin-right: 10px;
+     margin-top: 1px;
+ }
+ .theSideLine{
+     position: absolute;
+     left:4%;
+     top:30px;
+     width: 5px;
+     height:90%;
+     background-color:rgb(139,147,148);
+ }
+ .circleGrayTop{
+     position: absolute;
+     top:0;
+     width: 12px;
+     height: 12px;
+     border-radius: 100%;
+     background-color:rgb(139,147,148);
+     left: 50%;
+     transform: translateX(-50%) translateY(-50%);
+ }
+ .circleGrayBottom{
+     position: absolute;
+     bottom:0;
+     width: 12px;
+     height: 12px;
+     border-radius: 100%;
+     background-color:rgb(139,147,148);
+     left: 50%;
+     transform: translateX(-50%) translateY(50%);
+ }
+
+ .Labels{
+     position: absolute;
+     top:75%;
+     left:29%;
+     width: 70%;
+     list-style: none;
+     padding: 0;
+     float: left;
+ }
+ .Labels>li{
+     width: 40px;
+     height: 15px;
+     color: #fff;
+     background-color: rgb(246,83,125);
+     float: left;
+     font-size: 0.5em;
+     line-height: 15px;
+     text-align: center;
+     margin-right: 20px;
+ }

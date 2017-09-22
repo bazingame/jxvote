@@ -11,7 +11,7 @@ header('Content-type:text/html;charset=utf-8');
 
 
 //生成随机数-------------------------------------------------
-//function NoRand($begin=10000,$end=99999,$limit=170){
+//function NoRand($begin=10000,$end=99999,$limit=100){
 //    $rand_array=range($begin,$end);
 //    shuffle($rand_array);//调用现成的数组随机排列函数
 //    return array_slice($rand_array,0,$limit);//截取前$limit个
@@ -20,7 +20,7 @@ header('Content-type:text/html;charset=utf-8');
 //
 //$DB = new DataBase(DB_HOST,DB_USER,DB_PWD,DB_NAME);
 //foreach ($arr as $key => $value){
-//    $val = array('date'=>'0922','code_order'=>($key+1),'code'=>$value);
+//    $val = array('date'=>'0923','code_order'=>($key+1),'code'=>$value);
 //    print_r($val);
 //    $DB->insert("prize_code",$val);
 //    print_r($key.$value.'</br>');
@@ -33,9 +33,9 @@ header('Content-type:text/html;charset=utf-8');
 //print_r($access_token);
 
 
-$vf = new VF();
-$DB = new DataBase(DB_HOST,DB_USER,DB_PWD,DB_NAME);
+//$vf = new VF();
+//$DB = new DataBase(DB_HOST,DB_USER,DB_PWD,DB_NAME);
 //$res = $vf->addRecord('10');
-$res = $vf->getArea('202.197.225.16');
-print_r($res);
+//$res = $vf->getArea('202.197.225.16');
+//print_r($res);
 ?>

@@ -36,7 +36,8 @@ $user->timePlus();
     <title>军训时光记 - 三翼工作室</title>
     <link rel="stylesheet" href="./css/index.css">
     <link rel="stylesheet" href="./css/upLoad.css">
-    <script src="//cdn.static.runoob.com/libs/jquery/1.10.2/jquery.min.js"></script>
+<!--    <script src="//cdn.static.runoob.com/libs/jquery/1.10.2/jquery.min.js"></script>-->
+    <script src="//apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
 </head>
 <body>
 <div id="coverPage"></div>
@@ -61,9 +62,19 @@ $user->timePlus();
             <div class="upBox" id="add-photo2">
                 <img src="./images/plus.png" alt="" class="plusImg">
             </div>
-
+            <br><br><br><span style="font-size: small;font-family: 'Microsoft Yahei'; display: inline-block;
+    height:20px;
+    text-align: center;
+    line-height: 20px;
+    margin: 0;
+    padding-left:10px;
+    padding-right:10px;
+    background-color: #3dd3b2;
+    color: white;
+     margin-top:10px;">第一次打卡的第一张会作为封面哦</span>
 <!--            <div id="add-photo2"><i id="text-photo2" class="fa fa-plus"></i></div>-->
             <div id="add-photo"><i id="text-photo2" class="fa fa-plus"></i></div>
+
 <!--            <div id="confirm"><i id="text-photo2" class="fa fa-plus"></i></div>-->
             <form action="signData.php?type=pic" method="post">
             <input id="ttt" name="serverId" type="hidden" value="" required>
@@ -104,7 +115,13 @@ $user->timePlus();
 
      <script type="text/javascript" src="//res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
      <script type="text/javascript" src="//apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
-
+     <script>
+       var windowHeight=document.body.clientHeight;
+       function lockHeight(){
+           $("body").css("height",windowHeight+"px");
+       }
+       window.onload=lockHeight();
+     </script>
      <script type="text/javascript">
          wx.config({
              debug: false, // 开启调试模式
@@ -244,10 +261,10 @@ $user->timePlus();
 
          // 下载图片
          document.querySelector('#confirm').onclick = function () {
-//             if (images.serverId.length === 0) {
-//                  alert('请先选择上传图片');
-//                 return;
-//             }
+             if (images.serverId.length === 0) {
+                  alert('请先选择上传图片');
+                 return;
+             }
 
 //             alert($("#words").val());
 //             alert($("#ttt").val());

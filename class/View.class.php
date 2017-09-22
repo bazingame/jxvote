@@ -51,7 +51,7 @@ class View
     /*按时间排序返回-可选类型*/
     function filterTime(){
         $DB = new DataBase(DB_HOST,DB_USER,DB_PWD,DB_NAME);
-        $DB->selectOrder("candidate", "update_time", "DESC", "*");
+        $DB->selectOrder("candidate", "update_time", "DESC", "*",'has_upload = 1');
         $result = $DB->fetchArray(MYSQL_ASSOC);
         // print_r($result);
         return $result;

@@ -134,7 +134,8 @@ $user->timePlus();
            </div>
            <div id="albumBtns">
                <div class="albumBtn "onclick="location.href='./personal.php?id=<?php echo $register_info['Id'];?>'">查看相册</div>
-               <div class="albumBtn" id="reviseInformation" onclick="location.href='./revise.php'">修改信息</div>
+<!--               <div class="albumBtn" id="reviseInformation" onclick="location.href='./revise.php'">修改信息</div>-->
+               <div class="albumBtn" id="reviseInformation" onclick="alert('请联系管理员')">修改信息</div>
            </div>
         </div>
          <div class="awardBox">
@@ -167,8 +168,8 @@ $user->timePlus();
                          <div><span class="wordModeI">参与奖:</span><span class="wordModeII">参赛或投票即可领取</span></div>
                      </div>
                  </div>
+                          <img src="./images/90.jpg">
              </div>
-
         </div>
     </div>
     <nav class="bottom-nav"> 
@@ -187,38 +188,38 @@ $user->timePlus();
         <div class="giftWords">
             <div class="wordAward2">投票奖</div>
             <div><span class="wordModeI">冠军：</span><span class="wordModeII">奖金666元 +校级荣誉证书 +价值798元的90户外俱乐部“张家界徒步探险”两日双人游+价值800元的宝岛眼镜店眼镜1副+价值1000元的青鸟琴行吉他1把</span></div>
-            <div><span class="wordModeI">亚军：</span><span class="wordModeII">奖金520元+校级荣誉证书+价值598元的90户外俱乐部“武功山穿越”两日双人游+价值500元的宝岛眼镜店眼镜1副+价值208的瑞诗凯瑜伽卡1张</span></div>
-            <div><span class="wordModeI">季军：</span><span class="wordModeII">奖金321 元 +校级荣誉证书+价值398元的90户外俱乐部 “浏阳溯溪”两日双人游+价值300元的宝岛眼镜店眼镜1副+价值208的瑞诗凯瑜伽卡1张</span></div>
-            <div><span class="wordModeI">第四名：</span><span class="wordModeII">奖金233元+价值673元的康力健身季卡1张+价值278元的厨子当家价值套餐1份+价值208元的瑞诗凯瑜伽卡1张</span></div>
-            <div><span class="wordModeI">第五名：</span><span class="wordModeII">奖金123元+价值364元的康力健身月卡1张+价值188元的厨子当家价值套餐1份+价值208元的瑞诗凯瑜伽卡1张</span></div>
-            <div><span class="wordModeI">No 6 — No 10 ：</span><span class="wordModeII">价值300元的青鸟琴行月卡1张+价值60元的口琴1把+价值60元的新东方课外书2本+价值20元厨子当家代金劵1张+风信子时尚花艺馆盆栽1盆</span></div>
+            <div><span class="wordModeI">亚军：</span><span class="wordModeII">奖金520元+校级荣誉证书+价值598元的90户外俱乐部“武功山穿越”两日双人游+价值500元的宝岛眼镜店眼镜1副+价值208的瑞诗凯诗形体艺术中心学习月卡1张</span></div>
+            <div><span class="wordModeI">季军：</span><span class="wordModeII">奖金321 元 +校级荣誉证书+价值398元的90户外俱乐部 “浏阳溯溪”两日双人游+价值300元的宝岛眼镜店眼镜1副+价值208的瑞诗凯诗形体艺术中心学习月卡1张</span></div>
+            <div><span class="wordModeI">第四名：</span><span class="wordModeII">奖金233元+价值673元的康力健身俱乐部季卡1张+价值278元的厨子当家价值套餐1份+价值208元的瑞诗凯诗形体艺术中心学习月卡1张</span></div>
+            <div><span class="wordModeI">第五名：</span><span class="wordModeII">奖金123元+价值364元的康力健身俱乐部月卡1张+价值188元的厨子当家价值套餐1份+价值208元的瑞诗凯诗形体艺术中心学习月卡1张</span></div>
+            <div><span class="wordModeI">No 6 — No 10 ：</span><span class="wordModeII">价值300元的青鸟琴行月卡1张+价值60元的口琴1把+价值60元的新东方课外书2本+价值20元的厨子当家代金劵1张+风信子时尚花艺馆盆栽1盆</span></div>
             <div><span class="wordModeI">No 11— No 20：</span><span class="wordModeII">价值300元的青鸟琴行月卡1张+价值60元的新东方课外书2本+价值20元厨子当家代金劵1张+风信子时尚花艺馆盆栽1盆</span></div>
-            <div><span class="wordModeI"> No 21— No 40 ：</span><span class="wordModeII">价值100元的康力健身3次卡1张+价值108元的新东方考研资料2份附带试听课</span></div>
+            <div><span class="wordModeI"> No 21— No 40 ：</span><span class="wordModeII">价值100元的康力健身俱乐部3次卡1张+价值108元的新东方考研资料2份附带试听课</span></div>
             <div class="wordAward2">特别奖</div>
-            <div><span class="wordModeI">最佳创意奖：</span><span class="wordModeII">奖金66.6元+校级荣誉证书+价值200元的启逸理发店烫发名额1个+价值50元的厨子当家代金劵2张+价值60元的口琴1把+风信子时尚花艺馆鲜花1束</span></div>
-            <div><span class="wordModeI">最佳搞怪奖：</span><span class="wordModeII">奖金66.6元+校级荣誉证书+价值200元的启逸理发店烫发名额1个+价值50元的厨子当家代金劵2张+价值60元的口琴1把+风信子时尚花艺馆鲜花1束</span></div>
-            <div><span class="wordModeI">最具情怀奖：</span><span class="wordModeII">奖金66.6元+校级荣誉证书+价值200元的启逸理发店烫发名额1个+价值50元的厨子当家代金劵2张+价值60元的口琴1把+风信子时尚花艺馆鲜花1束</span></div>
+            <div><span class="wordModeI">最佳创意奖：</span><span class="wordModeII">奖金66.6元+校级荣誉证书+价值200元的逸启 Show 烫发名额1个+价值50元的厨子当家代金劵2张+价值60元的口琴1把+风信子时尚花艺馆鲜花1束</span></div>
+            <div><span class="wordModeI">最佳搞怪奖：</span><span class="wordModeII">奖金66.6元+校级荣誉证书+价值200元的逸启 Show 烫发名额1个+价值50元的厨子当家代金劵2张+价值60元的口琴1把+风信子时尚花艺馆鲜花1束</span></div>
+            <div><span class="wordModeI">最具情怀奖：</span><span class="wordModeII">奖金66.6元+校级荣誉证书+价值200元的逸启 Show 烫发名额1个+价值50元的厨子当家代金劵2张+价值60元的口琴1把+风信子时尚花艺馆鲜花1束</span></div>
             <div class="wordAward2">打卡奖</div>
             <div><span class="wordModeI">打卡时间段： 12:00—24:00 凭兑奖码截图到店登记领取福利</span></div>
-            <div><span class="wordModeI">22号 前170名</span><span class="wordModeII">金瀚林商业街一楼启逸 Show理发体验1次</span></div>
+            <div><span class="wordModeI">22号 前100名</span><span class="wordModeII">金瀚林商业街一楼逸启 Show 理发体验1次</span></div>
             <div><span class="wordModeI">23号 前100名</span><span class="wordModeII">联建腾升超市内美妆小屋面膜1张和免费体验券</span></div>
             <div><span class="wordModeI">24号 前100名</span><span class="wordModeII">东门正对面中国电信价值200元的电话卡1张</span></div>
             <div><span class="wordModeI">25号 前150名</span><span class="wordModeII">联建乐茶醇香奶盖茶店奶茶1杯</span></div>
-            <div><span class="wordModeI">26号 前150名</span><span class="wordModeII">金瀚林商业街一楼启逸 Show 35元理发代金劵1张</span></div>
+            <div><span class="wordModeI">26号 前150名</span><span class="wordModeII">金瀚林商业街一楼逸启 Show  35元理发代金劵1张</span></div>
             <div><span class="wordModeI">27号 前100名</span><span class="wordModeII">太平市场茶香如语果汁2杯（西瓜/梨子/柠檬/芒果）</span></div>
             <div><span class="wordModeI">28号 前100名</span><span class="wordModeII">太平市场水果Bang霸王水果茶1杯</span></div>
             <div><span class="wordModeI">29号 前60名</span><span class="wordModeII">太平市场茶香如语果汁2杯（西瓜/梨子/柠檬/芒果）</span></div>
             <div><span class="wordModeI">30号 前60名</span><span class="wordModeII">联建麦香园蛋糕店领取抵用券1张（5元/3元/2元）</span></div>
             <div><span class="wordModeI">1 号 前50名</span><span class="wordModeII">联建乐茶醇香奶盖茶店奶茶1杯</span></div>
             <div><span class="wordModeI">2号 前150名</span><span class="wordModeII">金瀚林商业街三楼Beauty上妆园阿道夫小礼包</span></div>
-            <div><span class="wordModeI">3号 前100名</span><span class="wordModeII">联建虞美人蛋糕店随机礼品1份（招牌原味奶茶/丝袜奶茶/金桔柠檬/早餐包/小清新/杨枝甘露）</span></div>
-            <div><span class="wordModeI">4号 前N名</span><span class="wordModeII">活动终极神秘大奖（祝你行大运赢大礼，关注8号晚军训之夜，翼宝永远爱你们(๑˃̵ᴗ˂̵)و）</span></div>
+            <div><span class="wordModeI">3号 前170名</span><span class="wordModeII">联建虞美人蛋糕店随机礼品1份（招牌原味奶茶/丝袜奶茶/金桔柠檬/早餐包/小清新/杨枝甘露）</span></div>
+            <div><span class="wordModeI">4号 前N名</span><span class="wordModeII">活动终极神秘大奖</span></div>
             <div class="wordAward2">幸运大奖</div>
             <div><span class="wordModeII">由赞助商随机抽取幸运报名选手赠送价值888元的聚happy轰趴馆体验一次（私人影院+ktv+麻将棋牌+休息室+电玩室+运动区）</span></div>
             <div class="wordAward2">参与奖</div>
             <div><span class="wordModeII">所有参赛选手凭参与活动的截图，享受宝岛眼镜提供的全场眼镜打5折再减50元的优惠。</span></div>
             <div><span class="wordModeII">凡是报名、投票的可以凭截图享受宝岛眼镜提供的三个月内意外事故免费换新；一年之内，免费保修的服务。</span></div>
-            <div><span class="wordModeII">凡是报名、投票的可以凭截图到新体育馆康力健身领取单次体验卡一张（或在10月8日军训之夜当晚到三翼摆点处领取）</span></div>
+            <div><span class="wordModeII">凡是报名、投票的可以凭截图到新体育馆康力健身俱乐部领取单次体验卡一张（或在10月8日军训之夜当晚到三翼摆点处领取）</span></div>
             <div class="wordAward2">关于领奖</div>
             <div><span class="wordModeII">投票奖、特别奖和幸运大奖于10月8日军训之夜当晚三翼摆点处领取，工作人员会提前通知。</span></div>
             <div><span class="wordModeII">打卡奖请凭兑奖码到相应的门店登记领取。（每日前n名获兑奖码，领取时间：9月22日—10月12日）</span></div>

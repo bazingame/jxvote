@@ -55,9 +55,13 @@ class Sign
     }
 
 
-    //传签到照片
+    //打卡传照片
     function signPic($openId,$words,$serverID){
         $date = date("Y-m-d H:i:s");
+
+        //标记已上传可以显示！
+        $DB = new DataBase(DB_HOST,DB_USER,DB_PWD,DB_NAME);
+        $DB->update('candidate',array('has_upload'=>'1'),"openId='$openId'");
 
         $weixin = new WeiXin();
         $imgData_json = $weixin->downloadfile($serverID);
@@ -93,7 +97,9 @@ class Sign
             //今日与全部信息合并
             $photo_list = array_merge($photo_old,$thisDayInfo);
             $photo_list = json_encode($photo_list,JSON_UNESCAPED_UNICODE);
-            $DB->update('candidate',array('photo_list'=>$photo_list),"openId='$openId'");   //再次打卡会失败！
+            $DB->update('candidate',array('photo_list'=>$photo_list),"openId='$openId'");
+            $DB->update('candidate',array('update_time'=>$date),"openId='$openId'");
+
             //未参与抽奖返回-1
             $code = -1;
             return $code;
@@ -115,9 +121,9 @@ class Sign
         $data = $photo_list;
 //        return $data;
         $DB = new DataBase(DB_HOST,DB_USER,DB_PWD,DB_NAME);
-        $DB->update('candidate',array('photo_list'=>$data,'update_time'=>$date),"openId='$openId'");   //再次打卡会失败！
+        $DB->update('candidate',array('photo_list'=>$data,'update_time'=>$date),"openId='$openId'");
 //        $DB->update_1('candidate','photo_list',$data,"openId='$openId'");
-//        $DB->update('candidate',array('update_time'=>$date),"openId='$openId'");
+        $DB->update('candidate',array('update_time'=>$date),"openId='$openId'");
 //        $sql = "UPDATE candidate SET photo_list = '$data' WHERE openId = '$openId'";
 //        $DB->query($sql);
 

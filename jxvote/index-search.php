@@ -5,6 +5,8 @@ include_once '../class/Sign.class.php';
 include_once '../class/View.class.php';
 
 header("Content-type:text/html;charset=utf-8");
+session_start();
+
 /*获取UA*/
 $UA = $_SERVER['HTTP_USER_AGENT'];
 if (preg_match('/MicroMessenger/', $UA)) {
@@ -19,16 +21,10 @@ if($isWx) {
     $weixin = new WeiXin();
 //    $userInfo = $weixin->getUserInfo();
     $userInfo = $weixin->getUserInfo2();
-    if($userInfo=='0'){
-        $_SESSION['isSubcribe']=0;
-    }else{
-        $_SESSION['isSubcribe']=1;
-    }
     $isSubcribe = $_SESSION['isSubcribe'];
 
     /*解析用户数据*/
     $userInfo = json_decode($userInfo, 1);
-    session_start();
     $openId = $userInfo['openid'];
     $nickName = $userInfo['nickname'];       //用户昵称
     $headImgurl = substr($userInfo['headimgurl'], 0, -2) . "/132"; //用户头像
@@ -118,8 +114,16 @@ $visit_num = $count[0]['vister_count'];
     </form>
 
     <div class="register clearFix">
-        <div class="rank" onclick="javascript:if (!<?php echo $isWx;?>) {alert('请进入三翼校园公众号，点击下方菜单或回复军训时光记使用该功能')}else{location.href = './personal.php?id=<?php echo $personal_id;?>'}" id="New">我的签到</div>
-        <div class="attention" onclick="javascript:if (!<?php echo $isWx;?>) {alert('请进入三翼校园公众号，点击下方菜单或回复军训时光记使用该功能')}else{location.href = ''}" id="Attention">我的关注</div>
+        <div class="rank" onclick="javascript:if (!(<?php echo $isWx.'&&'.$isSubcribe;?>)) {alert('请进入三翼校园公众号，点击下方菜单或回我要报名使用该功能')}else{location.href = './personal.php?id=<?php echo $personal_id;?>'}" id="New">我的签到</div>
+
+        <!--            <div class="attention" onclick="javascript:if (!(-->
+        <?php
+        //            echo $isWx.'&&'.$isSubcribe;
+        ?>
+        <!--                    )) {alert('请进入三翼校园公众号，点击下方菜单或回我要报名使用该功能')}else{location.href = ''}" id="Attention">我的关注</div>-->
+
+
+        <div class="attention" id="Attention">-----</div>
         <div class="new" onclick="javascript:location.href = './index-vote.php';" id="Rank">投票排行</div>
     </div>
     <div class="user clearFix">
@@ -204,18 +208,18 @@ HTML;
 
     <div class="btn-d "  <?php  if(!$isRegister){echo 'style="display:none";';}?>>
         <img src="./images/cross.png">
-        <div class="bottomSign" style="margin:0px;width: 100%;height: 100%;" <?php  if($isRegister){echo 'style="display:none";';}?> onclick="javascript:if (!<?php echo $isWx;?>) {alert('请进入三翼校园公众号，点击下方菜单或回复军训时光记使用该功能')}else{location.href = './register.php'}"> 签到</div>
+        <div class="bottomSign" style="margin:0px;width: 100%;height: 100%;" <?php  if($isRegister){echo 'style="display:none";';}?> onclick="javascript:if (!(<?php echo $isWx.'&&'.$isSubcribe;?>)) {alert('请进入三翼校园公众号，点击下方菜单或回我要报名使用该功能')}else{location.href = './register.php'}"> 签到</div>
     </div>
 
 
     <div class="btn-d "  <?php  if($isRegister){echo 'style="display:none";';}?>>
         <img src="./images/cross.png">
-        <div class="bottomSign" style="margin:0px;width: 100%;height: 100%;" onclick="javascript:if (!<?php echo $isWx;?>) {alert('请进入三翼校园公众号，点击下方菜单或回复军训时光记使用该功能')}else{location.href = './sign.php'}"> 报名</div>
+        <div class="bottomSign" style="margin:0px;width: 100%;height: 100%;" onclick="javascript:if (!(<?php echo $isWx.'&&'.$isSubcribe;?>)) {alert('请进入三翼校园公众号，点击下方菜单或回我要报名使用该功能')}else{location.href = './sign.php'}"> 报名</div>
     </div>
 
 
     <div class="btn-d ">
-        <div class=" bottomNavBtn2" style="width:60%;height:60%;color:black;" onclick="javascript:if (!<?php echo $isWx;?>) {alert('请进入三翼校园公众号，点击下方菜单或回复军训时光记使用该功能')}else{location.href = './<?php if($isRegister){echo 'my.php';}else{echo 'my2.php';}?>'}"> <span>个人</span></div>
+        <div class=" bottomNavBtn2" style="width:60%;height:60%;color:black;" onclick="javascript:if (!(<?php echo $isWx.'&&'.$isSubcribe;?>)) {alert('请进入三翼校园公众号，点击下方菜单或回我要报名使用该功能')}else{location.href = './<?php if($isRegister){echo 'my.php';}else{echo 'my2.php';}?>'}"> <span>个人</span></div>
     </div>
 </nav>
 <script src="//apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
