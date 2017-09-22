@@ -58,18 +58,18 @@ else{
          <div id="settingPart">
          <div class="wordAward">奖项设置</div>
          <div class="awardText">
-             <div><span class="wordModeI">投票奖</span><span class="wordModeII">(No.1-20,壕礼等你)</span></div>
+             <div><span class="wordModeI">投票奖</span><span class="wordModeII">(No.1-40,壕礼等你)</span></div>
              <div><span class="wordModeI">特别奖</span><span class="wordModeII">(最创意，最搞怪，最情怀)</span></div>
-             <div><span class="wordModeI">投票奖</span><span class="wordModeII">(每日不同，超乎想象)</span></div>
-             <div><span class="wordModeI">投票奖</span><span class="wordModeII">(来试试运气？)</span></div>
-             <div><span class="wordModeI">投票奖</span><span class="wordModeII">(点击底部签到进行报名，即可得奖)</span></div>
+             <div><span class="wordModeI">打卡奖</span><span class="wordModeII">(每日不同，超乎想象)</span></div>
+             <div><span class="wordModeI">幸运大奖</span><span class="wordModeII">(来试试运气？)</span></div>
+             <div><span class="wordModeI">参与奖</span><span class="wordModeII">(点击底部签到进行报名，即可得奖)</span></div>
              <div id="showList"><span class="wordModeI">【点击查看礼品清单】</span></div>
          </div>
          </div>
          <div id="receiveWayPart">
               <div class="wordAward">领奖方式</div>
               <div class="awardText">
-             <div><span class="wordModeI">投票奖</span><span class="wordModeII">、</span><span class="wordModeI">特别奖</span><span class="wordModeII">和</span><span class="wordModeI">幸运大奖</span><span class="wordModeII">于10月8日军训之夜当晚三翼摆点处领取，工作人员会提前通知</span></div>
+             <div><span class="wordModeI">投票奖</span><span class="wordModeII">、</span><span class="wordModeI">特别奖</span><span class="wordModeII">和</span><span class="wordModeI">幸运大奖</span><span class="wordModeII">于10月8日军训之夜当晚到三翼摆点处领取，工作人员会提前通知</span></div>
              <div><span class="wordModeI">特别奖</span><span class="wordModeII">请凭兑奖码到相应的门店登记领取</span></div>
              <div><span class="wordModeII">(每日前n名获兑奖码，领取时间:9月22日--10月12日)</span></div>
              </div>
@@ -84,6 +84,7 @@ else{
              <div><span class="wordModeI">参与奖:</span><span class="wordModeII">参赛即可领取</span></div>
              </div>
          </div>
+            <img src="./images/90.jpg">
      </div>
        <nav class="bottom-nav"> 
         <div class="btn-d">

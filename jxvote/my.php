@@ -32,17 +32,29 @@ if(empty($personal_info)){
     echo '<script>alert("请先报名吧！")</script>';
 }else{
     $isRegister = 1;
-    $prize_list = array('0922'=>'理发体验一次','0923'=>'面膜1张','0924'=>'电话卡1','0925'=>'奶茶1杯','0926'=>'代金劵1张','0927'=>'果汁2杯','0928'=>'水果茶1杯','0929'=>'果汁2杯','0930'=>'抵用券1张','1001'=>'奶茶1杯','1002'=>'阿道夫小礼包','1003'=>'随机礼品1份','1004'=>'终极大奖');
-    $key_name = array('1004','1003','1002','1001','0930','0929','0928','0927','0926','0925','0924','0923','0922');
+    $prize_to_date = array('0922'=>'理发体验一次','0923'=>'面膜1张','0924'=>'电话卡1张','0925'=>'奶茶1杯','0926'=>'代金劵1张','0927'=>'果汁2杯','0928'=>'水果茶1杯','0929'=>'果汁2杯','0930'=>'抵用券1张','1001'=>'奶茶1杯','1002'=>'阿道夫小礼包','1003'=>'随机礼品1份','1004'=>'终极大奖');
+//    $key_name = array('1004','1003','1002','1001','0930','0929','0928','0927','0926','0925','0924','0923','0922');
     $register_info = $personal_info[0];
     $album_info = json_decode($register_info['album_info'],true);
     $register_count = json_decode($register_info['register_count'],true);
-    foreach (array_reverse($register_count['detail']) as $key =>$value){
-        if($value=='1'){
-            $last_reg_date = $key_name[$key];
-            break;
-        }
+//    foreach (array_reverse($register_count['detail']) as $key =>$value){
+//        if($value=='1'){
+//            $last_reg_date = $key_name[$key];
+//            break;
+//        }
+//    }
+
+    $DB->select("candidate", "*", "openId = '$openid'");
+    $data = $DB->fetchArray(MYSQL_ASSOC);
+    $prize_list = json_decode($data[0]['prize'],true);
+//    print_r($prize_list);
+//    if($d)
+    $prize_show = '';
+    foreach ($prize_list as $key=>$value){
+        $prize_show = '<span class="">'.$prize_to_date[$key].'['.$value.']</span>';
     }
+//    print_r($prize_show);
+
 }
 unset($DB);
 
@@ -104,7 +116,7 @@ $user->timePlus();
                 <li class="userLi" style="margin:0;"><img src="./images/touLogo.jpg">票数:<?php if($isRegister){echo $register_info['vote_count'];} ?></li>
         </ul>
         <div class="userInformation"  <?php  if(!$isRegister){echo 'style="display:none";';}?> ><img src="./images/littlePerson.png"><?php  echo $register_info['name'];?><span id="informationWords">[已签到: <?php echo $register_count['count']; ?>天]</span></div>
-        <div class="userInformation" <?php  if(!$isRegister){echo 'style="display:none";';}?>><img src="./images/circleCorrect.png" style="width:5%;margin-right:7%;">目前最新已获奖品<span id="informationWordss">[<?php echo $prize_list[$last_reg_date]; ?>]</span></div>
+        <div class="userInformation" <?php  if(!$isRegister){echo 'style="display:none";';}?>><img src="./images/circleCorrect.png" style="width:5%;margin-right:7%;">目前已获奖品<span id="informationWordss">[<?php echo $prize_show; ?>]</span></div>
         <div class="blackBtn" onclick="alert('管理员QQ是1004168799，有什么问题问他吧')">联系管理员<img src="./images/whiteQQ.png"></div>
         <div class="blackBtn" onclick="location.href='https://www.sky31.com'">三翼工作室<img src="./images/whiteSanYi.png"></div>
         <img src="./images/sanYi.png" id="userSanYi">

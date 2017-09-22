@@ -127,3 +127,8 @@ body{
     z-index: 10000;
     display: none;
 }
+.awardBox>img{
+    display: block;
+    margin-top: 20px;
+    width: 92%;
+}

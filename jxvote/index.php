@@ -50,6 +50,7 @@ if($isWx) {
         $isRegister = 0;
     }else{
         $isRegister = 1;
+        $personal_id = $personal_info[0]['Id'];
     }
 //    echo $isRegister;
 
@@ -107,9 +108,8 @@ if($isWx) {
           </div>
           <button class="butt mui-btn mui-btn--primary" type="submit" style="background-color:rgb(141,133,242);font-size:1.2em;">搜索</button>
         </form>
-
         <div class="register clearFix">
-            <div class="rank" onclick="javascript:if (!<?php echo $isWx;?>) {alert('请进入三翼校园公众号，点击下方菜单或回复军训时光记使用该功能')}else{location.href = './index-team.php'}" id="New">我的签到</div>
+            <div class="rank" onclick="javascript:if (!<?php echo $isWx;?>) {alert('请进入三翼校园公众号，点击下方菜单或回复军训时光记使用该功能')}else{location.href = './personal.php?id=<?php echo $personal_id;?>'}" id="New">我的签到</div>
             <div class="attention" onclick="javascript:if (!<?php echo $isWx;?>) {alert('请进入三翼校园公众号，点击下方菜单或回复军训时光记使用该功能')}else{location.href = ''}" id="Attention">我的关注</div>
             <div class="new" onclick="javascript:location.href = './index-vote.php';" id="Rank">投票排行</div>
         </div>

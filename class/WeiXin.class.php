@@ -15,7 +15,7 @@ class WeiXin
     {
         $this->appId  = $appId;
         $this->secret = $secret; 
-        $this->getAccessToken($appId, $secret);
+        $this->getAccessToken2($appId, $secret);
     }
 
     /*获取普通access_token(单值)*/
@@ -35,6 +35,63 @@ class WeiXin
         $this->token = $access_token;
         return 0;
     }
+
+    public function getAccessToken2($appId, $secret){
+        //从数据库中获取
+        $db = new DataBase(DB_HOST,DB_USER,DB_PWD,'oauth2');
+//        $db = new DataBase('oauth2',);
+        $db->select( 'access_token','*', 'id = 0');
+        $data = $db->fetchArray(MYSQL_ASSOC);
+//        $result = $result[0];
+        //判断是否有
+        if ($data) {
+//            $data = $db->results;
+            $access_token = $data[0]['token'];
+            $expires_in   = $data[0]['expires_in']; //有效时间
+            $expires_time = $data[0]['expires_time']; //录入时间
+            if (time() >= ($expires_time + $expires_in) || $access_token == "") {
+                $url = "https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=".$appId."&secret=".$secret;
+                $res = file_get_contents($url);
+                $result = json_decode($res, true);
+                $access_token = $result["access_token"];
+                $expires_in   = $result['expires_in']; //有效时间
+                $expires_time = time(); //录入时间
+                $date = date("Y-m-d H:i:s"); //可观时间
+//                $db->query("UPDATE access_token SET token = '$access_token', expires_in = '$expires_in', expires_time = '$expires_time', date = '$date' WHERE id = 0");
+                $db->update('access_token',array('token'=>$access_token,'expires_time'=>$expires_time,'expires_in'=>$expires_in,'date'=>$date),"id = 0");
+            }else{
+                $url  = "https://api.weixin.qq.com/cgi-bin/user/info?access_token=". $access_token ."&openid=". $this->testId ."&lang=zh_CN";
+                $res  = file_get_contents($url);
+                $data = json_decode($res, 1);
+                if (!isset($data['nickname'])) {
+                    $url = "https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=".$appId."&secret=".$secret;
+                    $res = file_get_contents($url);
+                    $result = json_decode($res, true);
+                    $access_token = $result["access_token"];
+                    $expires_in   = $result['expires_in']; //有效时间
+                    $expires_time = time(); //录入时间
+                    $date = date("Y-m-d H:i:s"); //可观时间
+                    $db->update('access_token',array('token'=>$access_token,'expires_time'=>$expires_time,'expires_in'=>$expires_in,'date'=>$date),"id = 0");
+                }
+            }
+        }else{
+            $url = "https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=".$appId."&secret=".$secret;
+            $res = file_get_contents($url);
+            $result = json_decode($res, true);
+            $access_token = $result["access_token"];
+            $expires_in   = $result['expires_in']; //有效时间
+            $expires_time = time(); //录入时间
+            $date = date("Y-m-d H:i:s"); //可观时间
+//            $db->query("INSERT INTO access_token (token,expires_in,expires_time,date) VALUES ('$access_token','$expires_in','$expires_time','$date') ");
+            $db->insert('access_token',array('token'=>$access_token,'expires_time'=>$expires_time,'expires_in'=>$expires_in,'date'=>$date));
+        }
+//        $this->access_token = $access_token;   //传入类全局变量
+//        $this->db = $db;
+//        return $access_token;
+        $this->token = $access_token;
+        return 0;
+    }
+
     function getToken(){
         return $this->token;
     }

@@ -39,6 +39,8 @@ $user->timePlus();
     <script src="//cdn.static.runoob.com/libs/jquery/1.10.2/jquery.min.js"></script>
 </head>
 <body>
+<div id="coverPage"></div>
+
      <div id="topSignBanner">
          <div id="cancelSend" onclick="location.href='./index.php'">取消</div>
          <div id="signWord">
@@ -89,6 +91,13 @@ $user->timePlus();
              <div class=" bottomNavBtn2" style="width:60%;height:60%;color:black;" onclick="location.href = './my.php'"> <span>个人</span></div>
         </div>
     </nav>
+     <div id="redeemCode">
+         <div id="redeemCodes"><span id="redeemWord">123123</span></div>
+         <ul>
+<!--             <li id="copy">复制</li>-->
+             <li id="close">确定</li>
+         </ul>
+     </div>
 
 
 <!-- script    -------------------->
@@ -250,8 +259,12 @@ $user->timePlus();
                         words:$("#words").val()
                     },
                     success:function (res) {
+
                         alert(res);
+                        location.href="./index.php";
+
 //                        alert('上传成功!');
+
                     }
                 });
 

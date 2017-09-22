@@ -120,7 +120,7 @@ class Sign
 //        $sql = "UPDATE candidate SET photo_list = '$data' WHERE openId = '$openId'";
 //        $DB->query($sql);
 
-        return $res;
+        return $code;
 //        return $photo_list;
     }
 

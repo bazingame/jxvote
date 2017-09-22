@@ -38,6 +38,9 @@ if($isWx) {
 
     //查看是否报名
 //    $openId = 'oYeDBjmVqf0RhrTflYBfTBBmTo5Y';
+    $openId = $_SESSION['openId'];
+    $nickName = $_SESSION['nickName'];
+    $headImgurl =  $_SESSION['headImgurl'];
     $DB = new DataBase(DB_HOST,DB_USER,DB_PWD,DB_NAME);
     $DB->select("candidate", "*", "openId = '$openId'");
     $personal_info = $DB->fetchArray(MYSQL_ASSOC);
@@ -45,6 +48,8 @@ if($isWx) {
         $isRegister = 0;
     }else{
         $isRegister = 1;
+        $personal_id = $personal_info[0]['Id'];
+
     }
 }
 
@@ -104,7 +109,7 @@ $visit_num = $count[0]['vister_count'];
     </form>
 
     <div class="register clearFix">
-        <div class="rank" onclick="javascript:if (!<?php echo $isWx;?>) {alert('请进入三翼校园公众号，点击下方菜单或回复军训时光记使用该功能')}else{location.href = './index-team.php'}" id="New">我的签到</div>
+        <div class="rank" onclick="javascript:if (!<?php echo $isWx;?>) {alert('请进入三翼校园公众号，点击下方菜单或回复军训时光记使用该功能')}else{location.href = './personal.php?id=<?php echo $personal_id;?>'}" id="New">我的签到</div>
         <div class="attention" onclick="javascript:if (!<?php echo $isWx;?>) {alert('请进入三翼校园公众号，点击下方菜单或回复军训时光记使用该功能')}else{location.href = ''}" id="Attention">我的关注</div>
         <div class="new" onclick="javascript:location.href = './index-vote.php';" id="Rank">投票排行</div>
     </div>
