@@ -48,7 +48,7 @@ $data = $view->getPersonalAlbum($id)[0];
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Document</title>
+    <title>军训时光记 - 三翼工作室</title>
     <meta name="viewport"content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
       <link rel="stylesheet" href="css/index.css">
     <link rel="stylesheet" href="css/my2.css">

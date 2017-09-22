@@ -1,8 +1,27 @@
+<?php
+include_once '../class/DataBase.class.php';
+include_once "../class/WeiXin.class.php";
+include_once '../class/User.class.php';
+include_once '../class/Sign.class.php';
+header("Content-type:text/html;charset=utf-8");
+/*获取UA*/
+$UA = $_SERVER['HTTP_USER_AGENT'];
+if (preg_match('/MicroMessenger/', $UA)) {
+    $isWx = 1 ;
+    $action = './changeData.php';
+    $changeInfo = './changeInfo.php';
+}
+else{
+    $isWx = 0 ;
+    $action = '';
+}
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Document</title>
+    <title>军训时光记 - 三翼工作室</title>
        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width,init-scale=1.0,max-scale=1.0,userscalable=no"/>
     <link rel="stylesheet" href="./css/index.css">
@@ -72,7 +91,7 @@
         </div>
         <div class="btn-d ">
              <img src="./images/cross.png">
-             <div class="bottomSign" style="margin:0px;width: 100%;height: 100%;" onclick="location.href = './sign.php'"> 报名</div>
+             <div class="bottomSign" style="margin:0px;width: 100%;height: 100%;" onclick="javascript:if (!<?php echo $isWx;?>) {alert('请进入三翼校园公众号，点击下方菜单或回复军训时光记使用该功能')}else{location.href = './sign.php'}"> 报名</div>
         </div>
         <div class="btn-d ">
              <div class=" bottomNavBtn" style="width:60%;height:60%;color:black;"> <span>个人</span></div>

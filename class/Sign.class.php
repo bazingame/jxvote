@@ -64,9 +64,18 @@ class Sign
         $imgArr = json_decode($imgData_json,true);
         $time = date("m").date("d");
         $photo_list = array(
-                            $time=>array('pic'=>$imgArr),
-                            'words'=>$words,
-                            'label'=>array('开心'));
+                            $time=>array('pic'=>$imgArr,
+                                        'words'=>$words,
+                                        'label'=>array('开心','开心') ) );
+
+        //首张为封面，先判断有无封面
+        $cover = $this->getCover($openId);
+        if($cover == ''){
+            $cover_url = $imgArr[0];
+            $this->setCover($openId,$cover_url);
+        }
+
+
         //获取原有照片列表信息
         $DB = new DataBase(DB_HOST,DB_USER,DB_PWD,DB_NAME);
         $DB->select('candidate','photo_list',"openId ='$openId'");
@@ -136,6 +145,27 @@ class Sign
         }
     }
 
+
+    function getCover($openId){
+        $DB = new DataBase(DB_HOST,DB_USER,DB_PWD,DB_NAME);
+        $DB->select('candidate','*',"openId='$openId'");
+        $data = $DB->fetchArray(MYSQL_ASSOC);
+        $album_info = $data[0]['album_info'];
+        $album_info = json_decode($album_info,true);
+        return $album_info['cover'];
+    }
+
+    function setCover($openId,$cover){
+        $DB = new DataBase(DB_HOST,DB_USER,DB_PWD,DB_NAME);
+        $DB->select('candidate','*',"openId='$openId'");
+        $data = $DB->fetchArray(MYSQL_ASSOC);
+        $album_info = $data[0]['album_info'];
+        $album_info = json_decode($album_info,true);
+        $album_info['cover'] = $cover;
+        $res = json_encode($album_info,JSON_UNESCAPED_UNICODE);
+        $DB->update('candidate',array('album_info'=>$res),"openId='$openId'");
+//        return $album_info['cover'];
+    }
 
     //设置register_count (有点问题)
 

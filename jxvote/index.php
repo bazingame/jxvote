@@ -206,7 +206,7 @@ echo $html;
 
 
         <div class="btn-d ">
-             <div class=" bottomNavBtn2" style="width:60%;height:60%;color:black;" onclick="javascript:if (!<?php echo $isWx;?>) {alert('请进入三翼校园公众号，点击下方菜单或回复军训时光记使用该功能')}else{location.href = './<?php if($isRegister){echo 'my.php';}else{echo 'my2.php';}?>'}"> <span>个人</span></div>
+             <div class=" bottomNavBtn2" style="width:60%;height:60%;color:black;" onclick="javascript:if (!<?php echo $isWx;?>) {location.href = './my2.php'}else{location.href = './<?php if($isRegister){echo 'my.php';}else{echo 'my2.php';}?>'}"> <span>个人</span></div>
         </div>
     </nav>    
     <script src="//apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
@@ -257,7 +257,7 @@ echo $html;
                 });                
             }
             else{
-                alert("投票已经截止咯。");
+                alert("请进入三翼校园公众号，点击下方菜单或回复军训时光记使用该功能");
             }                
         }); 
         $('.op-attention').on("click",function(){
@@ -288,7 +288,7 @@ echo $html;
             });                
         }
         else{
-            alert("投票已经截止咯。");
+            alert("请进入三翼校园公众号，点击下方菜单或回复军训时光记使用该功能");
         }
         });           
     </script>
