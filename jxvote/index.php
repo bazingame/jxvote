@@ -5,6 +5,9 @@ include_once '../class/Sign.class.php';
 include_once '../class/View.class.php';
 
 header("Content-type:text/html;charset=utf-8");
+//ini_set("display_errors", "On");
+//error_reporting(E_ALL | E_STRICT);
+
 /*获取UA*/
 $UA = $_SERVER['HTTP_USER_AGENT'];
 if (preg_match('/MicroMessenger/', $UA)) {
@@ -30,6 +33,11 @@ if($isWx) {
 //    $openId = 'oYeDBjmVqf0RhrTflYBfTBBmTo5Y1';
 //    $nickName = 'test';
     /*数据存入session*/
+    $user = new User('','');
+    $user->addVister();
+    if(!isset($_SESSION['openId'])){
+
+    }
     if (!isset($_SESSION['openId']) || !isset($_SESSION['nickName']) || !isset($_SESSION['headImgurl'])) {
         $_SESSION['openId'] = $openId;
         $_SESSION['nickName'] = $nickName;

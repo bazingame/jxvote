@@ -22,6 +22,31 @@ class User
         }
     }
 
+
+    //添加总访问量
+    function addVister(){
+        $DB = new DataBase(DB_HOST,DB_USER,DB_PWD,DB_NAME);
+        $DB->select('count','*',"Id = 1");
+        $result = $DB->fetchArray(MYSQL_ASSOC);
+        $old_num = $result[0]['vister_count'];
+        $old_num++;
+//        return $old_num;
+        $DB->update('count',array('vister_count'=>$old_num),"Id = 1");
+    }
+
+    //添加个人访问量
+    function addVisterPersonal($id){
+        $DB = new DataBase(DB_HOST,DB_USER,DB_PWD,DB_NAME);
+        $DB->select('candidate','*',"Id = '$id'");
+        $result = $DB->fetchArray(MYSQL_ASSOC);
+        $old_num = $result[0]['vister_count'];
+        $old_num++;
+//        return $old_num;
+        $DB->update('candidate',array('vister_count'=>$old_num),"Id = '$id'");
+
+    }
+
+
     /*添加新用户*/
     function addUser(){
         $openid   = $this->openid;

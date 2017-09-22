@@ -81,7 +81,7 @@ else{
              <div><span class="wordModeI">特别奖:</span><span class="wordModeII">由三翼评审人员综合贴吧评论，官q评论，以及大众评审评选出"最佳创意奖" "最佳搞怪奖" 以及"最具情怀奖"</span></div>
              <div><span class="wordModeI">打卡奖:</span><span class="wordModeII">每日打卡前n名即可获得</span></div>
              <div><span class="wordModeI">幸运大奖:</span><span class="wordModeII">由赞助商随机抽取幸运报名选手赠送</span></div>
-             <div><span class="wordModeI">参与奖:</span><span class="wordModeII">参赛即可领取</span></div>
+             <div><span class="wordModeI">参与奖:</span><span class="wordModeII">参赛或投票即可领取</span></div>
              </div>
          </div>
             <img src="./images/90.jpg">
@@ -113,7 +113,7 @@ else{
             <div><span class="wordModeI">最佳创意奖：</span><span class="wordModeII">奖金66.6元+校级荣誉证书+价值200元的启逸理发店烫发名额1个+价值50元的厨子当家代金劵2张+价值60元的口琴1把+风信子时尚花艺馆鲜花1束</span></div>
             <div><span class="wordModeI">最佳搞怪奖：</span><span class="wordModeII">奖金66.6元+校级荣誉证书+价值200元的启逸理发店烫发名额1个+价值50元的厨子当家代金劵2张+价值60元的口琴1把+风信子时尚花艺馆鲜花1束</span></div>
             <div><span class="wordModeI">最具情怀奖：</span><span class="wordModeII">奖金66.6元+校级荣誉证书+价值200元的启逸理发店烫发名额1个+价值50元的厨子当家代金劵2张+价值60元的口琴1把+风信子时尚花艺馆鲜花1束</span></div>
-            <div class="wordAward2">特别奖</div>
+            <div class="wordAward2">打卡奖</div>
             <div><span class="wordModeI">打卡时间段： 12:00—24:00 凭兑奖码截图到店登记领取福利</span></div>
             <div><span class="wordModeI">22号 前100名</span><span class="wordModeII">联建虞美人蛋糕店随机礼品1份（招牌原味奶茶/丝袜奶茶/金桔柠檬/早餐包/小清新/杨枝甘露）</span></div>
             <div><span class="wordModeI">23号 前100名</span><span class="wordModeII">联建腾升超市内美妆小屋面膜1张和免费体验券</span></div>
@@ -127,7 +127,7 @@ else{
             <div><span class="wordModeI">1 号 前50名</span><span class="wordModeII">联建乐茶醇香奶盖茶店奶茶1杯</span></div>
             <div><span class="wordModeI">2号 前150名</span><span class="wordModeII">金瀚林商业街三楼Beauty上妆园阿道夫小礼包</span></div>
             <div><span class="wordModeI">3号 前170名</span><span class="wordModeII">金瀚林商业街一楼启逸 Show理发体验1次</span></div>
-            <div><span class="wordModeI">4号 前N名</span><span class="wordModeII">活动终极神秘大奖（Best wishes：祝你行大运赢大礼，关注8号晚军训之夜，翼宝永远爱你们(๑˃̵ᴗ˂̵)و）</span></div>
+            <div><span class="wordModeI">4号 前N名</span><span class="wordModeII">活动终极神秘大奖（祝你行大运赢大礼，关注8号晚军训之夜，翼宝永远爱你们(๑˃̵ᴗ˂̵)و）</span></div>
             <div class="wordAward2">幸运大奖</div>
             <div><span class="wordModeII">由赞助商随机抽取幸运报名选手赠送价值888元的聚happy轰趴馆体验一次（私人影院+ktv+麻将棋牌+休息室+电玩室+运动区）</span></div>
             <div class="wordAward2">参与奖</div>

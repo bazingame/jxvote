@@ -15,6 +15,7 @@ class WeiXin
     {
         $this->appId  = $appId;
         $this->secret = $secret; 
+        $this->testId = "oYeDBjpSeFbpwbZiKuJKZXqSNo60"; 
         $this->getAccessToken2($appId, $secret);
     }
 
