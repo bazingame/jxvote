@@ -20,7 +20,7 @@ class Sign
     /*个人类型报名*/
     function sign($name,$sid,$department, $QQ, $tel, $album_subject){
             $date = date("Y-m-d H:i:s");
-            if (!isset($_SESSION['nickName']) || !isset($_SESSION['openId'])) {
+            if (!isset($_SESSION['openId'])) {
                 echo "缺失数据！";
                 return 0;
             }

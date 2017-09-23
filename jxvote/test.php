@@ -38,4 +38,5 @@ header('Content-type:text/html;charset=utf-8');
 //$res = $vf->addRecord('10');
 //$res = $vf->getArea('202.197.225.16');
 //print_r($res);
+
 ?>
