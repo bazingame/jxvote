@@ -237,7 +237,8 @@ HTML;
     });
     var voting=false;
     $('.op-vote').on("click",function(){
-        if (<?php echo $isWx; ?>&& <?php echo $isSubcribe ?>) {
+//        if (<?php //echo $isWx; ?>//&& <?php //echo $isSubcribe ?>//) {
+        if (1) {
             if(voting)return false;
             var cur=$(this);
             var pid=$(this).attr("pid");
@@ -300,7 +301,7 @@ HTML;
             });
         }
         else{
-            alert("投票已经截止咯。");
+            alert("请进入三翼校园公众号，点击下方菜单或回我要报名使用该功能。");
         }
     });
 </script>

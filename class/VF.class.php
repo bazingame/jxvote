@@ -17,7 +17,7 @@ class VF
         $openId = $_SESSION['openId'];
         $DB = new DataBase(DB_HOST,DB_USER,DB_PWD,DB_NAME);
         $data  = $this->votes($DB);//获得今日可用投票数
-//        $data = 1;
+        $data = 1;
         if ($data) {
             $DB->select("candidate", "*", "Id = $id");    //查询
             $result = $DB->fetchArray(MYSQL_ASSOC);
@@ -26,8 +26,9 @@ class VF
             //添加用户信息---
             $this->addRecord($id);
             //增加总计数
+//            更新排名
+            $this->updateRank($id);
             $this->votePlus();
-                    //return true;
         }
         else{
             $jsonA= array(
@@ -64,6 +65,20 @@ class VF
         $json = json_encode($data);
         // print_r($DB->printMessage());
         return $json;
+    }
+
+    //更新排名信息
+    function updateRank($id){
+        $DB = new DataBase(DB_HOST,DB_USER,DB_PWD,DB_NAME);
+        $DB->select('candidate','vote_count',"Id = $id");
+        $res = $DB->fetchArray(MYSQL_ASSOC);
+        $voteCountOld = $res[0]['vote_count'];
+        $DB->select('candidate','vote_count',"vote_count > $voteCountOld");
+        $res = $DB->fetchArray(MYSQL_ASSOC);
+        $voteCount = count($res);
+        $voteCount++;
+        $DB->update('candidate',array('rank'=>$voteCount),"Id = $id");
+        return $voteCount;
     }
 
     //添加投票记录

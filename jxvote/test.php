@@ -40,8 +40,13 @@ header('Content-type:text/html;charset=utf-8');
 //print_r($res);
 
 
-$time = date("m").date("d");
+//$time = date("m").date("d");
 //$a = array("code"=>'1',"res"=>$time);
 //print_r(json_encode($a,JSON_UNESCAPED_UNICODE));
-$word = '恭喜您获得！您的兑奖码是:请凭兑奖码在有效时间内到门店登记领取';
+//$word = '恭喜您获得！您的兑奖码是:请凭兑奖码在有效时间内到门店登记领取';
+
+//for($i = 5 ;$i <100 ;$i++) {
+    $hh = new VF();
+    $hh->updateRank('87');
+//}
 ?>
