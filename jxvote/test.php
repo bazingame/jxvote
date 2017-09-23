@@ -11,20 +11,20 @@ header('Content-type:text/html;charset=utf-8');
 
 
 //生成随机数-------------------------------------------------
-function NoRand($begin=10000,$end=99999,$limit=100){
-    $rand_array=range($begin,$end);
-    shuffle($rand_array);//调用现成的数组随机排列函数
-    return array_slice($rand_array,0,$limit);//截取前$limit个
-}
-$arr = NoRand();
-
-$DB = new DataBase(DB_HOST,DB_USER,DB_PWD,DB_NAME);
-foreach ($arr as $key => $value){
-    $val = array('date'=>'0924','code_order'=>($key+1),'code'=>$value);
-    print_r($val);
-    $DB->insert("prize_code",$val);
-    print_r($key.$value.'</br>');
-}
+//function NoRand($begin=10000,$end=99999,$limit=100){
+//    $rand_array=range($begin,$end);
+//    shuffle($rand_array);//调用现成的数组随机排列函数
+//    return array_slice($rand_array,0,$limit);//截取前$limit个
+//}
+//$arr = NoRand();
+//
+//$DB = new DataBase(DB_HOST,DB_USER,DB_PWD,DB_NAME);
+//foreach ($arr as $key => $value){
+//    $val = array('date'=>'0924','code_order'=>($key+1),'code'=>$value);
+//    print_r($val);
+//    $DB->insert("prize_code",$val);
+//    print_r($key.$value.'</br>');
+//}
 //-----------------------------=-------------------------------
 
 //$wx = new WeiXin();
@@ -39,4 +39,9 @@ foreach ($arr as $key => $value){
 //$res = $vf->getArea('202.197.225.16');
 //print_r($res);
 
+
+$time = date("m").date("d");
+//$a = array("code"=>'1',"res"=>$time);
+//print_r(json_encode($a,JSON_UNESCAPED_UNICODE));
+$word = '恭喜您获得！您的兑奖码是:请凭兑奖码在有效时间内到门店登记领取';
 ?>

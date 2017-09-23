@@ -52,7 +52,7 @@ body{
     left: 50%;
     transform: translateX(-50%);
     width: 70%;
-    top:10%;
+    top:55px;
 }
 #upLoadContainer{
     width: 100%;
@@ -195,13 +195,24 @@ input:-ms-input-placeholder { /* Internet Explorer 10+ */
     display: none;
     z-index:20000;
 }
+
 #redeemCode>span{
     margin-left: 10px;
 }
 #redeemCodes{
-    margin-top: 40px;
-    margin-left: 40px;
+    margin-top: 10px;
     margin-bottom: 20px;
+}
+#redeemCodes>img{
+    width:60%;
+    display: block;
+    margin: 0 auto;
+}
+#redeemWords{
+    width:90%;
+    text-align: center;
+    margin-top: 10px;
+
 }
 #redeemCode>ul{
     list-style: none;
@@ -215,7 +226,7 @@ input:-ms-input-placeholder { /* Internet Explorer 10+ */
     height: 40px;
     text-align: center;
     line-height: 40px;
-    border-top: 0.5px solid black;
+    /*border-top: 0.5px solid black;*/
 }
 #copy{
     border-right: 1px solid black;

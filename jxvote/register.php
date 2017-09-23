@@ -36,7 +36,9 @@ $user->timePlus();
     <title>军训时光记 - 三翼工作室</title>
     <link rel="stylesheet" href="./css/index.css">
     <link rel="stylesheet" href="./css/upLoad.css">
-<!--    <script src="//cdn.static.runoob.com/libs/jquery/1.10.2/jquery.min.js"></script>-->
+    <link href="./css/mui.min.css" rel="stylesheet" type="text/css" />
+    <script src="./js/mui.min.js"></script>
+    <!--    <script src="//cdn.static.runoob.com/libs/jquery/1.10.2/jquery.min.js"></script>-->
     <script src="//apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
 </head>
 <body>
@@ -102,11 +104,17 @@ $user->timePlus();
              <div class=" bottomNavBtn2" style="width:60%;height:60%;color:black;" onclick="location.href = './my.php'"> <span>个人</span></div>
         </div>
     </nav>
-     <div id="redeemCode">
-         <div id="redeemCodes"><span id="redeemWord">123123</span></div>
+     <div id="redeemCode" class="mui-panel mui--z2">
+<!--         <div class="mui-card">-->
+<!--             <div class="mui-card-content">-->
+<!--                 <div class="mui-card-content-inner">123</div>-->
+<!--             </div>-->
+<!--         </div>-->
+          <div id="redeemWords"></div>
+         <div id="redeemCodes"><img id = "redeemPic" src="./images/richman/0924.jpg"></div>
          <ul>
 <!--             <li id="copy">复制</li>-->
-             <li id="close">确定</li>
+             <li id="close"><button id="close1" class="mui-btn mui-btn-block" style="width: 200px">确定</button></li>
          </ul>
      </div>
 
@@ -259,50 +267,47 @@ $user->timePlus();
              upload();
          };
 
+         $("#close").on('click',function () {
+             location.href="./index.php";
+         });
+
          // 下载图片
          document.querySelector('#confirm').onclick = function () {
              if (images.serverId.length === 0) {
                   alert('请先选择上传图片');
                  return;
              }
-
-//             alert($("#words").val());
-//             alert($("#ttt").val());
-                $.ajax({
-                    url:'signData.php?type=pic',
-                    type:'POST',
-                    data:{
-                        serverId:$("#ttt").val(),
-                        words:$("#words").val()
-                    },
-                    success:function (res) {
-
-                        alert(res);
-                        location.href="./index.php";
-
+             if(confirm("确定签到?")){
+                 $.ajax({
+                     url:'signData.php?type=pic',
+                     type:'POST',
+                     data:{
+                         serverId:$("#ttt").val(),
+                         words:$("#words").val()
+                     },
+                     success:function (res) {
+                         var jsonres = JSON.parse(res);
+                         if(jsonres.code == 1){
+                         $("#redeemWords").html(jsonres.res);
+                         $("#redeemPic").attr('src',jsonres.pic);
+                         $("#coverPage").css('display','block');
+                         $("#redeemCode").css('display','block');
+//                            alert('1');
+                         }else if(jsonres.code==0){
+                             alert(jsonres.res);
+                         }
+//
+//                        location.href="./index.php";
 //                        alert('上传成功!');
+                     }
+                 });
+             }else {
 
-                    }
-                });
-
-//             var i = 0, length = images.serverId.length;
-//             images.localId = [];
-//             function download() {
-//                 wx.downloadImage({
-//                     serverId: images.serverId[i],
-//                     success: function (res) {
-//                         i++;
-//                         // alert('已下载：' + i + '/' + length);
-//                         images.localId.push(res.localId);
-////                         alert(res.localId);
-//                         if (i < length) {
-//                             download();
-//                         }
-//                     }
-//                 });
-//             }
-//             download();
+             }
          };
+
+
+
 
          var images2 = {
              localId: [],
@@ -327,8 +332,6 @@ $user->timePlus();
          }
       })
     </script>
-<div style="display: none"><script src="https://s22.cnzz.com/z_stat.php?id=1264506451&web_id=1264506451" language="JavaScript"></script></div>
-
 </body>
 </html>
 
