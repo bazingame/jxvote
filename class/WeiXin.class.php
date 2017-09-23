@@ -161,7 +161,7 @@ class WeiXin
         $AccreditToken = $AccreditTokenData['access_token'];
         $openId = $AccreditTokenData['openid'];                         //获取用户openid
         $userInfo = file_get_contents("https://api.weixin.qq.com/cgi-bin/user/info?access_token=$access_token&openid=$openId&lang=zh_CN");
-        if(json_decode($userInfo,true)['subscribe']=='0'){
+        if(json_decode($userInfo,true)['subscribe']=='0'|| !isset(json_decode($userInfo,true)['subscribe'])){
             return '0';
         }else{
             return $userInfo;

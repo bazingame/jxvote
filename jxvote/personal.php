@@ -6,6 +6,7 @@ include_once '../class/View.class.php';
 
 header("Content-type:text/html;charset=utf-8");
 /*获取UA*/
+session_start();
 $UA = $_SERVER['HTTP_USER_AGENT'];
 if (preg_match('/MicroMessenger/', $UA)) {
     $isWx = 1 ;
@@ -16,17 +17,33 @@ else{
 
 if($isWx) {
     /*初始化对象并获取用户数据*/
-    $weixin = new WeiXin();
-    $userInfo = $weixin->getUserInfo();
+    if(!isset($_SESSION['openId']) || !isset($_SESSION['nickName']) || !isset($_SESSION['headImgurl'])){
+        $weixin = new WeiXin();
+        $userInfo = $weixin->getUserInfo2();
+        if($userInfo=='0'){
+            $_SESSION['isSubcribe']=0;
+        }else{
+            $_SESSION['isSubcribe']=1;
+        }
 
-    /*解析用户数据*/
-    $userInfo = json_decode($userInfo, 1);
-    session_start();
-    $openId = $userInfo['openid'];
-    $nickName = $userInfo['nickname'];       //用户昵称
-    $headImgurl = substr($userInfo['headimgurl'], 0, -2) . "/132"; //用户头像
+        /*解析用户数据*/
+        $userInfo = json_decode($userInfo, 1);
+        $openId = $userInfo['openid'];
+        $nickName = $userInfo['nickname'];       //用户昵称
+        $headImgurl = substr($userInfo['headimgurl'], 5, -2) . "/132"; //用户头像
+        $headImgurl = 'https:'.$headImgurl;
+
+    }
+    $isSubcribe = $_SESSION['isSubcribe'];
+
+//    $userInfo = $weixin->getUserInfo();
 
     /*数据存入session*/
+    $user = new User('','');
+    $user->addVister();
+    if(!isset($_SESSION['openId'])){
+
+    }
     if (!isset($_SESSION['openId']) || !isset($_SESSION['nickName']) || !isset($_SESSION['headImgurl'])) {
         $_SESSION['openId'] = $openId;
         $_SESSION['nickName'] = $nickName;
@@ -43,12 +60,16 @@ if($isWx) {
         $isRegister = 0;
     }else{
         $isRegister = 1;
+        $personal_id = $personal_info[0]['Id'];
     }
+//    echo $isRegister;
 
-
-    $user = new User($_SESSION['openId'], $_SESSION['nickName']);
-    $user->timePlus();
+}else{
+    $isSubcribe = 0;
 }
+//echo $isSubcribe;
+//echo $isRegister;
+
 
 if($_GET['id']){
     $usr = new User('','');
@@ -181,7 +202,7 @@ HTML;
 
         <div class="btn-d "  <?php  if(!$isRegister){echo 'style="display:none";';}?>>
             <img src="./images/cross.png">
-            <div class="bottomSign" style="margin:0px;width: 100%;height: 100%;" <?php  if($isRegister){echo 'style="display:none";';}?> onclick="javascript:if (!<?php echo $isWx;?>) {alert('请进入三翼校园公众号，点击下方菜单或回复军训时光记使用该功能')}else{location.href = './register.php'}"> 签到</div>
+            <div class="bottomSign" style="margin:0px;width: 100%;height: 100%;" <?php  if($isRegister&&$isSubcribe){echo 'style="display:none";';}?> onclick="javascript:if (!<?php echo $isWx;?>) {alert('请进入三翼校园公众号，点击下方菜单或回复军训时光记使用该功能')}else{location.href = './register.php'}"> 签到</div>
         </div>
 
 
@@ -256,7 +277,7 @@ HTML;
     <script>
         var voting=false;
         $('#voteBtn').on("click",function(){
-            if (<?php echo $isWx; ?>) {
+            if (<?php echo $isWx.'&&'.$isSubcribe; ?>) {
                 if(voting)return false;
                 var cur=$(this);
                 var pid=$(this).attr("pid");
@@ -288,7 +309,7 @@ HTML;
                 });
             }
             else{
-                alert("投票已经截止咯。");
+                alert("请进入三翼校园公众号，点击下方菜单或回复我要报名使用该功能");
             }
         });
 

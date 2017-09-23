@@ -19,6 +19,12 @@ else{
 
 if($isWx) {
     /*初始化对象并获取用户数据*/
+    if(isset($_SESSION['dontNew'])){
+//        echo $_SESSION['dontNew'];
+    }else{
+//        echo '0';
+    }
+
     $weixin = new WeiXin();
 //    $userInfo = $weixin->getUserInfo();
 //    $userInfo = $weixin->getUserInfo2();
@@ -37,6 +43,9 @@ if($isWx) {
     $nickName = $userInfo['nickname'];       //用户昵称
     $headImgurl = substr($userInfo['headimgurl'], 5, -2) . "/132"; //用户头像
     $headImgurl = 'https:'.$headImgurl;
+
+
+
 //    echo $headImgurl;
 //    $openId = 'oYeDBjmVqf0RhrTflYBfTBBmTo5Y1';
 //    $nickName = 'test';
@@ -50,6 +59,7 @@ if($isWx) {
         $_SESSION['openId'] = $openId;
         $_SESSION['nickName'] = $nickName;
         $_SESSION['headImgurl'] = $headImgurl;
+        $_SESSION['dontNew'] = 1;
     }
 
     $user = new User($_SESSION['openId'], $_SESSION['nickName']);
@@ -73,6 +83,7 @@ if($isWx) {
 }else{
     $isSubcribe = 0;
 }
+
 
     $view = new View();
     $data = $view->filterTime();
