@@ -237,18 +237,18 @@ echo $html;
 
         <div class="btn-d "  <?php  if(!$isRegister){echo 'style="display:none";';}?>>
             <img src="./images/cross.png">
-            <div class="bottomSign" style="margin:0px;width: 100%;height: 100%;"  onclick="javascript:if (!(<?php echo $canVote?>)) {alert('请进入三翼校园公众号，点击下方菜单或回我要报名使用该功能')}else{location.href = './register.php'}"> 签到</div>
+            <div class="bottomSign" style="margin:0px;width: 100%;height: 100%;"  onclick="javascript:if (!(<?php echo $canVote;?>)) {alert('请进入三翼校园公众号，点击下方菜单或回我要报名使用该功能')}else{location.href = './register.php'}"> 签到</div>
         </div>
 
 
         <div class="btn-d "  <?php  if($isRegister){echo 'style="display:none";';}?>>
              <img src="./images/cross.png">
-            <div class="bottomSign" style="margin:0px;width: 100%;height: 100%;" onclick="javascript:if (!(<?php echo $canVote?>)) {alert('请进入三翼校园公众号，点击下方菜单或回我要报名使用该功能')}else{location.href = './sign.php'}"> 报名</div>
+            <div class="bottomSign" style="margin:0px;width: 100%;height: 100%;" onclick="javascript:if (!(<?php echo $canVote;?>)) {alert('请进入三翼校园公众号，点击下方菜单或回我要报名使用该功能')}else{location.href = './sign.php'}"> 报名</div>
         </div>
 
 
         <div class="btn-d ">
-             <div class=" bottomNavBtn2" style="width:60%;height:60%;color:black;" onclick="javascript:if (!(<?php echo $canVote?>)) {location.href = './my2.php'}else{location.href = './<?php if($isRegister){echo 'my.php';}else{echo 'my2.php';}?>'}"> <span>个人</span></div>
+             <div class=" bottomNavBtn2" style="width:60%;height:60%;color:black;" onclick="javascript:if (!(<?php echo $canVote;?>)) {location.href = './my2.php'}else{location.href = './<?php if($isRegister){echo 'my.php';}else{echo 'my2.php';}?>'}"> <span>个人</span></div>
         </div>
     </nav>
     <script src="//apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
@@ -267,7 +267,7 @@ echo $html;
 		});
         var voting=false;
         $('.op-vote').on("click",function(){
-            if (<?php echo $canVote?>) {
+            if (<?php echo $canVote;?>) {
                 if(voting)return false;
                 var cur=$(this);
                 var pid=$(this).attr("pid");
