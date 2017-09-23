@@ -42,7 +42,7 @@ class VF
 
     /*返回剩余可投票数*/
     function votes($DB){
-        $canVote = 5;
+        $canVote = 3;
         $date = date("m").date("d");
 //        $openId = 'ewgfug';
         $openId = $_SESSION['openId'];
