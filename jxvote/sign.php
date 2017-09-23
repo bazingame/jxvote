@@ -191,6 +191,8 @@ $user->timePlus();
         <div id="closeList">关闭</div>
     </div>
     <div id="coverPage"></div>
+    <div style="display: none"><script src="https://s22.cnzz.com/z_stat.php?id=1264506451&web_id=1264506451" language="JavaScript"></script></div>
+
 </body>
 
 <script type="text/javascript" src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>

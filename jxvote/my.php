@@ -240,6 +240,8 @@ $user->timePlus();
         })
 
     </script>
+    <div style="display: none"><script src="https://s22.cnzz.com/z_stat.php?id=1264506451&web_id=1264506451" language="JavaScript"></script></div>
+
 </body>
 
 <script>
