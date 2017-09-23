@@ -2,9 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c3a2abd5-7873-469d-9779-282d0264e167" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/class/VF.class.php" afterPath="$PROJECT_DIR$/class/VF.class.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jxvote/index-vote.php" afterPath="$PROJECT_DIR$/jxvote/index-vote.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jxvote/test.php" afterPath="$PROJECT_DIR$/jxvote/test.php" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -19,8 +18,8 @@
       <file leaf-file-name="personal.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/jxvote/personal.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1472">
-              <caret line="306" column="39" lean-forward="true" selection-start-line="306" selection-start-column="39" selection-end-line="306" selection-end-column="39" />
+            <state relative-caret-position="200">
+              <caret line="234" column="40" lean-forward="false" selection-start-line="234" selection-start-column="40" selection-end-line="234" selection-end-column="40" />
               <folding>
                 <element signature="n#style#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#img#1;n#div#1;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -75,8 +74,8 @@
       <file leaf-file-name="vote.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/jxvote/vote.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="48">
-              <caret line="2" column="0" lean-forward="true" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
+            <state relative-caret-position="168">
+              <caret line="7" column="8" lean-forward="false" selection-start-line="7" selection-start-column="8" selection-end-line="7" selection-end-column="8" />
               <folding />
             </state>
           </provider>
@@ -85,8 +84,8 @@
       <file leaf-file-name="signData.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/jxvote/signData.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="336">
-              <caret line="20" column="20" lean-forward="true" selection-start-line="20" selection-start-column="20" selection-end-line="20" selection-end-column="20" />
+            <state relative-caret-position="480">
+              <caret line="26" column="29" lean-forward="true" selection-start-line="26" selection-start-column="29" selection-end-line="26" selection-end-column="29" />
               <folding />
             </state>
           </provider>
@@ -120,26 +119,26 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="test.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="test.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/jxvote/test.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="657">
-              <caret line="49" column="14" lean-forward="true" selection-start-line="49" selection-start-column="14" selection-end-line="49" selection-end-column="14" />
+            <state relative-caret-position="321">
+              <caret line="35" column="17" lean-forward="true" selection-start-line="35" selection-start-column="17" selection-end-line="35" selection-end-column="17" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="VF.class.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="VF.class.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/class/VF.class.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="384">
-              <caret line="31" column="0" lean-forward="false" selection-start-line="31" selection-start-column="0" selection-end-line="31" selection-end-column="0" />
+            <state relative-caret-position="163">
+              <caret line="20" column="26" lean-forward="true" selection-start-line="20" selection-start-column="26" selection-end-line="20" selection-end-column="26" />
               <folding>
-                <marker date="1506197345253" expanded="true" signature="6486:6533" ph="SELECT * FRO... userinfo" />
-                <marker date="1506197345253" expanded="true" signature="6641:6681" ph="SELECT * FRO... candidate" />
-                <marker date="1506197345253" expanded="true" signature="7713:7748" ph="SELECT * FRO... candidate" />
-                <marker date="1506197345253" expanded="true" signature="8180:8229" ph="SELECT * FRO... " />
+                <marker date="1506199621471" expanded="true" signature="6582:6629" ph="SELECT * FRO... userinfo" />
+                <marker date="1506199621471" expanded="true" signature="6737:6777" ph="SELECT * FRO... candidate" />
+                <marker date="1506199621471" expanded="true" signature="7809:7844" ph="SELECT * FRO... candidate" />
+                <marker date="1506199621471" expanded="true" signature="8276:8325" ph="SELECT * FRO... " />
               </folding>
             </state>
           </provider>
@@ -211,9 +210,9 @@
       <find>mui</find>
       <find>投票</find>
       <find>op</find>
-      <find>voteBtn</find>
       <find>vote</find>
       <find>/body</find>
+      <find>voteBtn</find>
     </findStrings>
     <replaceStrings>
       <replace>root</replace>
@@ -468,7 +467,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="158071000" />
+    <option name="totallyTimeSpent" value="160402000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1938" height="1048" extended-state="6" />
@@ -800,6 +799,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="72">
           <caret line="3" column="24" lean-forward="false" selection-start-line="3" selection-start-column="24" selection-end-line="3" selection-end-column="24" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -967,35 +967,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/jxvote/signData.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="336">
-          <caret line="20" column="20" lean-forward="true" selection-start-line="20" selection-start-column="20" selection-end-line="20" selection-end-column="20" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/jxvote/personal.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1472">
-          <caret line="306" column="39" lean-forward="true" selection-start-line="306" selection-start-column="39" selection-end-line="306" selection-end-column="39" />
-          <folding>
-            <element signature="n#style#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#img#1;n#div#1;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#1;n#div#0;n#div#1;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#0;n#nav#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#1;n#nav#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#2;n#nav#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#3;n#nav#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#5;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <marker date="1506188663247" expanded="true" signature="4350:5157" ph="..." />
-            <marker date="1506188663247" expanded="true" signature="4401:4955" ph="..." />
-            <marker date="1506188663247" expanded="true" signature="4622:4638" ph="..." />
-            <marker date="1506188663247" expanded="true" signature="4811:4821" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/jxvote/index.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="77">
@@ -1024,14 +995,6 @@
             <marker date="1506188592896" expanded="true" signature="8683:8910" ph="..." />
             <marker date="1506188592896" expanded="false" signature="10256:10289" ph="..." />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/jxvote/vote.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="48">
-          <caret line="2" column="0" lean-forward="true" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1082,24 +1045,61 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/jxvote/test.php">
+    <entry file="file://$PROJECT_DIR$/jxvote/personal.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="657">
-          <caret line="49" column="14" lean-forward="true" selection-start-line="49" selection-start-column="14" selection-end-line="49" selection-end-column="14" />
+        <state relative-caret-position="200">
+          <caret line="234" column="40" lean-forward="false" selection-start-line="234" selection-start-column="40" selection-end-line="234" selection-end-column="40" />
+          <folding>
+            <element signature="n#style#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#img#1;n#div#1;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#1;n#div#0;n#div#1;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#0;n#nav#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#1;n#nav#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#2;n#nav#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#3;n#nav#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#5;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <marker date="1506188663247" expanded="true" signature="4350:5157" ph="..." />
+            <marker date="1506188663247" expanded="true" signature="4401:4955" ph="..." />
+            <marker date="1506188663247" expanded="true" signature="4622:4638" ph="..." />
+            <marker date="1506188663247" expanded="true" signature="4811:4821" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/jxvote/signData.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="480">
+          <caret line="26" column="29" lean-forward="true" selection-start-line="26" selection-start-column="29" selection-end-line="26" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/jxvote/vote.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="168">
+          <caret line="7" column="8" lean-forward="false" selection-start-line="7" selection-start-column="8" selection-end-line="7" selection-end-column="8" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/class/VF.class.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="384">
-          <caret line="31" column="0" lean-forward="false" selection-start-line="31" selection-start-column="0" selection-end-line="31" selection-end-column="0" />
+        <state relative-caret-position="163">
+          <caret line="20" column="26" lean-forward="true" selection-start-line="20" selection-start-column="26" selection-end-line="20" selection-end-column="26" />
           <folding>
-            <marker date="1506197345253" expanded="true" signature="6486:6533" ph="SELECT * FRO... userinfo" />
-            <marker date="1506197345253" expanded="true" signature="6641:6681" ph="SELECT * FRO... candidate" />
-            <marker date="1506197345253" expanded="true" signature="7713:7748" ph="SELECT * FRO... candidate" />
-            <marker date="1506197345253" expanded="true" signature="8180:8229" ph="SELECT * FRO... " />
+            <marker date="1506199621471" expanded="true" signature="6582:6629" ph="SELECT * FRO... userinfo" />
+            <marker date="1506199621471" expanded="true" signature="6737:6777" ph="SELECT * FRO... candidate" />
+            <marker date="1506199621471" expanded="true" signature="7809:7844" ph="SELECT * FRO... candidate" />
+            <marker date="1506199621471" expanded="true" signature="8276:8325" ph="SELECT * FRO... " />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/jxvote/test.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="321">
+          <caret line="35" column="17" lean-forward="true" selection-start-line="35" selection-start-column="17" selection-end-line="35" selection-end-column="17" />
+          <folding />
         </state>
       </provider>
     </entry>

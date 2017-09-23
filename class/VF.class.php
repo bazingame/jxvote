@@ -16,9 +16,9 @@ class VF
     function vote($id){
         $openId = $_SESSION['openId'];
         $DB = new DataBase(DB_HOST,DB_USER,DB_PWD,DB_NAME);
-        $data  = $this->votes($DB);//获得今日可用投票数
-        $data = 1;
-        if ($data) {
+        $remainVote  = $this->votes($DB);//获得今日可用投票数
+//        $data = 1;
+        if ($remainVote) {
             $DB->select("candidate", "*", "Id = $id");    //查询
             $result = $DB->fetchArray(MYSQL_ASSOC);
             $userInfo = array('vote_count' => 'vote_count');
@@ -28,7 +28,8 @@ class VF
             //增加总计数
 //            更新排名
             $this->updateRank($id);
-            $this->votePlus();
+            $remainVote--;
+            $this->votePlus($remainVote);
         }
         else{
             $jsonA= array(
@@ -41,18 +42,16 @@ class VF
 
     /*返回剩余可投票数*/
     function votes($DB){
+        $canVote = 5;
         $date = date("m").date("d");
 //        $openId = 'ewgfug';
         $openId = $_SESSION['openId'];
         //用户名相同且投票时间戳同时相同则不可再投
         $DB->select("record", "*", "user_key = '$openId' AND time_no = '$date'");
         $result = $DB->fetchArray(MYSQL_ASSOC);
-        if(empty($result)){
-            $vote_time = 1;
-        }else{
-            $vote_time = 0;
-        }
-        return $vote_time;
+        $hasVote = count($result);
+        $voteRemain = $canVote-$hasVote;
+        return $voteRemain;
     }
 
     /*返回剩余可投票数*/
@@ -180,13 +179,14 @@ class VF
     }
 
     /*总计数1*/
-    function votePlus(){
+    function votePlus($remainVote){
         $DB = new DataBase(DB_HOST,DB_USER,DB_PWD,DB_NAME);
         $userInfo = array('vote_count' => 'vote_count');
         $DB->updatePlus("count", $userInfo, "Id = 1");    //计数加一
+        $msg = '投票成功,今日可再投'.$remainVote.'票';
         $jsonA= array(
             'code'=>0,
-            'msg'=>"投票成功"
+            'msg'=>$msg
         );
         die(json_encode($jsonA));
     }
