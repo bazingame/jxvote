@@ -20,47 +20,47 @@ else{
 if($isWx) {
     /*初始化对象并获取用户数据*/
     if(isset($_SESSION['dontNew'])){
+
 //        echo $_SESSION['dontNew'];
     }else{
-//        echo '0';
+        $weixin = new WeiXin();
+        $userInfo = $weixin->getUserInfo2();
+        if($userInfo=='0'){
+            $_SESSION['isSubcribe']=0;
+        }else{
+            $_SESSION['isSubcribe']=1;
+        }
+
+        /*解析用户数据*/
+        $userInfo = json_decode($userInfo, 1);
+        $openId = $userInfo['openid'];
+        $nickName = $userInfo['nickname'];       //用户昵称
+        $headImgurl = substr($userInfo['headimgurl'], 5, -2) . "/132"; //用户头像
+        $headImgurl = 'https:'.$headImgurl;
+        $_SESSION['openId'] = $openId;
+        $_SESSION['nickName'] = $nickName;
+        $_SESSION['headImgurl'] = $headImgurl;
+        $_SESSION['dontNew'] = 1;
     }
 
-    $weixin = new WeiXin();
 //    $userInfo = $weixin->getUserInfo();
 //    $userInfo = $weixin->getUserInfo2();
 //    print_r($userInfo);
-    $userInfo = $weixin->getUserInfo2();
-    if($userInfo=='0'){
-        $_SESSION['isSubcribe']=0;
-    }else{
-        $_SESSION['isSubcribe']=1;
-    }
+
     $isSubcribe = $_SESSION['isSubcribe'];
-
-    /*解析用户数据*/
-    $userInfo = json_decode($userInfo, 1);
-    $openId = $userInfo['openid'];
-    $nickName = $userInfo['nickname'];       //用户昵称
-    $headImgurl = substr($userInfo['headimgurl'], 5, -2) . "/132"; //用户头像
-    $headImgurl = 'https:'.$headImgurl;
-
-
-
-//    echo $headImgurl;
-//    $openId = 'oYeDBjmVqf0RhrTflYBfTBBmTo5Y1';
-//    $nickName = 'test';
+//echo '"'.$isSubcribe.'"';
     /*数据存入session*/
     $user = new User('','');
     $user->addVister();
     if(!isset($_SESSION['openId'])){
 
     }
-    if (!isset($_SESSION['openId']) || !isset($_SESSION['nickName']) || !isset($_SESSION['headImgurl'])) {
-        $_SESSION['openId'] = $openId;
-        $_SESSION['nickName'] = $nickName;
-        $_SESSION['headImgurl'] = $headImgurl;
-        $_SESSION['dontNew'] = 1;
-    }
+//    if (!isset($_SESSION['openId']) || !isset($_SESSION['nickName']) || !isset($_SESSION['headImgurl'])) {
+//        $_SESSION['openId'] = $openId;
+//        $_SESSION['nickName'] = $nickName;
+//        $_SESSION['headImgurl'] = $headImgurl;
+//        $_SESSION['dontNew'] = 1;
+//    }
 
     $user = new User($_SESSION['openId'], $_SESSION['nickName']);
     $user->timePlus();

@@ -85,7 +85,7 @@ class View
     function filterHeartA($type = ''){
         $DB = new DataBase(DB_HOST,DB_USER,DB_PWD,DB_NAME);
         if ($type != '') {
-            $DB->selectOrder("candidate", "heart", "DESC", "*", "type = '$type'");
+            $DB->selectOrder("candidate", "heart", "DESC", "*", "type = '$type' AND 'has_upload = 1'");
         }
         else{
             $DB->selectOrder("candidate", "heart", "DESC", "*");
@@ -98,7 +98,7 @@ class View
     /*按票数排序返回-可选类型*/
     function filterVotes(){
         $DB = new DataBase(DB_HOST,DB_USER,DB_PWD,DB_NAME);
-        $DB->selectOrder("candidate", "vote_count", "DESC", "*");
+        $DB->selectOrder("candidate", "vote_count", "DESC", "*",'has_upload = 1');
         $result = $DB->fetchArray(MYSQL_ASSOC);
         // print_r($result);
         return $result;
