@@ -12,6 +12,7 @@ if(isset($_SESSION['canVote'])){
     $nickName = $_SESSION['nickName'];
     $headImgurl = $_SESSION['headImgurl'];
     $canVote = $_SESSION['canVote'];
+    $isRegister = $_SESSION['isRegister'];
 }else{//未设置此session时，判断是否微信登录和是否关注，即是否可获得用户信息
     //获取UA,判断微信
     $UA = $_SERVER['HTTP_USER_AGENT'];
@@ -68,17 +69,7 @@ if(isset($_SESSION['canVote'])){
     }else{
         $isRegister = 0;
     }
-}
-
-//判断是否已报名
-$DB = new DataBase(DB_HOST,DB_USER,DB_PWD,DB_NAME);
-$DB->select("candidate", "*", "openId = '$openId'");
-$personal_info = $DB->fetchArray(MYSQL_ASSOC);
-if(empty($personal_info)){
-    $isRegister = 0;
-}else{
-    $isRegister = 1;
-    $personal_id = $personal_info[0]['Id'];
+    $_SESSION['isRegister'] = $isRegister;
 }
 
 //echo 'openId:'.$openId;
@@ -178,7 +169,7 @@ $visit_num = $count[0]['vister_count'];
                             <div class="vote-count"><span class="voteC" pid="{$id}" >{$row['vote_count']}</span>票&nbsp;&nbsp;{$subject}</div>
                         </div>
                         <div class="operation">
-                            <div class="op-attention" fcous="{$id}">关注</div>
+                            <div class="op-attention" onclick="javascript:location.href = './personal.php?id={$id}'">查看</div>
                             <div class="op-vote" pid="{$id}">投票</div>
                         </div>
                     </div>
@@ -213,7 +204,7 @@ HTML;
                             <div class="vote-count"><span class="voteC" pid="{$id}" >{$row['vote_count']}</span>票&nbsp;&nbsp;{$subject}</div>
                         </div>
                         <div class="operation">
-                            <div class="op-attention" fcous="{$id}">关注</div>
+                            <div class="op-attention" onclick="javascript:location.href = './personal.php?id={$id}'">查看</div>
                             <div class="op-vote" pid="{$id}">投票</div>
                         </div>
                     </div>
@@ -237,18 +228,18 @@ HTML;
 
     <div class="btn-d "  <?php  if(!$isRegister){echo 'style="display:none";';}?>>
         <img src="./images/cross.png">
-        <div class="bottomSign" style="margin:0px;width: 100%;height: 100%;" <?php  if($isRegister){echo 'style="display:none";';}?> onclick="javascript:if (!(<?php echo $canVote;?>)) {alert('请进入三翼校园公众号，点击下方菜单或回我要报名使用该功能')}else{location.href = './register.php'}"> 签到</div>
+        <div class="bottomSign" style="margin:0px;width: 100%;height: 100%;"  onclick="javascript:if (!(<?php echo $canVote?>)) {alert('请进入三翼校园公众号，点击下方菜单或回我要报名使用该功能')}else{location.href = './register.php'}"> 签到</div>
     </div>
 
 
     <div class="btn-d "  <?php  if($isRegister){echo 'style="display:none";';}?>>
         <img src="./images/cross.png">
-        <div class="bottomSign" style="margin:0px;width: 100%;height: 100%;" onclick="javascript:if (!(<?php echo $isWx.'&&'.$isSubcribe;?>)) {alert('请进入三翼校园公众号，点击下方菜单或回我要报名使用该功能')}else{location.href = './sign.php'}"> 报名</div>
+        <div class="bottomSign" style="margin:0px;width: 100%;height: 100%;" onclick="javascript:if (!(<?php echo $canVote?>)) {alert('请进入三翼校园公众号，点击下方菜单或回我要报名使用该功能')}else{location.href = './sign.php'}"> 报名</div>
     </div>
 
 
     <div class="btn-d ">
-        <div class=" bottomNavBtn2" style="width:60%;height:60%;color:black;" onclick="javascript:if (!(<?php echo $isWx.'&&'.$isSubcribe;?>)) {alert('请进入三翼校园公众号，点击下方菜单或回我要报名使用该功能')}else{location.href = './<?php if($isRegister){echo 'my.php';}else{echo 'my2.php';}?>'}"> <span>个人</span></div>
+        <div class=" bottomNavBtn2" style="width:60%;height:60%;color:black;" onclick="javascript:if (!(<?php echo $canVote?>)) {location.href = './my2.php'}else{location.href = './<?php if($isRegister){echo 'my.php';}else{echo 'my2.php';}?>'}"> <span>个人</span></div>
     </div>
 </nav>
 <script src="//apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
@@ -267,8 +258,8 @@ HTML;
     });
     var voting=false;
     $('.op-vote').on("click",function(){
-//        if (<?php //echo $isWx; ?>//&& <?php //echo $isSubcribe ?>//) {
-        if (1) {
+        if (<?php echo $canVote?>) {
+//        if (1) {
             if(voting)return false;
             var cur=$(this);
             var pid=$(this).attr("pid");
@@ -300,11 +291,11 @@ HTML;
             });
         }
         else{
-            alert("投票已经截止咯。");
+            alert("请进入三翼校园公众号，点击下方菜单或回复我要报名使用该功能.");
         }
     });
     $('.op-attention').on("click",function(){
-        if (<?php echo $isWx; ?>&& <?php echo $isSubcribe?>) {
+        if (<?php echo $canVote?>) {
             var fcousStr=$(this);
             var fcous=$(this).attr("fcous");
             $(this).html("ing...");

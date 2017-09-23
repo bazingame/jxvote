@@ -16,6 +16,7 @@ if(isset($_SESSION['canVote'])){
     $nickName = $_SESSION['nickName'];
     $headImgurl = $_SESSION['headImgurl'];
     $canVote = $_SESSION['canVote'];
+    $isRegister = $_SESSION['isRegister'];
 }else{//未设置此session时，判断是否微信登录和是否关注，即是否可获得用户信息
     //获取UA,判断微信
     $UA = $_SERVER['HTTP_USER_AGENT'];
@@ -72,6 +73,7 @@ if(isset($_SESSION['canVote'])){
     }else{
         $isRegister = 0;
     }
+    $_SESSION['isRegister'] = $isRegister;
 }
 
 //echo 'openId:'.$openId;
@@ -80,6 +82,7 @@ echo 'nickName:'.$nickName;
 echo 'isSubcribe:'.$isSubcribe;
 echo 'isWx:'.$isWx;
 echo 'canVote:'.$canVote;
+echo 'isRegister:'.$isRegister;
 
 //访客记录
 $user = new User('','');
@@ -234,7 +237,7 @@ echo $html;
 
         <div class="btn-d "  <?php  if(!$isRegister){echo 'style="display:none";';}?>>
             <img src="./images/cross.png">
-            <div class="bottomSign" style="margin:0px;width: 100%;height: 100%;"  onclick="javascript:if (!(<?php echo $isWx.'&&'.$isSubcribe;?>)) {alert('请进入三翼校园公众号，点击下方菜单或回我要报名使用该功能')}else{location.href = './register.php'}"> 签到</div>
+            <div class="bottomSign" style="margin:0px;width: 100%;height: 100%;"  onclick="javascript:if (!(<?php echo $canVote?>)) {alert('请进入三翼校园公众号，点击下方菜单或回我要报名使用该功能')}else{location.href = './register.php'}"> 签到</div>
         </div>
 
 
