@@ -7,69 +7,78 @@ include_once '../class/View.class.php';
 header("Content-type:text/html;charset=utf-8");
 /*获取UA*/
 session_start();
-$UA = $_SERVER['HTTP_USER_AGENT'];
-if (preg_match('/MicroMessenger/', $UA)) {
-    $isWx = 1 ;
-}
-else{
-    $isWx = 0 ;
-}
+//判断是否可投票，满足微信打开且关注
+if(isset($_SESSION['canVote'])){
+    $openId = $_SESSION['openId'];
+    $nickName = $_SESSION['nickName'];
+    $headImgurl = $_SESSION['headImgurl'];
+    $canVote = $_SESSION['canVote'];
+    $isRegister = $_SESSION['isRegister'];
+    $personal_id = $_SESSION['personal_id'];
+}else{//未设置此session时，判断是否微信登录和是否关注，即是否可获得用户信息
+    //获取UA,判断微信
+    $UA = $_SERVER['HTTP_USER_AGENT'];
+    if (preg_match('/MicroMessenger/', $UA)) {
+        $isWx = 1 ;
+    }else{
+        $isWx = 0 ;
+    }
 
-if($isWx) {
-    /*初始化对象并获取用户数据*/
-    if(!isset($_SESSION['openId']) || !isset($_SESSION['nickName']) || !isset($_SESSION['headImgurl'])){
+    if($isWx){
+        //初始化微信对象获取用户数据判断是否关注以及是否公众号内打开
         $weixin = new WeiXin();
         $userInfo = $weixin->getUserInfo2();
         if($userInfo=='0'){
-            $_SESSION['isSubcribe']=0;
+            $isSubcribe =0;
         }else{
-            $_SESSION['isSubcribe']=1;
+            $isSubcribe =1;
         }
 
-        /*解析用户数据*/
-        $userInfo = json_decode($userInfo, 1);
+        //关注，则可投票
+        if($isSubcribe){
+            $canVote = 1;
+        }else{
+            $canVote = 0;
+        }
+
+    }else{
+        $canVote = 0;
+    }
+
+    //如果可投票,相当于可登陆
+    if($canVote){
+        //设置SESSION,解析用户数据
+        $userInfo = json_decode($userInfo, true);
         $openId = $userInfo['openid'];
         $nickName = $userInfo['nickname'];       //用户昵称
         $headImgurl = substr($userInfo['headimgurl'], 5, -2) . "/132"; //用户头像
         $headImgurl = 'https:'.$headImgurl;
-
-    }
-    $isSubcribe = $_SESSION['isSubcribe'];
-
-//    $userInfo = $weixin->getUserInfo();
-
-    /*数据存入session*/
-    $user = new User('','');
-    $user->addVister();
-    if(!isset($_SESSION['openId'])){
-
-    }
-    if (!isset($_SESSION['openId']) || !isset($_SESSION['nickName']) || !isset($_SESSION['headImgurl'])) {
         $_SESSION['openId'] = $openId;
         $_SESSION['nickName'] = $nickName;
         $_SESSION['headImgurl'] = $headImgurl;
-    }
+        $_SESSION['canVote'] = $canVote;
 
-    $openId = $_SESSION['openId'];
-    $nickName = $_SESSION['nickName'];
-    $headImgurl =  $_SESSION['headImgurl'];
-    $DB = new DataBase(DB_HOST,DB_USER,DB_PWD,DB_NAME);
-    $DB->select("candidate", "*", "openId = '$openId'");
-    $personal_info = $DB->fetchArray(MYSQL_ASSOC);
-    if(empty($personal_info)){
-        $isRegister = 0;
+        //判断是否已报名
+        $DB = new DataBase(DB_HOST,DB_USER,DB_PWD,DB_NAME);
+        $DB->select("candidate", "*", "openId = '$openId'");
+        $personal_info = $DB->fetchArray(MYSQL_ASSOC);
+        if(empty($personal_info)){
+            $isRegister = 0;
+        }else{
+            $isRegister = 1;
+            $personal_id = $personal_info[0]['Id'];
+        }
     }else{
-        $isRegister = 1;
-        $personal_id = $personal_info[0]['Id'];
+        $isRegister = 0;
     }
-//    echo $isRegister;
-
-}else{
-    $isSubcribe = 0;
+    $_SESSION['isRegister'] = $isRegister;
 }
-//echo $isSubcribe;
-//echo $isRegister;
 
+//echo 'nickName:'.$nickName;
+//echo 'isSubcribe:'.$isSubcribe;
+//echo 'isWx:'.$isWx;
+//echo 'canVote:'.$canVote;
+//echo 'isRegister:'.$isRegister;
 
 if($_GET['id']){
     $usr = new User('','');
@@ -202,18 +211,18 @@ HTML;
 
         <div class="btn-d "  <?php  if(!$isRegister){echo 'style="display:none";';}?>>
             <img src="./images/cross.png">
-            <div class="bottomSign" style="margin:0px;width: 100%;height: 100%;" <?php  if($isRegister&&$isSubcribe){echo 'style="display:none";';}?> onclick="javascript:if (!<?php echo $isWx;?>) {alert('请进入三翼校园公众号，点击下方菜单或回复军训时光记使用该功能')}else{location.href = './register.php'}"> 签到</div>
+            <div class="bottomSign" style="margin:0px;width: 100%;height: 100%;"  onclick="javascript:if (!(<?php echo $canVote;?>)) {alert('请进入三翼校园公众号，点击下方菜单或回我要报名使用该功能')}else{location.href = './register.php'}"> 签到</div>
         </div>
 
 
         <div class="btn-d "  <?php  if($isRegister){echo 'style="display:none";';}?>>
             <img src="./images/cross.png">
-            <div class="bottomSign" style="margin:0px;width: 100%;height: 100%;" onclick="javascript:if (!<?php echo $isWx;?>) {alert('请进入三翼校园公众号，点击下方菜单或回复军训时光记使用该功能')}else{location.href = './sign.php'}"> 报名</div>
+            <div class="bottomSign" style="margin:0px;width: 100%;height: 100%;" onclick="javascript:if (!(<?php echo $canVote;?>)) {alert('请进入三翼校园公众号，点击下方菜单或回我要报名使用该功能')}else{location.href = './sign.php'}"> 报名</div>
         </div>
 
 
         <div class="btn-d ">
-            <div class=" bottomNavBtn2" style="width:60%;height:60%;color:black;" onclick="javascript:if (!<?php echo $isWx;?>) {location.href = './my2.php'}else{location.href = './<?php if($isRegister){echo 'my.php';}else{echo 'my2.php';}?>'}"> <span>个人</span></div>
+            <div class=" bottomNavBtn2" style="width:60%;height:60%;color:black;" onclick="javascript:if (!(<?php echo $canVote;?>)) {location.href = './my2.php'}else{location.href = './<?php if($isRegister){echo 'my.php';}else{echo 'my2.php';}?>'}"> <span>个人</span></div>
         </div>
     </nav>
 
@@ -277,7 +286,7 @@ HTML;
     <script>
         var voting=false;
         $('#voteBtn').on("click",function(){
-            if (<?php echo $isWx.'&&'.$isSubcribe; ?>) {
+            if (<?php echo $canVote; ?>) {
                 if(voting)return false;
                 var cur=$(this);
                 var pid=$(this).attr("pid");

@@ -293,8 +293,10 @@ $user->timePlus();
                          $("#coverPage").css('display','block');
                          $("#redeemCode").css('display','block');
 //                            alert('1');
+//                         location.href="./index.php";
                          }else if(jsonres.code==0){
                              alert(jsonres.res);
+                             location.href="./index.php";
                          }
 //
 //                        location.href="./index.php";

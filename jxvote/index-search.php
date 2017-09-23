@@ -13,6 +13,7 @@ if(isset($_SESSION['canVote'])){
     $headImgurl = $_SESSION['headImgurl'];
     $canVote = $_SESSION['canVote'];
     $isRegister = $_SESSION['isRegister'];
+    $personal_id = $_SESSION['personal_id'];
 }else{//未设置此session时，判断是否微信登录和是否关注，即是否可获得用户信息
     //获取UA,判断微信
     $UA = $_SERVER['HTTP_USER_AGENT'];
@@ -70,6 +71,7 @@ if(isset($_SESSION['canVote'])){
         $isRegister = 0;
     }
     $_SESSION['isRegister'] = $isRegister;
+    $_SESSION['personal_id'] = $personal_id;
 }
 
 $str = $_GET['name'];
@@ -162,7 +164,7 @@ $visit_num = $count[0]['vister_count'];
                             <div class="vote-count"><span class="voteC" pid="{$id}" >{$row['vote_count']}</span>票&nbsp;&nbsp;{$subject}</div>
                         </div>
                         <div class="operation">
-                            <div class="op-attention" fcous="{$id}">关注</div>
+                            <div class="op-attention" onclick="javascript:location.href = './personal.php?id={$id}'">查看</div>
                             <div class="op-vote" pid="{$id}">投票</div>
                         </div>
                     </div>

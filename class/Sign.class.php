@@ -51,6 +51,7 @@ class Sign
             // print_r($DB->printMessage());
 
             $DB->update("count",array('sign_up_count'=>$rank) , "Id = 1");   //总人数加一
+        $_SESSION['isRegister'] = 1;
             return true;
     }
 

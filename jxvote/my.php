@@ -339,15 +339,5 @@ $user->timePlus();
 //            alert('请凭此页面联系三翼招商君qq2092674603领取奖品！');
         }
     }
-    $('#goPrize').click(function() {
-        if (<?php echo $times; ?>) {
-            location.href = './lottery.php';
-        }
-        else{
-            alert('Sorry，你没有足够的抽奖机会~')
-        }
-    });
-    $('#gly').click(function() {
-        alert('管理员QQ是1684577735，有什么事联系她吧~')
-    });
+
     </script>

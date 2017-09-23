@@ -13,6 +13,7 @@ if(isset($_SESSION['canVote'])){
     $headImgurl = $_SESSION['headImgurl'];
     $canVote = $_SESSION['canVote'];
     $isRegister = $_SESSION['isRegister'];
+    $personal_id = $_SESSION['personal_id'];
 }else{//未设置此session时，判断是否微信登录和是否关注，即是否可获得用户信息
     //获取UA,判断微信
     $UA = $_SERVER['HTTP_USER_AGENT'];
@@ -70,14 +71,15 @@ if(isset($_SESSION['canVote'])){
         $isRegister = 0;
     }
     $_SESSION['isRegister'] = $isRegister;
+    $_SESSION['personal_id'] = $personal_id;
 }
 
-//echo 'openId:'.$openId;
-echo 'nickName:'.$nickName;
-//echo 'headImgurl:'.$headImgurl;
-echo 'isSubcribe:'.$isSubcribe;
-echo 'isWx:'.$isWx;
-echo 'canVote:'.$canVote;
+//echo 'nickName:'.$nickName;
+//echo 'isSubcribe:'.$isSubcribe;
+//echo 'isWx:'.$isWx;
+//echo 'canVote:'.$canVote;
+//echo 'isRegister:'.$isRegister;
+
 
 
 $view = new View();

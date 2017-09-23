@@ -5,17 +5,69 @@ include_once '../class/User.class.php';
 include_once '../class/Sign.class.php';
 header("Content-type:text/html;charset=utf-8");
 session_start();
-$isSubcribe = $_SESSION['isSubcribe'];
-/*获取UA*/
-$UA = $_SERVER['HTTP_USER_AGENT'];
-if (preg_match('/MicroMessenger/', $UA)) {
-    $isWx = 1 ;
-    $action = './changeData.php';
-    $changeInfo = './changeInfo.php';
-}
-else{
-    $isWx = 0 ;
-    $action = '';
+if(isset($_SESSION['canVote'])){
+    $openId = $_SESSION['openId'];
+    $nickName = $_SESSION['nickName'];
+    $headImgurl = $_SESSION['headImgurl'];
+    $canVote = $_SESSION['canVote'];
+    $isRegister = $_SESSION['isRegister'];
+}else{//未设置此session时，判断是否微信登录和是否关注，即是否可获得用户信息
+    //获取UA,判断微信
+    $UA = $_SERVER['HTTP_USER_AGENT'];
+    if (preg_match('/MicroMessenger/', $UA)) {
+        $isWx = 1 ;
+    }else{
+        $isWx = 0 ;
+    }
+
+    if($isWx){
+        //初始化微信对象获取用户数据判断是否关注以及是否公众号内打开
+        $weixin = new WeiXin();
+        $userInfo = $weixin->getUserInfo2();
+        if($userInfo=='0'){
+            $isSubcribe =0;
+        }else{
+            $isSubcribe =1;
+        }
+
+        //关注，则可投票
+        if($isSubcribe){
+            $canVote = 1;
+        }else{
+            $canVote = 0;
+        }
+
+    }else{
+        $canVote = 0;
+    }
+
+    //如果可投票,相当于可登陆
+    if($canVote){
+        //设置SESSION,解析用户数据
+        $userInfo = json_decode($userInfo, true);
+        $openId = $userInfo['openid'];
+        $nickName = $userInfo['nickname'];       //用户昵称
+        $headImgurl = substr($userInfo['headimgurl'], 5, -2) . "/132"; //用户头像
+        $headImgurl = 'https:'.$headImgurl;
+        $_SESSION['openId'] = $openId;
+        $_SESSION['nickName'] = $nickName;
+        $_SESSION['headImgurl'] = $headImgurl;
+        $_SESSION['canVote'] = $canVote;
+
+        //判断是否已报名
+        $DB = new DataBase(DB_HOST,DB_USER,DB_PWD,DB_NAME);
+        $DB->select("candidate", "*", "openId = '$openId'");
+        $personal_info = $DB->fetchArray(MYSQL_ASSOC);
+        if(empty($personal_info)){
+            $isRegister = 0;
+        }else{
+            $isRegister = 1;
+            $personal_id = $personal_info[0]['Id'];
+        }
+    }else{
+        $isRegister = 0;
+    }
+    $_SESSION['isRegister'] = $isRegister;
 }
 
 ?>
@@ -28,7 +80,7 @@ else{
     <meta name="viewport" content="width=device-width,init-scale=1.0,max-scale=1.0,userscalable=no"/>
     <link rel="stylesheet" href="./css/index.css">
     <link rel="stylesheet" href="./css/my2.css">
-   <script src="http://cdn.static.runoob.com/libs/jquery/1.10.2/jquery.min.js">
+    <script src="//apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js">
 </script>
 </head>
 <body>
@@ -94,7 +146,7 @@ else{
         </div>
         <div class="btn-d ">
              <img src="./images/cross.png">
-             <div class="bottomSign" style="margin:0px;width: 100%;height: 100%;" onclick="javascript:if (!(<?php echo $isWx;?>&&<?php echo $isSubcribe;?>)) {alert('请进入三翼校园公众号，点击下方菜单或回复军训时光记使用该功能')}else{location.href = './sign.php'}"> 报名</div>
+             <div class="bottomSign" style="margin:0px;width: 100%;height: 100%;" onclick="javascript:if (!(<?php echo $canVote;?>)) {alert('请进入三翼校园公众号，点击下方菜单或回复军训时光记使用该功能')}else{location.href = './sign.php'}"> 报名</div>
         </div>
         <div class="btn-d ">
              <div class=" bottomNavBtn" style="width:60%;height:60%;color:black;"> <span>个人</span></div>
@@ -143,6 +195,8 @@ else{
         <div id="closeList">关闭</div>
     </div>
     <div id="coverPage"></div>
+    <script src="//apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+
     <script>
     $("#showList").click(function(){
         $(".giftList").css("display","block");
