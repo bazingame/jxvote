@@ -46,7 +46,7 @@ header('Content-type:text/html;charset=utf-8');
 //$word = '恭喜您获得！您的兑奖码是:请凭兑奖码在有效时间内到门店登记领取';
 
 //for($i = 5 ;$i <100 ;$i++) {
-    $hh = new VF();
-    $hh->updateRank('87');
+//    $hh = new VF();
+//    $hh->updateRank('87');
 //}
 ?>
