@@ -123,7 +123,6 @@ $user->addVister();
     </div>
     <div class="container" style="padding: 15px 10px 15px 10px;">
         <div class="opacityPage"></div>
-          <div class="warningWord">请大家文明参赛，公平竞争。禁止任何刷票行为，一经发现，将立即取消参赛者参赛资格！本次活动最终解释权归三翼工作室所有。</div>
         <div class="info">
             <table id="infoTable">
                 <tr>

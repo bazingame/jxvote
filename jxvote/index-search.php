@@ -103,13 +103,11 @@ $visit_num = $count[0]['vister_count'];
 <body>
 <div class="background"></div>
 <div class="bannerTop">
-    <img src="./images/bannerTop.jpg" alt="">
-    <div class="phoneAfrica">
-        <img src="./images/phoneAfrica.png" alt="">
-    </div>
+    <img src="./images/800.jpg" alt="">
 </div>
 <div class="container" style="padding: 15px 10px 15px 10px;">
     <div class="opacityPage"></div>
+    <div class="warningWord">请大家文明参赛，公平竞争。禁止任何刷票行为，一经发现，将立即取消参赛者参赛资格！本次活动最终解释权归三翼工作室所有。</div>
     <div class="info">
         <table id="infoTable">
             <tr>
@@ -150,18 +148,18 @@ $visit_num = $count[0]['vister_count'];
                 $name = $personal_info['name'];
                 $imgurl = $row['album_info'];
                 $imgurl = json_decode($imgurl, 1);
-                $imgurl = $imgurl['cover'];
-                $subject = $imgurl['subject'];
+                $imgurl_path = $imgurl['cover'];
+                $album_subject = $imgurl['subject'];
                 if ($key%2 == 0) {
                     $id = $row['Id'];
                     $html = <<<HTML
                                     <div class="mui-panel mui--z2" style="padding: 0px;width: 95%;" style="padding: 0px;width: 95%;">
                     <div class="userNum"><span>{$id}</span>号</div>
-                    <img class="one-img" data-original="../class/recordings/{$imgurl}" alt="name" width="100%" onclick="javascript:location.href = './personal.php?id=$id';">
+                    <img class="one-img" data-original="../class/recordings/{$imgurl_path}" alt="name" width="100%" onclick="javascript:location.href = './personal.php?id=$id';">
                     <div class="user-bottom">
                         <div class="information">
                             <div class="name">{$name}</div>
-                            <div class="vote-count"><span class="voteC" pid="{$id}" >{$row['vote_count']}</span>票&nbsp;&nbsp;{$subject}</div>
+                            <div class="vote-count"><span class="voteC" pid="{$id}" >{$row['vote_count']}</span>票&nbsp;&nbsp;{$album_subject}</div>
                         </div>
                         <div class="operation">
                             <div class="op-attention" onclick="javascript:location.href = './personal.php?id={$id}'">查看</div>

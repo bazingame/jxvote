@@ -51,7 +51,7 @@ if(empty($personal_info)){
 //    if($d)
     $prize_show = '';
     foreach ($prize_list as $key=>$value){
-        $prize_show = '<span class="">'.$prize_to_date[$key].'['.$value.']</span>';
+        $prize_show .= $prize_to_date[$key].'['.$value.']</br>';
     }
 //    print_r($prize_show);
 
@@ -116,7 +116,7 @@ $user->timePlus();
                 <li class="userLi" style="margin:0;"><img src="./images/touLogo.jpg">票数:<?php if($isRegister){echo $register_info['vote_count'];} ?></li>
         </ul>
         <div class="userInformation"  <?php  if(!$isRegister){echo 'style="display:none";';}?> ><img src="./images/littlePerson.png"><?php  echo $register_info['name'];?><span id="informationWords">[已签到: <?php echo $register_count['count']; ?>天]</span></div>
-        <div class="userInformation" <?php  if(!$isRegister){echo 'style="display:none";';}?>><img src="./images/circleCorrect.png" style="width:5%;margin-right:7%;">目前已获奖品<span id="informationWordss">[<?php echo $prize_show; ?>]</span></div>
+        <div class="userInformation" <?php  if(!$isRegister){echo 'style="display:none";';}?>><img src="./images/circleCorrect.png" style="width:5%;margin-right:7%;">目前已获奖品<span id="informationWordss" style="line-height: 20px;"><?php echo $prize_show; ?></span></div>
         <div class="blackBtn" onclick="alert('管理员QQ是1004168799，有什么问题问他吧')">联系管理员<img src="./images/whiteQQ.png"></div>
         <div class="blackBtn" onclick="location.href='https://www.sky31.com'">三翼工作室<img src="./images/whiteSanYi.png"></div>
         <img src="./images/sanYi.png" id="userSanYi">
@@ -239,6 +239,14 @@ $user->timePlus();
             $("#coverPage").css("display","none");
         })
 
+    </script>
+    <script>
+          function changUlTop(){
+                   var userPhotoMgTop=0.06*document.body.clientWidth+1;
+                   $("#userUl").css("top",userPhotoMgTop+"px");
+                   console.log("g");
+          }
+          window.onload=changUlTop();
     </script>
     <div style="display: none"><script src="https://s22.cnzz.com/z_stat.php?id=1264506451&web_id=1264506451" language="JavaScript"></script></div>
 

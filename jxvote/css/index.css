@@ -1,4 +1,4 @@
-* {
+﻿* {
     margin: 0 auto;
     padding: 0;
     list-style: none;
@@ -40,9 +40,9 @@ input:focus {
     position: absolute;
     left: 0;
     right: 0;
-    top: 26%;
+    top:222px;
     border-radius: 5px;
-    border-top:100px solid #fff;
+    border-top:180px solid #fff;
     border-left:10px solid #fff; 
     border-right:10px solid #fff;  
     box-sizing: border-box;
@@ -431,4 +431,13 @@ input:focus {
     z-index: 10000;
     background-color: rgba(0,0,0,0.3);
     display: none;
+}
+.warningWord{
+    position: absolute;
+    width: 100%;
+    top: -160px;
+    color: black;
+    font-size:12px;
+    left: 50%;
+    transform: translateX(-50%);
 }

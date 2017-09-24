@@ -18,6 +18,9 @@ class VF
         $DB = new DataBase(DB_HOST,DB_USER,DB_PWD,DB_NAME);
         $remainVote  = $this->votes($DB);//获得今日可用投票数
 //        $data = 1;
+        if($remainVote<0){
+            $remainVote = 0;
+        }
         if ($remainVote) {
             $DB->select("candidate", "*", "Id = $id");    //查询
             $result = $DB->fetchArray(MYSQL_ASSOC);

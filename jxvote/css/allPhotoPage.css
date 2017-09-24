@@ -52,13 +52,17 @@
      border-radius:5px;
      font-size: 0.8em;
  }
+ .onePhotoFatherBox
+ {
+     position: relative;
+     padding-bottom: 10px;
+     margin-bottom: 50px;
+ }
  .onePhotoPart{
      display: inline-block;
      width: 60%; 
-
      background-color: #fff;
      margin-left: 30%; 
-     margin-bottom: 90px;
  }
  .onePhotoPartBox{
          position: relative;
@@ -76,26 +80,26 @@
  }
  .divideLine{
      position: absolute;
-     top:92%;
-     left:3%;
+     bottom:-30px;
+     left:1%;
      width: 15%;
      height:6px;
      border-radius:10%; 
      background-color: rgb(139,147,148);
      z-index: 4;
-     transform: translateY(-50%); 
+     transform: translateY(50%); 
  }
  .giftBox{
      position: absolute;
-     top:92%;
-     transform: translateY(-50%); 
+     bottom:-30px;
+     transform: translateY(50%); 
      left: 22%;
      width: 10%;
  }
  .giftWord{
     position: absolute;
-     top:92%;
-     transform: translateY(-50%); 
+     bottom:-30px;
+     transform: translateY(50%); 
      left: 35%;
      width: 55%;
      height: 12px;
@@ -115,10 +119,10 @@
  }
  .theSideLine{
      position: absolute;
-     left:9%;
+     left:3%;
      top:30px;
      width: 5px;
-     height: 110%;
+     height: 90%;
      background-color:rgb(139,147,148);
  }
  .circleGrayTop{
