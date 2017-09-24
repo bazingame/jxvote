@@ -100,6 +100,7 @@ class Sign
             $photo_list = json_encode($photo_list,JSON_UNESCAPED_UNICODE);
             $DB->update('candidate',array('photo_list'=>$photo_list),"openId='$openId'");
             $DB->update('candidate',array('update_time'=>$date),"openId='$openId'");
+            $this->updateReg();
 
             //未参与抽奖返回-1
             $code = -1;
@@ -125,6 +126,7 @@ class Sign
         $DB->update('candidate',array('photo_list'=>$data,'update_time'=>$date),"openId='$openId'");
 //        $DB->update_1('candidate','photo_list',$data,"openId='$openId'");
         $DB->update('candidate',array('update_time'=>$date),"openId='$openId'");
+        $this->updateReg();
 //        $sql = "UPDATE candidate SET photo_list = '$data' WHERE openId = '$openId'";
 //        $DB->query($sql);
 
@@ -187,6 +189,15 @@ class Sign
         $res['detail'][$date] = 1;
         $res = json_encode($res,JSON_UNESCAPED_UNICODE);
         $DB->update('candidate',array('register_count'=>$res),"openId = '$openId'");
+    }
+
+    function updateReg(){
+        $DB = new DataBase(DB_HOST,DB_USER,DB_PWD,DB_NAME);
+        $DB->select("count", "*", "id = '1'");
+        $result = $DB->fetchArray(MYSQL_ASSOC);
+        $sign_num = $result[0]['register_count'];
+        $sign_num++;
+        $DB->update('count',array('register_count'=>$sign_num),"Id = 1");
     }
 
     //记录兑奖码
