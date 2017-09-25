@@ -28,13 +28,15 @@ $today_prize = $prize_list[$time];
             $word = '恭喜您获得'.$today_prize.'！您的兑奖码是:'.$res.'!请凭兑奖码在有效时间内到门店登记领取';
             echo '{"code":"1","res":"'.$word.'","pic":"./images/richman/'.$time.'.jpg"}';
         }
+    }else if($_GET['type']=='revise'){
+        $status = $sign->revise($_POST['name'], $_POST['sid'], $_POST['department'], $_POST['QQ'], $_POST['tel'], $_POST['album_subject']);
+        if ($status) {
+            echo "<script>alert('信息修改成功！继续上传照片吧！');location.href='register.php'</script>";
+        }
     }else {
         $status = $sign->sign($_POST['name'], $_POST['sid'], $_POST['department'], $_POST['QQ'], $_POST['tel'], $_POST['album_subject']);
         if ($status) {
             echo "<script>alert('信息上传成功！请开始上传照片吧！上传至少一张照片才可以参与投票哦！');location.href='register.php'</script>";
-            // print_r($_POST);
-//        header("Location:./lottery.php");
-            // echo "$status";
         }
     }
 

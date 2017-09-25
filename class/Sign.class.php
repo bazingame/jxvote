@@ -56,6 +56,35 @@ class Sign
     }
 
 
+    /*个人类型修改信息*/
+    function revise($name,$sid,$department, $QQ, $tel, $album_subject){
+        $date = date("Y-m-d H:i:s");
+        if (!isset($_SESSION['openId'])) {
+            echo "缺失数据！";
+            return 0;
+        }
+        $nickName = $_SESSION['nickName'];
+        $openId = $_SESSION['openId'];
+
+        $personal_info = array('sid'=>$sid,'name'=>$name,'college'=>$department,'phone'=>$tel,'qq'=>$QQ);
+        $personal_info = json_encode($personal_info,JSON_UNESCAPED_UNICODE);
+
+        $DB = new DataBase(DB_HOST,DB_USER,DB_PWD,DB_NAME);
+        $DB->select('candidate','album_info',"openId = '$openId'");
+        $data = $DB->fetchArray(MYSQL_ASSOC);
+        $album_info_old = $data[0]['album_info'];
+        $album_info_old = json_decode($album_info_old,true);
+
+        $album_info = array('subject'=>$album_subject,'cover'=>$album_info_old['cover']);
+        $album_info = json_encode($album_info,JSON_UNESCAPED_UNICODE);
+
+        //插入数据
+        $userInfo = array('name'=>$name,'personal_info'=>$personal_info, 'album_info'=>$album_info, 'update_time'=>$date);
+        $DB->update("candidate", $userInfo,"openId = '$openId'");     //插入报名数据
+        return true;
+    }
+
+
     //打卡传照片
     function signPic($openId,$words,$serverID){
         $date = date("Y-m-d H:i:s");

@@ -134,8 +134,8 @@ $user->timePlus();
            </div>
            <div id="albumBtns">
                <div class="albumBtn "onclick="location.href='./personal.php?id=<?php echo $register_info['Id'];?>'">查看相册</div>
-<!--               <div class="albumBtn" id="reviseInformation" onclick="location.href='./revise.php'">修改信息</div>-->
-               <div class="albumBtn" id="reviseInformation" onclick="alert('请联系管理员')">修改信息</div>
+               <div class="albumBtn" id="reviseInformation" onclick="location.href='./revise.php'">修改信息</div>
+<!--               <div class="albumBtn" id="reviseInformation" onclick="alert('请联系管理员')">修改信息</div>-->
            </div>
         </div>
          <div class="awardBox">
