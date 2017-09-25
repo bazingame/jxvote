@@ -32,7 +32,7 @@ if(empty($personal_info)){
     echo '<script>alert("请先报名吧！")</script>';
 }else{
     $isRegister = 1;
-    $prize_to_date = array('0922'=>'理发体验一次','0923'=>'面膜1张','0924'=>'电话卡1张','0925'=>'奶茶1杯','0926'=>'代金劵1张','0927'=>'果汁2杯','0928'=>'水果茶1杯','0929'=>'果汁2杯','0930'=>'抵用券1张','1001'=>'奶茶1杯','1002'=>'阿道夫小礼包','1003'=>'随机礼品1份','1004'=>'终极大奖');
+    $prize_to_date = array('0922'=>'金瀚林商业街一楼启逸 Show 理发体验1次','0923'=>'联建腾升超市内美妆小屋面膜1张','0924'=>'东门正对面中国电信电话卡1张','0925'=>'联建乐茶醇香奶盖茶店奶茶1杯','0926'=>'金瀚林商业街一楼启逸 Show 35元理发代金劵1张','0927'=>'太平市场茶香如语果汁2杯','0928'=>'太平市场水果Bang霸王水果茶1杯','0929'=>'太平市场茶香如语果汁2杯','0930'=>'联建麦香园蛋糕店领取抵用券1张','1001'=>'联建乐茶醇香奶盖茶店奶茶1杯','1002'=>'金瀚林商业街三楼Beauty上妆园阿道夫小礼包','1003'=>'联建虞美人蛋糕店随机礼品1份','1004'=>'活动终极神秘大奖');
 //    $key_name = array('1004','1003','1002','1001','0930','0929','0928','0927','0926','0925','0924','0923','0922');
     $register_info = $personal_info[0];
     $album_info = json_decode($register_info['album_info'],true);
@@ -49,9 +49,9 @@ if(empty($personal_info)){
     $prize_list = json_decode($data[0]['prize'],true);
 //    print_r($prize_list);
 //    if($d)
-    $prize_show = '';
+    $prize_show = '</br>';
     foreach ($prize_list as $key=>$value){
-        $prize_show .= $prize_to_date[$key].'['.$value.']</br>';
+        $prize_show .= $prize_to_date[$key].'</br>兑奖码:['.$value.']</br>';
     }
 //    print_r($prize_show);
 
@@ -116,7 +116,7 @@ $user->timePlus();
                 <li class="userLi" style="margin:0;"><img src="./images/touLogo.jpg">票数:<?php if($isRegister){echo $register_info['vote_count'];} ?></li>
         </ul>
         <div class="userInformation"  <?php  if(!$isRegister){echo 'style="display:none";';}?> ><img src="./images/littlePerson.png"><?php  echo $register_info['name'];?><span id="informationWords">[已签到: <?php echo $register_count['count']; ?>天]</span></div>
-        <div class="userInformation" <?php  if(!$isRegister){echo 'style="display:none";';}?>><img src="./images/circleCorrect.png" style="width:5%;margin-right:7%;">目前已获奖品<span id="informationWordss" style="line-height: 20px;"><?php echo $prize_show; ?></span></div>
+        <div class="userInformation" <?php  if(!$isRegister){echo 'style="display:none";';}?>><img src="./images/circleCorrect.png" style="width:5%;margin-right:7%;">目前已获奖品<span id="informationWordss" >[点击查看]</span></div>
         <div class="blackBtn" onclick="alert('管理员QQ是1004168799，有什么问题问他吧')">联系管理员<img src="./images/whiteQQ.png"></div>
         <div class="blackBtn" onclick="location.href='https://www.sky31.com'">三翼工作室<img src="./images/whiteSanYi.png"></div>
         <img src="./images/sanYi.png" id="userSanYi">
@@ -227,6 +227,14 @@ $user->timePlus();
         <div id="closeList">关闭</div>
     </div>
     <div id="coverPage"></div>
+    <div id="redeemCode" class="mui-panel mui--z2">
+        <div id="redeemWords"><?php  echo $prize_show;?></div>
+        <div id="redeemCodes"></div>
+        <ul>
+            <!--             <li id="copy">复制</li>-->
+            <li id="close"><button id="close1" class="mui-btn mui-btn-block" style="width: 218px;">确定</button></li>
+        </ul>
+    </div>
     <script src="//apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
 
     <script>
@@ -253,6 +261,16 @@ $user->timePlus();
 </body>
 
 <script>
+    $("#informationWordss").on("click",function () {
+        $("#redeemCode").css('display','block');
+        $("#coverPage").css("display","block");
+    });
+    $("#close").on("click",function () {
+        $("#redeemCode").css('display','none');
+        $("#coverPage").css("display","none");
+    });
+
+
     var isshow=0;
     var isshow0=0;
     $('#show').click(function() {

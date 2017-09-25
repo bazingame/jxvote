@@ -441,3 +441,25 @@ input:focus {
     left: 50%;
     transform: translateX(-50%);
 }
+
+#redeemCode {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    width: 250px;
+    /* height: 120px; */
+    background-color: rgb(246,245,245);
+    padding-top: 1px;
+     display: none;
+    z-index: 20000;
+}
+#redeemCode>ul>li {
+    width: 100%;
+    box-sizing: border-box;
+    float: left;
+    height: 40px;
+    text-align: center;
+    line-height: 40px;
+    /* border-top: 0.5px solid black; */
+}

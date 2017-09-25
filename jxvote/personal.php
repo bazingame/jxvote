@@ -147,21 +147,23 @@ HTML;
             $img .= '<img src="../class/recordings/'.$val.'" alt="">';
         }
         $html = <<<HTML
-                    <div class="onePhotoPartBox">
-                        <div class="onePhotoPart">
-                           <div class="divideLine"></div>
-                            {$img}
-                            <span class="itdPhotoWord">{$value['words']}</span></br>
-                            <span style="margin-left:66%;">--</span>
-                            <span class="dateWord">{$sign_time}</span>
-                            <img src="./images/giftBox.png" alt="" class="giftBox" style="width:10%;">
-                             <div class="giftWord"><img src="./images/yellowCircle.png" alt=""></div>
-                        </div>
-                        <!--<ul class="Labels">-->
-                           <!--<li>自拍</li>-->
-                           <!--<li>自拍</li>-->
-                    <!--</ul>-->
-                   </div>
+                    <div class="onePhotoFatherBox">
+                        <div class="onePhotoPartBox">
+                            <div class="onePhotoPart">
+                               <div class="divideLine"></div>
+                                {$img}
+                                <span class="itdPhotoWord">{$value['words']}</span></br>
+                                <span style="margin-left:66%;">--</span>
+                                <span class="dateWord">{$sign_time}</span>
+                                <img src="./images/giftBox.png" alt="" class="giftBox" style="width:10%;">
+                                 <div class="giftWord"><img src="./images/yellowCircle.png" alt=""></div>
+                            </div>
+                            <!--<ul class="Labels">-->
+                               <!--<li>自拍</li>-->
+                               <!--<li>自拍</li>-->
+                        <!--</ul>-->
+                       </div>
+                    </div>
 HTML;
         echo $html;
     }
