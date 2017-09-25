@@ -138,7 +138,7 @@ HTML;
     </div>
     <?php
     $album_info = json_decode($data['photo_list'],true);
-    foreach (array_reverse($album_info) as $key => $value){
+    foreach ($album_info as $key => $value){
         $month = substr($key,0,2);
         $day = substr($key,2,2);
         $sign_time = $month.'.'.$day;
