@@ -92,14 +92,6 @@ if(isset($_SESSION['canVote'])){
          <p>创建自己的军训相册，</p>
          <p>开始自己的 军训时光记！</p>
      </div>
-     <div class="jxzyPart">
-          <img src="./images/jxzyImg.jpg">
-          <div class="wordJxzy">
-              <div>合作活动:军训之夜</div>
-              <div>10月8日晚7点整 第一文化广场 （一田）</div>
-              <div style="text-align:center;">青春无敌，Fun肆来袭！</div>
-          </div>
-     </div>
     <div class="jxzyPart">
           <img src="./images/90Logo.jpg">
           <div class="wordJxzy">
