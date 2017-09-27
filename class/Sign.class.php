@@ -89,18 +89,22 @@ class Sign
     function signPic($openId,$words,$serverID){
         $date = date("Y-m-d H:i:s");
 
-        //标记已上传可以显示！
+        //标记是否可以显示！
         $DB = new DataBase(DB_HOST,DB_USER,DB_PWD,DB_NAME);
         $DB->update('candidate',array('has_upload'=>'1'),"openId='$openId'");
 
+        //从微信服务器下载图片
         $weixin = new WeiXin();
         $imgData_json = $weixin->downloadfile($serverID);
         $imgArr = json_decode($imgData_json,true);
+
+        //整合此次上传的图片信息
         $time = date("m").date("d");
         $photo_list = array(
                             $time=>array('pic'=>$imgArr,
-                                        'words'=>$words,
-                                        'label'=>array('开心','开心') ) );
+                                        'words'=>$words
+                                        )
+                            );
 
         //首张为封面，先判断有无封面
         $cover = $this->getCover($openId);
@@ -122,13 +126,18 @@ class Sign
         if(array_key_exists($time,$photo_old)){     //已签到
             //将pic信息合并
             $thisDaypic = array_merge($imgArr,$photo_old[$time]['pic']);
-            $thisDayInfo = array('pic'=>$thisDaypic,'words'=>$words,'lebel'=>array('开心'));
-            $thisDayInfo = array($time=>$thisDayInfo);
+            //干掉emoji
+            $words = $this->filterEmoji($words);
+            $thisDaywords = $photo_old[$time]['words'].'</br>'.$words;
+            $thisDayInfo_detail = array('pic'=>$thisDaypic,'words'=>$thisDaywords);
+//            $thisDayInfo = array($time=>$thisDayInfo_detail);
             //今日与全部信息合并
-            $photo_list = array_merge($photo_old,$thisDayInfo);
-            $photo_list = json_encode($photo_list,JSON_UNESCAPED_UNICODE);
-            $DB->update('candidate',array('photo_list'=>$photo_list),"openId='$openId'");
-            $DB->update('candidate',array('update_time'=>$date),"openId='$openId'");
+//            $photo_list = array_merge($photo_old,$thisDayInfo);
+
+            $photo_old[$time] = $thisDayInfo_detail;
+            $photo_list = json_encode($photo_old,JSON_UNESCAPED_UNICODE);
+            $DB->update('candidate',array('photo_list'=>$photo_list,'update_time'=>$date),"openId='$openId'");
+//            $DB->update('candidate',array('update_time'=>$date),"openId='$openId'");
             $this->updateReg();
 
             //未参与抽奖返回-1
@@ -161,6 +170,19 @@ class Sign
 
         return $code;
 //        return $photo_list;
+    }
+
+    // 过滤掉emoji表情
+    function filterEmoji($str)
+    {
+        $str = preg_replace_callback(
+            '/./u',
+            function (array $match) {
+                return strlen($match[0]) >= 4 ? '' : $match[0];
+            },
+            $str);
+
+        return $str;
     }
 
 
@@ -220,6 +242,7 @@ class Sign
         $DB->update('candidate',array('register_count'=>$res),"openId = '$openId'");
     }
 
+    //更新签到数量
     function updateReg(){
         $DB = new DataBase(DB_HOST,DB_USER,DB_PWD,DB_NAME);
         $DB->select("count", "*", "id = '1'");
