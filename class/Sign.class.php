@@ -128,7 +128,7 @@ class Sign
             $thisDaypic = array_merge($imgArr,$photo_old[$time]['pic']);
             //干掉emoji
             $words = $this->filterEmoji($words);
-            $thisDaywords = $photo_old[$time]['words'].'</br>'.$words;
+            $thisDaywords = $photo_old[$time]['words'].'</br></br>'.$words;
             $thisDayInfo_detail = array('pic'=>$thisDaypic,'words'=>$thisDaywords);
 //            $thisDayInfo = array($time=>$thisDayInfo_detail);
             //今日与全部信息合并
@@ -172,7 +172,7 @@ class Sign
 //        return $photo_list;
     }
 
-    // 过滤掉emoji表情
+    // 过滤掉emoji表情和引号
     function filterEmoji($str)
     {
         $str = preg_replace_callback(
@@ -181,6 +181,8 @@ class Sign
                 return strlen($match[0]) >= 4 ? '' : $match[0];
             },
             $str);
+
+        $str = preg_replace('/\"/','',$str);
 
         return $str;
     }

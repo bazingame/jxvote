@@ -115,7 +115,7 @@ if(isset($_SESSION['canVote'])){
          <div id="receiveWayPart">
               <div class="wordAward">领奖方式</div>
               <div class="awardText">
-             <div><span class="wordModeI">投票奖</span><span class="wordModeII">、</span><span class="wordModeI">特别奖</span><span class="wordModeII">和</span><span class="wordModeI">幸运大奖</span><span class="wordModeII">于10月8日军训之夜当晚到三翼摆点处领取，工作人员会提前通知</span></div>
+             <div><span class="wordModeI">投票奖</span><span class="wordModeII">、</span><span class="wordModeI">特别奖</span><span class="wordModeII">和</span><span class="wordModeI">幸运大奖</span><span class="wordModeII">于军训结束在三翼摆点处领取，工作人员会提前通知</span></div>
              <div><span class="wordModeI">特别奖</span><span class="wordModeII">请凭兑奖码到相应的门店登记领取</span></div>
              <div><span class="wordModeII">(每日前n名获兑奖码，领取时间:9月22日--10月12日)</span></div>
              </div>
@@ -179,9 +179,9 @@ if(isset($_SESSION['canVote'])){
             <div class="wordAward2">参与奖</div>
             <div><span class="wordModeII">所有参赛选手凭参与活动的截图，享受宝岛眼镜提供的全场眼镜打5折再减50元的优惠。</span></div>
             <div><span class="wordModeII">凡是报名、投票的可以凭截图享受宝岛眼镜提供的三个月内意外事故免费换新；一年之内，免费保修的服务。</span></div>
-            <div><span class="wordModeII">凡是报名、投票的可以凭截图到新体育馆康力健身俱乐部领取单次体验卡一张（或在10月8日军训之夜当晚到三翼摆点处领取）</span></div>
+            <div><span class="wordModeII">凡是报名、投票的可以凭截图到新体育馆康力健身俱乐部领取单次体验卡一张（或到三翼摆点处领取）</span></div>
             <div class="wordAward2">关于领奖</div>
-            <div><span class="wordModeII">投票奖、特别奖和幸运大奖于10月8日军训之夜当晚三翼摆点处领取，工作人员会提前通知。</span></div>
+            <div><span class="wordModeII">投票奖、特别奖和幸运大奖于军训结束在三翼摆点处领取，工作人员会提前通知。</span></div>
             <div><span class="wordModeII">打卡奖请凭兑奖码到相应的门店登记领取。（每日前n名获兑奖码，领取时间：9月22日—10月12日）</span></div>
         </div>
         <div id="closeList">关闭</div>
