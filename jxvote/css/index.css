@@ -393,7 +393,7 @@ input:focus {
      margin-top:7%;
      color: #fff;
      background-color: rgb(66,229,193);
-     border-radius: 10%;
+     border-radius: 6px;
      text-align: center;
 }
 .bottomNavBtn2{
