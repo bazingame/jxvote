@@ -153,7 +153,7 @@ class Sign
             //判断是否第一次
             if($photo_old==''){
             }else{
-                $photo_list = array_merge($photo_list,$photo_old);
+                $photo_list = $photo_list+$photo_old;
             }
             $photo_list = json_encode($photo_list,JSON_UNESCAPED_UNICODE);
 //            return  $photo_list;
@@ -267,7 +267,7 @@ class Sign
             $res = array($date=>$code);
         }else{
             $thisPrize = array($date=>$code);
-            $res = array_merge($thisPrize,$data);
+            $res = $thisPrize+$data;
 //            return $res;
         }
         $res = json_encode($res,JSON_UNESCAPED_UNICODE);
