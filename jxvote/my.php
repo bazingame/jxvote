@@ -51,6 +51,9 @@ if(empty($personal_info)){
 //    if($d)
     $prize_show = '</br>';
     foreach ($prize_list as $key=>$value){
+        if($key=='1004' || $key=='1005' || $key == '1006' || $key =='1007' || $key=='1008'){
+            continue;
+        }
         $prize_show .= $prize_to_date[$key].'</br>兑奖码:['.$value.']</br>';
     }
 //    print_r($prize_show);

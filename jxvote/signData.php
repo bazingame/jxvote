@@ -26,7 +26,13 @@ $today_prize = $prize_list[$time];
         }else{
             $time = date("m").date("d");
             $word = '恭喜您获得'.$today_prize.'！您的兑奖码是:'.$res.'!请凭兑奖码在有效时间内到门店登记领取';
-            echo '{"code":"1","res":"'.$word.'","pic":"./images/richman/'.$time.'.jpg"}';
+            if($time=='1004'){
+                echo '{"code":"1","res":"中秋快乐！！翼宝永远爱你","pic":"./images/richman/'.$time.'.jpg"}';
+            }else if($time =='1005'|| $time == '1006' || $time =='1007' || $time=='1008'){
+                echo '{"code":"1","res":"","pic":"./images/richman/'.$time.'.jpg"}';                
+            }else{
+                echo '{"code":"1","res":"'.$word.'","pic":"./images/richman/'.$time.'.jpg"}';
+            }
         }
     }else if($_GET['type']=='revise'){
         $status = $sign->revise($_POST['name'], $_POST['sid'], $_POST['department'], $_POST['QQ'], $_POST['tel'], $_POST['album_subject']);
