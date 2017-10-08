@@ -181,7 +181,7 @@ $user->timePlus();
         </div>
         <div class="btn-d ">
              <img src="./images/cross.png">
-             <div class="bottomSign" style="margin:0px;width: 100%;height: 100%;" onclick="location.href = './register.php'"> 签到</div>
+             <div class="bottomSign" style="margin:0px;width: 100%;height: 100%;" onclick="alert('活动已结束，比赛结果将于10月9日公布在微信公众号“湘潭大学三翼校园”，感谢您的参与。');"> 签到</div>
         </div>
         <div class="btn-d ">
              <div class=" bottomNavBtn" style="width:60%;height:60%;color:#fff;" > <span>个人</span></div>

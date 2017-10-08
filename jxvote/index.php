@@ -123,7 +123,7 @@ $user->addVister();
     </div>
     <div class="container" style="padding: 15px 10px 15px 10px;">
         <div class="opacityPage"></div>
-          <div class="warningWord">请大家文明参赛，公平竞争。禁止任何刷票行为，一经发现，将立即取消参赛者参赛资格！本次活动最终解释权归三翼工作室所有。</div>
+          <div class="warningWord">投票截止时间：10月7日24:00<br>请大家文明参赛，公平竞争。禁止任何刷票行为，一经发现，将立即取消参赛者参赛资格！<br>比赛结果将于10月9号公布在微信公众号“湘潭大学三翼校园”。工作人员会联系获奖选手领取奖品。<br>本次活动最终解释权归三翼工作室所有。</div>
         <div class="info">
             <table id="infoTable">
                 <tr>
@@ -238,13 +238,13 @@ echo $html;
 
         <div class="btn-d "  <?php  if(!$isRegister){echo 'style="display:none";';}?>>
             <img src="./images/cross.png">
-            <div class="bottomSign" style="margin:0px;width: 100%;height: 100%;"  onclick="javascript:if (!(<?php echo $canVote;?>)) {alert('请进入三翼校园公众号，点击下方菜单或回我要报名使用该功能')}else{location.href = './register.php'}"> 签到</div>
+            <div class="bottomSign" style="margin:0px;width: 100%;height: 100%;"  onclick="alert('活动已结束，比赛结果将于10月9日公布在微信公众号“湘潭大学三翼校园”，感谢您的参与。');"> 签到</div>
         </div>
 
 
         <div class="btn-d "  <?php  if($isRegister){echo 'style="display:none";';}?>>
              <img src="./images/cross.png">
-            <div class="bottomSign" style="margin:0px;width: 100%;height: 100%;" onclick="javascript:if (!(<?php echo $canVote;?>)) {alert('请进入三翼校园公众号，点击下方菜单或回我要报名使用该功能')}else{location.href = './sign.php'}"> 报名</div>
+            <div class="bottomSign" style="margin:0px;width: 100%;height: 100%;" onclick="alert('活动已结束，比赛结果将于10月9日公布在微信公众号“湘潭大学三翼校园”，感谢您的参与。');"> 报名</div>
         </div>
 
 
@@ -268,6 +268,8 @@ echo $html;
 		});
         var voting=false;
         $('.op-vote').on("click",function(){
+            alert("活动已结束，比赛结果将于10月9日公布在微信公众号“湘潭大学三翼校园”，感谢您的参与。");
+            return;
             if (<?php echo $canVote;?>) {
                 if(voting)return false;
                 var cur=$(this);

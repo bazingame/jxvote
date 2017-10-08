@@ -213,13 +213,13 @@ HTML;
 
     <div class="btn-d "  <?php  if(!$isRegister){echo 'style="display:none";';}?>>
         <img src="./images/cross.png">
-        <div class="bottomSign" style="margin:0px;width: 100%;height: 100%;"  onclick="javascript:if (!(<?php echo $canVote;?>)) {alert('请进入三翼校园公众号，点击下方菜单或回我要报名使用该功能')}else{location.href = './register.php'}"> 签到</div>
+        <div class="bottomSign" style="margin:0px;width: 100%;height: 100%;"  onclick="alert('活动已结束，比赛结果将于10月9日公布在微信公众号“湘潭大学三翼校园”，感谢您的参与。');"> 签到</div>
     </div>
 
 
     <div class="btn-d "  <?php  if($isRegister){echo 'style="display:none";';}?>>
         <img src="./images/cross.png">
-        <div class="bottomSign" style="margin:0px;width: 100%;height: 100%;" onclick="javascript:if (!(<?php echo $canVote;?>)) {alert('请进入三翼校园公众号，点击下方菜单或回我要报名使用该功能')}else{location.href = './sign.php'}"> 报名</div>
+        <div class="bottomSign" style="margin:0px;width: 100%;height: 100%;" onclick="alert('活动已结束，比赛结果将于10月9日公布在微信公众号“湘潭大学三翼校园”，感谢您的参与。');"> 报名</div>
     </div>
 
 
@@ -288,6 +288,8 @@ HTML;
 <script>
     var voting=false;
     $('#voteBtn').on("click",function(){
+        alert('活动已结束，比赛结果将于10月9日公布在微信公众号“湘潭大学三翼校园”，感谢您的参与。');
+        return ;
         if (<?php echo $canVote; ?>) {
             if(voting)return false;
             var cur=$(this);

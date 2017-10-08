@@ -42,7 +42,7 @@ input:focus {
     right: 0;
     top:222px;
     border-radius: 5px;
-    border-top:180px solid #fff;
+    border-top:237px solid #fff;
     border-left:10px solid #fff; 
     border-right:10px solid #fff;  
     box-sizing: border-box;
@@ -435,7 +435,7 @@ input:focus {
 .warningWord{
     position: absolute;
     width: 100%;
-    top: -160px;
+    top: -218px;
     color: black;
     font-size:12px;
     left: 50%;
