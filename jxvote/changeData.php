@@ -13,7 +13,7 @@ $view->changeData($name, $tel, $introduce, $type, $change, $cnm);
 
 
 // session_start();
-// $DB = new DataBase('localhost', 'root', '***REMOVED***', "junxun");
+
 // $openid = $_SESSION['openId'];
 // $result = $DB->query("SELECT * FROM `candidate` WHERE openid = '$openid' AND type = '$type'");
 // $id = $result[0]['id'];
